@@ -21,6 +21,12 @@
 ]]></content>
   </entry>
   <entry>
+    <title>test_my_site</title>
+    <url>/2023/04/05/test-my-site/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
     <title>测试</title>
     <url>/2023/04/06/%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<h1 id="嵌入式C语言补充"><a href="#嵌入式C语言补充" class="headerlink" title="嵌入式C语言补充"></a>嵌入式C语言补充</h1><br>
@@ -56,12 +62,6 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">f_data</span> &#123;</span></span><br><span class="line">    <span class="type">float</span> f;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="type">uint8_t</span> byte[<span class="number">4</span>];</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>这样在进行数据传输的时候会方便很多，比如<strong>串口传输</strong>只需要把这个数组 <code>byte[4]</code> 进行传输就可以了。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>test_my_site</title>
-    <url>/2023/04/05/test-my-site/</url>
-    <content><![CDATA[<span id="more"></span>
 ]]></content>
   </entry>
 </search>
