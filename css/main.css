@@ -1605,7 +1605,6 @@ pre code {
   margin-top: 40px;
   text-align: center;
 }
-.use-motion .post-block,
 .use-motion .pagination,
 .use-motion .comments {
   visibility: hidden;
@@ -1983,9 +1982,6 @@ pre code {
 }
 .post-eof {
   background: #ccc;
-  height: 1px;
-  margin: 80px auto 60px;
-  width: 8%;
 }
 .post-block:last-of-type .post-eof {
   display: none;
@@ -2378,7 +2374,7 @@ mark.search-keyword {
 }
 .header {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px 20px 20px 20px;
   box-shadow: initial;
 }
 @media (max-width: 991px) {
@@ -2416,7 +2412,7 @@ mark.search-keyword {
   }
 }
 .main-inner {
-  border-radius: initial;
+  border-radius: 20px 20px 20px 20px;
   box-sizing: border-box;
   width: calc(100% - 312px);
 }
@@ -2445,7 +2441,8 @@ mark.search-keyword {
   }
 }
 .site-brand-container {
-  background: var(--theme-color);
+  background: url("/images/back.jpg");
+  background-size: cover;
 }
 @media (max-width: 991px) {
   .site-nav-on .site-brand-container {
@@ -2557,7 +2554,7 @@ mark.search-keyword {
 }
 .sidebar-inner {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px;
   box-shadow: initial;
   box-sizing: border-box;
   color: var(--text-color);
@@ -2629,4 +2626,11 @@ mark.search-keyword {
   .pagination {
     margin-bottom: 10px;
   }
+}
+body {
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  opacity: 0.9;
 }
