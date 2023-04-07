@@ -2066,8 +2066,8 @@ pre code {
   margin-bottom: 60px;
   padding: 25px;
   border-radius: 20px 20px 20px 20px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.9);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.9);
 }
 .pagination,
 .comments {
@@ -2633,4 +2633,12 @@ body {
   background-attachment: fixed;
   background-size: 100% 100%;
   opacity: 0.9;
+}
+code {
+  padding: 2px 4px;
+  overflow-wrap: break-word;
+  color: #c7254e;
+  background: #f9f2f4;
+  border-radius: 3px;
+  font-size: 18px;
 }

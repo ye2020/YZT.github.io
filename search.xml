@@ -1,72 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/04/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>test_my_site</title>
-    <url>/2023/04/05/test-my-site/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>test2</title>
-    <url>/2023/04/07/test2/</url>
-    <content><![CDATA[<h1 id="嵌入式c语言补充"><a class="markdownIt-Anchor" href="#嵌入式c语言补充"></a> 嵌入式C语言补充</h1>
-<br>
-<blockquote>
-<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充</p>
-<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
-<p><strong>摘要：</strong></p>
-<p><strong>简介：</strong></p>
-</blockquote>
-<br>
-<hr />
-<br>
-<span id="more"></span>
-<p>⭐️<font face="华文行楷" color=black size=7> 目录</font></p>
-<p>[TOC]</p>
-<br>
-<hr />
-<br>
-<p><a href="https://blog.csdn.net/as480133937/article/details/100138838">链接</a></p>
-<h4 id="221-基本公式"><a class="markdownIt-Anchor" href="#221-基本公式"></a> 2.2.1 <em><strong>基本公式:</strong></em></h4>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>α</mi></msub><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>−</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>β</mi></msub><mtext> </mtext><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>+</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
-V_\alpha =\ V_d\cdot\cos{\theta}\ -\ V_q\cdot\sin{\theta}  \\\\
-V_\beta\ =\ V_d\cdot\sin{\theta}\ +\ V_q\cdot\cos{\theta} \\\\
-\end{cases}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:5.76em;vertical-align:-2.63em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9500200000000003em;"><span style="top:-1.59999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-1.59999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-1.89999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.90001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-5.20002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.45002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.1300000000000003em;"><span style="top:-5.130000000000001em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-3.6900000000000004em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-0.8100000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.63em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>α</mi></msub><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>−</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
-V_\alpha =\ V_d\cdot\cos{\theta}\ -\ V_q\cdot\sin{\theta} \\\\
-
-\end{cases}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<h4 id="551-数据传输"><a class="markdownIt-Anchor" href="#551-数据传输"></a> 5.5.1  数据传输</h4>
-<blockquote>
-<p>用于传输浮点数据</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">f_data</span> &#123;</span></span><br><span class="line">    <span class="type">float</span> f;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="type">uint8_t</span> byte[<span class="number">4</span>];</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这样在进行数据传输的时候会方便很多，比如<strong>串口传输</strong>只需要把这个数组 <code>byte[4]</code> 进行传输就可以了。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>测试</title>
     <url>/2023/04/06/%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<h1 id="嵌入式c语言补充"><a class="markdownIt-Anchor" href="#嵌入式c语言补充"></a> 嵌入式C语言补充</h1>
@@ -106,6 +40,1002 @@ V_\beta\ =\ V_d\cdot\sin{\theta}\ +\ V_q\cdot\cos{\theta}  \\
 <p><img src="/pic/image-20221004205036856.png" alt="image-20221004205036856" /></p>
 <p><strong>反park变换 ：</strong>  由直流信息转变为交流信息，把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span> 和D轴Q轴信息进行合成 为一个交流信息</p>
 <br>
+]]></content>
+  </entry>
+  <entry>
+    <title>Keil调试汇总</title>
+    <url>/2023/04/07/Keil%E8%B0%83%E8%AF%95%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<h1 id="arm-mdk-调试汇总"><a class="markdownIt-Anchor" href="#arm-mdk-调试汇总"></a> ARM- MDK 调试汇总</h1>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.25」</em>    <em>第一版赶在回家前写出来的，可能存在问题，或链接视频失效什么的</em><br />
+<br><br />
+<strong>author：</strong>  <em>Y.Z.T.</em><br />
+<br></p>
+<p><strong>摘要：</strong>  <em>汇总在使用keil的过程中的一些调试方法</em></p>
+<p><strong>简介：</strong></p>
+<p><em>1️⃣前几天看哈工程直播的时候，发现他们是用的<strong>Ozone</strong>进行开发，花了点时间去简单了解了一下；</em><br />
+<br><br />
+<em>2️⃣发现了<strong>Ozone</strong>的调试功能是比较强的，具备了一些<strong>keil</strong>所没有的功能（如：DebugSnapshot（快照功能））,所以谁比较闲可以试一下用（<strong>VSCode 编辑代码 + Keil 编译 + Ozone 调试</strong>）来开发。</em><br />
+<br><br />
+<em>3️⃣但更多的，我发现<strong>Ozone</strong> 有的功能<strong>keil</strong>也基本都有，虽然很多因为硬件限制而用不了；所以我打算汇总一下keil的调试技巧 ,毕竟keil本身的调试功能是非常强的，我们平时用的很多都是比较浅的</em><br />
+<br><br />
+<em>4️⃣ 本篇文章的内容来自笔者的调试经验及网络，<strong>受限于硬件</strong>笔者并未全部尝试过，仅<strong>意在抛砖引玉</strong>。借用蔡老板一句话：</em> <font face="华文行楷" color=black size=4> “不要老是说什么学这个没用，我用keil就行了，不要搞那种奇奇怪怪的开发方式，有些东西就是得尝试一下”</font></p>
+</blockquote>
+<span id="more"></span>
+<p><font face="华文彩云" color=red size=5> 特别注意：本文档可能并不完善，欢迎各位进行补充。</font></p>
+<br>
+<br>
+<p>相关代码、资料、本文档源文件已放入 <em><strong>GitHub</strong></em>   需要修改的可以，自行下载源文件。</p>
+<p>👇</p>
+<p><a href="https://github.com/ye2020/ARM-MDK-Debug-collect">项目地址</a></p>
+<hr />
+<h2 id="️-前言"><a class="markdownIt-Anchor" href="#️-前言"></a> ❗️ 前言</h2>
+<p><strong>接下来的调试介绍大概分成以下几个部分：</strong></p>
+<ul>
+<li>
+<pre><code>基础调试
+</code></pre>
+</li>
+<li>
+<pre><code>具体调试
+</code></pre>
+</li>
+<li>⭐️ITM程序跟踪</li>
+<li>
+<pre><code> 其他调试工具
+</code></pre>
+</li>
+</ul>
+<h3 id="测试环境"><a class="markdownIt-Anchor" href="#测试环境"></a> 测试环境</h3>
+<blockquote>
+<p><strong>开发板：</strong>             <em>ACE实验室F4工程板   //   正点原子精英板   // ACE实验室H7通用板</em></p>
+<blockquote>
+<p><strong>主控芯片：</strong>	<em>STM32F407VET6  // STM32F103ZET6   // STM32H750VBT6</em></p>
+</blockquote>
+<blockquote>
+<p><strong>CPU：</strong>			<em>Cortex-M4  // Cortex-M3   //  Cortex-M7</em></p>
+</blockquote>
+<blockquote>
+<p><strong>最高主频：</strong>     <em>168MHZ   // 72MHZ  // 480MHZ</em></p>
+</blockquote>
+<br>
+<p><strong>测试程序：</strong>     			  <em>[debug_testF407]</em>  / <em>[debug_testH750_v1.3.5]</em></p>
+<blockquote>
+<p><strong>FreeRTOS版本：</strong> <em>v10.3.1</em></p>
+</blockquote>
+<blockquote>
+<p><strong>FreeRTOS说明：</strong>  <em>FreeRTOS为STM32CubeMX配置的未修改版本。</em></p>
+</blockquote>
+<br>
+<p><strong>开发平台：</strong>	    <em>VSCODE、MDK-ARM</em></p>
+<blockquote>
+<p><strong>程序编辑：</strong>    <em>VSCODE</em></p>
+</blockquote>
+<blockquote>
+<p><strong>程序调试：</strong>     <em>MDK-ARM     [ v 5.35.0.2]</em></p>
+</blockquote>
+<br>
+<p><strong>调试设备：</strong>			<em>J-Link仿真器 ：    [ACE - Sentry-哨兵]</em></p>
+<p>​                               <em>CAN分析仪 ：    CANalyest - III</em></p>
+<p>​                               <em>DJI电池、C610电调、3508电机</em></p>
+</blockquote>
+<br>
+<hr />
+<h2 id="1️⃣-基础调试"><a class="markdownIt-Anchor" href="#1️⃣-基础调试"></a> 1️⃣ 基础调试</h2>
+<p><font face="华文彩云" color=red size=5> 本节的介绍都是比较基础的，写给22级或是一些刚接触MDK的；</font></p>
+<p><font face="华文彩云" color=red size=5>你们会了的自己跳到后面部分去</font></p>
+<p>👇 👇</p>
+<p><a href="#two">传送门</a></p>
+<hr />
+<br>
+<h3 id="11-keil5-进入调试"><a class="markdownIt-Anchor" href="#11-keil5-进入调试"></a> 1.1 keil5 进入调试</h3>
+<h4 id="111-选择调试器"><a class="markdownIt-Anchor" href="#111-选择调试器"></a> 1.1.1 选择调试器</h4>
+<p><strong>点击魔术棒 <img src="https://pic.imgdb.cn/item/642ff7c9a682492fccbd228b.png" alt="im" /> -&gt; Debug</strong></p>
+<p><img src="https://pic.imgdb.cn/item/642ff7fca682492fccbd9fc6.png" alt="Im2" /></p>
+<p>​	                                    	<mark>这里我是用的<strong>J-Link</strong>所以选<strong>J-Link</strong></mark></p>
+<hr />
+<h4 id="112-配置调试器"><a class="markdownIt-Anchor" href="#112-配置调试器"></a> 1.1.2  配置调试器</h4>
+<br>
+<p><strong>点击setting进入调速器的设置界面</strong></p>
+<p><img src="https://pic.imgdb.cn/item/642ff9afa682492fccc16f2c.jpg" alt="" /></p>
+<p><font face="宋体" color=red size=4>大致介绍一下SW 和 JTAG的区别：</font></p>
+<ul>
+<li>SWD需要的线很少，仅需要<strong>双向数据线</strong>（SWDIO）、<strong>时钟线</strong>（SWCLK）、以及<strong>VCC</strong>和<strong>GND</strong> 四根线；</li>
+<li>而且SWD在高速模式下更可靠，而且再增加一根线<strong>SWO</strong>后，可以使用<a href="#ITM">ITM</a> 在线调试，功能更加强大。</li>
+<li><strong>JTAG</strong>接口一般可转接成<strong>SWD</strong>，通常能用<strong>JTAG</strong>的都能使用<strong>SWD</strong>， 除非是在调试带宽不够时，不能一般用<strong>SWD</strong>就够了</li>
+</ul>
+<hr />
+<h4 id="113-配置flash"><a class="markdownIt-Anchor" href="#113-配置flash"></a> 1.1.3 配置flash</h4>
+<p><strong>点击flash Download</strong></p>
+<p><img src="https://pic.imgdb.cn/item/642ffb91a682492fccc51d11.png" alt="" /></p>
+<h4 id="114-进入debug"><a class="markdownIt-Anchor" href="#114-进入debug"></a> 1.1.4 进入debug</h4>
+<p><img src="https://pic.imgdb.cn/item/642ffc33a682492fccc62d1c.png" alt="im3" /></p>
+<hr />
+<h3 id="12-调试窗口介绍"><a class="markdownIt-Anchor" href="#12-调试窗口介绍"></a> 1.2 调试窗口介绍</h3>
+<p><strong>初始化后的默认调试窗口布局如下：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/642ffc8ea682492fccc6d76f.png" alt="im4" /></p>
+<p>1️⃣调试操作栏</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">[复位|运行|停止|单步运行|单行运行|跳出函数体|运行到光标处|跳转PC指针]</span><br><span class="line">调试时代码的运行操作在此设置</span><br></pre></td></tr></table></figure>
+<p>2️⃣主界面窗口设置</p>
+<p><strong>[命令行|反汇编窗口|符号窗口|内核寄存器|回调栈及局部变量|变量显示|内存窗口|虚拟串口|系统分析窗口|TRACE窗口|外设寄存器]</strong></p>
+<ol>
+<li><strong>命令行：</strong><mark>调试操作命令</mark>及返回等消息在这里显示，也可以直接在这里操作执行一些语法命令，如断点打开关闭显示等。</li>
+<li><strong>反汇编窗口：<strong>C/C++编写的代码转换为<mark>汇编语言</mark>，此窗口与代码窗口同步滚动，但并不是代码执行时的顺序</strong>(可能是编译的顺序🤔)</strong></li>
+<li><strong>符号窗口：</strong> 编译后所有的<mark>函数变量及类型</mark>均在此，可通过这里查看有没有编译某些变量</li>
+<li><strong>内核寄存器：</strong> 显示内核先关的<mark>寄存器数值</mark></li>
+<li><strong>回调部变量：</strong> 当调试时停留在断点时，这里会显示函数的调用关系，以及压进的变量值，这个一般和断点配合反推异常调用以及查看局部变量无需使用变量查看串口</li>
+<li><strong>变量显示</strong>：用于查看单片机中某个<mark>变量的值</mark>，一般多用于查看全局变量以及外设寄存器数值、表达式显示变量，也<mark>可直接操作变量值。</mark> (<strong>相当于直接改变内存</strong>🤔)</li>
+<li><strong>内存窗口：</strong> 显示内存地址以及地址处内存的数据，一般可<mark>查看变量</mark>以及<mark>寄存器数据</mark>、<mark>函数地址</mark>等</li>
+<li><strong>虚拟串口窗口：</strong> 通过调试查看的串口，一些需要重定向才能使用。(也可用<code>ITM_SendChar(ch)</code>函数，详见<a href="#ITM">ITM</a> )</li>
+<li><strong>系统分析窗口：<strong>这里有一些代码分析的高级功能，用的最多的是<mark>软件逻辑分析仪</mark>的功能。(可用作</strong>简易示波器</strong>，和<strong>显示变量波形</strong>）</li>
+<li><strong>trace窗口：</strong> 与<mark>代码跟踪</mark>有关，<mark>相对高级的功能</mark>下面有介绍<a href="#ITM">ITM</a> ，具体可参考keil5的 <a href="https://developer.arm.com/documentation/101407/0537/Debugging/Debug-Windows-and-Dialogs/Trace-Exceptions">帮助文档</a>。</li>
+<li><strong>外设寄存器窗口：</strong><mark>比较常用</mark>，用来查看你打开的串口/spi/can/Tim/rcc等等寄存器的内容,当然也可<mark>直接修改操作寄存器</mark>。</li>
+</ol>
+<p>3️⃣在线调试启动/关闭</p>
+<p>4️⃣断点设置 设置、取消、关闭、删除所有断点等操作。<br />
+5️⃣内核寄存器窗口<br />
+6️⃣C代码对应的汇编程序窗口 <strong>注意代码左侧灰色部分代码已编译部分，可设置断点(此部分可以查看代码是否编译或者是否被编辑器优化)</strong></p>
+<p>7️⃣   C/C++代码窗口<br />
+8️⃣Command窗口 调试命令行，可通过设置命令执行所有调试操作，如断点设置、变量寄存器访问、数据转换、基本计算等功能<br />
+9️⃣回调栈及局部变量窗口</p>
+<p>🔟 用于查看单片机中某个<mark>变量的值</mark>，一般多用于查看全局变量以及外设寄存器数值、表达式显示变量，也<mark>可直接操作变量值。</mark> (<strong>相当于直接改变内存</strong>)</p>
+<br>
+<p>(👇更多的可以参考一下这篇文章)</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MDgyNzgyMw==&amp;mid=2247483787&amp;idx=2&amp;sn=f52924e67df948b00c42bf4993c191d6&amp;chksm=fc035d4bcb74d45d844202d624b244b6931f568266a359eea51c15d5b8578059d34e89f9c605&amp;scene=178&amp;cur_album_id=1341389839287156737#rd">keil 基础调试</a></p>
+<hr />
+<h3 id="13-基本调试操作"><a class="markdownIt-Anchor" href="#13-基本调试操作"></a> 1.3  基本调试操作</h3>
+<h4 id="131-全速运行-打断点-查看变量"><a class="markdownIt-Anchor" href="#131-全速运行-打断点-查看变量"></a> 1.3.1  全速运行、打断点、查看变量</h4>
+<p><img src="https://pic.imgdb.cn/item/643000a2a682492fccce6508.gif" alt="在这里插入图片描述" /></p>
+<h4 id="132-复位-停止程序"><a class="markdownIt-Anchor" href="#132-复位-停止程序"></a> 1.3.2  复位、停止程序</h4>
+<p><img src="https://pic.imgdb.cn/item/643000cba682492fcccec227.gif" alt="m2" /></p>
+<h4 id="133-单行单步运行"><a class="markdownIt-Anchor" href="#133-单行单步运行"></a> 1.3.3  单行/单步运行</h4>
+<p><img src="https://pic.imgdb.cn/item/64300116a682492fcccf6283.gif" alt="m3" /></p>
+<hr />
+<h2 id="2️⃣-具体调试"><a class="markdownIt-Anchor" href="#2️⃣-具体调试"></a> 2️⃣ 具体调试</h2>
+<p><span id="two" name="two"></span></p>
+<h3 id="21-寄存器直接操作"><a class="markdownIt-Anchor" href="#21-寄存器直接操作"></a> 2.1  寄存器直接操作</h3>
+<h4 id="211-中断控制器"><a class="markdownIt-Anchor" href="#211-中断控制器"></a> 2.1.1 中断控制器</h4>
+<p>嵌套向量中断控制器 (NVIC) 对话框（适用于 Cortex-M3、Cortex-M4 和 Cortex-M7 内核）显示所有异常的状态。对于每个异常，对话框都会显示编号、来源、名称、状态和优先级。</p>
+<h5 id="2111-官方文档"><a class="markdownIt-Anchor" href="#2111-官方文档"></a> 2.1.1.1 官方文档</h5>
+<p><img src="https://pic.imgdb.cn/item/643001a2a682492fccd056f8.png" alt="im5" /></p>
+<p>官方文档指出我们可以<mark>选定指定中断</mark>，并控制<mark>改变异常的状态</mark></p>
+<p>（👇感兴趣的可以看一下官方文档）</p>
+<p><a href="https://developer.arm.com/documentation/101407/0537/Debugging/Debug-Windows-and-Dialogs/Core-Peripherals/Armv7-M-cores/Armv7-M--Nested-Vector-Interrupt-Controller">官方文档</a></p>
+<br>
+<h5 id="2112-中断控制器介绍"><a class="markdownIt-Anchor" href="#2112-中断控制器介绍"></a> 2.1.1.2  中断控制器介绍</h5>
+<p><img src="https://pic.imgdb.cn/item/643001d8a682492fccd0a94b.png" alt="" /></p>
+<p>你的中断设置的<strong>优先级是多少</strong>，<strong>是否开启了</strong>，<strong>是否挂起了</strong>，<strong>是否处于活动状态</strong>，在这里一目了然。</p>
+<p>假如你想要让程序<strong>尽快进入中断</strong>程序运行，只要<strong>勾选挂起选项</strong>，这样程序运行后马上就能到<strong>中断处理函数中</strong>执行了。</p>
+<p>当然这里只是简单介绍，具体内容可以自己去看文档</p>
+<p>（👇感兴趣的可以看一下官方文档）</p>
+<p><a href="https://developer.arm.com/documentation/101407/0537/Debugging/Debug-Windows-and-Dialogs/Core-Peripherals/Armv7-M-cores/Armv7-M--Nested-Vector-Interrupt-Controller">官方文档</a></p>
+<hr />
+<h5 id="2113-开启方法"><a class="markdownIt-Anchor" href="#2113-开启方法"></a> 2.1.1.3 开启方法</h5>
+<p><img src="https://pic.imgdb.cn/item/643002c9a682492fccd24c75.gif" alt="m4" /></p>
+<hr />
+<h4 id="212-外设寄存器查看"><a class="markdownIt-Anchor" href="#212-外设寄存器查看"></a> 2.1.2  外设寄存器查看</h4>
+<h5 id="2121-开启方法"><a class="markdownIt-Anchor" href="#2121-开启方法"></a> 2.1.2.1 开启方法</h5>
+<p>在<code>systemview window</code> 窗口可以查看各个外设的寄存器值</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/6430033ea682492fccd38efa.gif" alt="m5" /></p>
+<br>
+<h5 id="2122-外设寄存器查看"><a class="markdownIt-Anchor" href="#2122-外设寄存器查看"></a> 2.1.2.2 外设寄存器查看</h5>
+<p>图中示例了串口1的寄存器查看，同样的<mark>中断设置</mark>/<mark>时钟分频</mark>/<mark>定时器</mark>均可通过此查看。甚至可以通过数据的变动与否判断外设是否正常打开。</p>
+<p><img src="https://pic.imgdb.cn/item/64300396a682492fccd461a3.png" alt="" /></p>
+<h5 id="2123-直接修改寄存器值"><a class="markdownIt-Anchor" href="#2123-直接修改寄存器值"></a> 2.1.2.3  直接修改寄存器值</h5>
+<p>可通过在外设寄存器窗口，直接修改寄存器的值，以控制寄存器</p>
+<p><img src="https://pic.imgdb.cn/item/643003c1a682492fccd4ea8a.gif" alt="m6" /></p>
+<p>视频中，可以看到，通过控制<strong>TIM8的CCR寄存器</strong>，来改变<strong>PWM的占空比</strong>。</p>
+<h5 id="2124-输出io控制"><a class="markdownIt-Anchor" href="#2124-输出io控制"></a> 2.1.2.4   输出IO控制</h5>
+<p><span id="外设窗口" name="外设窗口"></span></p>
+<p>可以通过控制GPIO的ODR寄存器</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/643003f8a682492fccd58b13.webp" alt="m7" /></p>
+<br>
+<h5 id="2125-输入io检测"><a class="markdownIt-Anchor" href="#2125-输入io检测"></a> 2.1.2.5  输入IO检测</h5>
+<p>当某个单片机IO口设置为输入时，可直接通过输入寄存器查看电平状态即使代码处于断点停止状态也可以查看(断点停止有时需要手动点击<strong>toolbox</strong>中的更新窗口按钮)，在项目中可用来<strong>检测外部开关信号</strong>等省去了万用表测电压。</p>
+<p><img src="https://pic.imgdb.cn/item/64300430a682492fccd5fcf6.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h5 id="2126-直接控制串口输出"><a class="markdownIt-Anchor" href="#2126-直接控制串口输出"></a> 2.1.2.6 直接控制串口输出</h5>
+<p>通过直接修改串口的数据寄存器来进行操作</p>
+<p><img src="https://pic.imgdb.cn/item/6430045aa682492fccd64d23.png" alt="" /></p>
+<p><font face="华文彩云" color=red size=5>类似直接通过寄存器来进行调试还有很多示例，这里仅演示其中几种，有其他比较有用的也欢迎补充。</font></p>
+<hr />
+<br>
+<h3 id="22-测量某段代码运行时间"><a class="markdownIt-Anchor" href="#22-测量某段代码运行时间"></a> 2.2  测量某段代码运行时间</h3>
+<p>方法比较多， 如利用系统内核计算（dwt）、利用其它工具如<a href="#Systemview">Systemview</a> 、利用断点等</p>
+<br>
+<h4 id="221-利用内核计数dwt"><a class="markdownIt-Anchor" href="#221-利用内核计数dwt"></a> 2.2.1  利用内核计数（dwt）</h4>
+<h5 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h5>
+<p><img src="https://pic.imgdb.cn/item/64300497a682492fccd6bf9b.png" alt="" /></p>
+<br>
+<p>如：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//测试代码运行时间（加在被测代码块之后）</span></span><br><span class="line"><span class="type">float</span> <span class="title function_">DTW_Time_Difference_ms</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">static</span> <span class="type">uint32_t</span> old_counter;</span><br><span class="line">  <span class="type">uint32_t</span> counter,couter_current;</span><br><span class="line">  couter_current = DWT_get_time();</span><br><span class="line">  <span class="keyword">if</span>(couter_current &gt; old_counter)</span><br><span class="line">    counter = couter_current - old_counter;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    counter = couter_current + <span class="number">0XFFFFFFFF</span> - old_counter;</span><br><span class="line">  old_counter = couter_current;</span><br><span class="line">  <span class="keyword">return</span> (counter / (SystemCoreClock/<span class="number">1000</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*********************************************************/</span></span><br><span class="line">&#123;</span><br><span class="line">DTW_Time_Difference_ms();</span><br><span class="line">... 被测代码</span><br><span class="line">    </span><br><span class="line">time = DTW_Time_Difference_ms();</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+<br>
+<h5 id="运行结果"><a class="markdownIt-Anchor" href="#运行结果"></a> <em>运行结果</em></h5>
+<p><img src="https://pic.imgdb.cn/item/643004d6a682492fccd72dbf.png" alt="im8" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300525a682492fccd7a224.png" alt="im9" /></p>
+<p><font face="华文彩云" color=red size=5>可以看到基本能实现US级的 测量</font></p>
+<hr />
+<br>
+<h4 id="222-利用断点时间测量"><a class="markdownIt-Anchor" href="#222-利用断点时间测量"></a> 2.2.2  利用断点时间测量</h4>
+<p>该方法也是基于基于内核时钟，进行计数测量的，经过笔者的测试，在大部分情况下，<strong>精度都是非常高的</strong></p>
+<br>
+<h5 id="2221-前置步骤"><a class="markdownIt-Anchor" href="#2221-前置步骤"></a> 2.2.2.1 前置步骤</h5>
+<p>要用到断点，也即是keil本身来获取准确时间，需要先进行Trace功能的配置</p>
+<p>（👇具体配置见下文）</p>
+<p><a href="#Trace 配置">Trace 配置</a></p>
+<br>
+<h5 id="2222-测量前置"><a class="markdownIt-Anchor" href="#2222-测量前置"></a> 2.2.2.2  测量前置</h5>
+<p><img src="https://pic.imgdb.cn/item/64300555a682492fccd7fcdb.png" alt="im10" /></p>
+<ol>
+<li>打开仿真界面</li>
+<li>打开<mark>内核寄存器窗口</mark></li>
+<li>将寄存器窗口保持固定在如图所示界面时钟显示（计时的时钟就是此处的Sec）</li>
+<li>鼠标右键弹出菜单</li>
+<li>复位<code>t1/t2</code>定时。</li>
+</ol>
+<p><font face="华文彩云" color=red size=5>为什么要打开寄存器窗口：</font></p>
+<p>有的时候，右下角时间窗口<img src="https://pic.imgdb.cn/item/6430057aa682492fccd8447b.png" alt="(img-BEhXjcWp-1659093245270)(ARM- MDK 调试汇总.assets/image-20220726161524525.png)]" /></p>
+<p>可能没有显示时间或时间不更新； 一个简单的解决方法是，切换到<strong>寄存器窗口</strong>，这样时间窗口就能正常显示了。</p>
+<br>
+<hr />
+<h5 id="2223-测试原理"><a class="markdownIt-Anchor" href="#2223-测试原理"></a> 2.2.2.3  测试原理</h5>
+<p>在<strong>寄存器窗口</strong>显示的时间是从单片机运行的<strong>第一条代码</strong> 开始的时间，这个时间是累计的。</p>
+<p>而<strong>右下角时间窗口</strong></p>
+<p><img src="https://pic.imgdb.cn/item/643005aaa682492fccd8a886.png" alt="im11" /></p>
+<p>可以重置（Reset）时间，比如现在用t1显示的时间（t0 和 <strong>寄存器窗口</strong>显示的时间一样，不信你可以看看），只要先重置一下这个t1（最上面那个），然后运行代码后暂停，t1显示的就是这段代码的运行时间了。</p>
+<br>
+<hr />
+<h5 id="2224-实际操作"><a class="markdownIt-Anchor" href="#2224-实际操作"></a> 2.2.2.4  实际操作</h5>
+<h6 id="22241-关闭固定窗口刷新"><a class="markdownIt-Anchor" href="#22241-关闭固定窗口刷新"></a> 2.2.2.4.1 关闭固定窗口刷新</h6>
+<p>(代码运行同时刷新变量窗口数据，会影响测量时间的准确性)</p>
+<p><img src="https://pic.imgdb.cn/item/64300430a682492fccd5fcf6.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h6 id="22242-进行测量"><a class="markdownIt-Anchor" href="#22242-进行测量"></a> 2.2.2.4.2  进行测量</h6>
+<p><mark>设置断点</mark>后，开启代码运行，下一次测量时应<mark>复位测量计时器T1/T2</mark>.</p>
+<p><img src="https://pic.imgdb.cn/item/643005fba682492fccd95728.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h6 id="22243-测量结果"><a class="markdownIt-Anchor" href="#22243-测量结果"></a> 2.2.2.4.3  测量结果</h6>
+<p><img src="https://pic.imgdb.cn/item/64300624a682492fccd9b5f3.png" alt="" /></p>
+<p>可以看到<strong>测量结果</strong>和之前用<strong>DWT</strong>进行测量基本是一致的</p>
+<hr />
+<h3 id="23-高级断点调试"><a class="markdownIt-Anchor" href="#23-高级断点调试"></a> 2.3  高级断点调试</h3>
+<h4 id="231-简介"><a class="markdownIt-Anchor" href="#231-简介"></a> 2.3.1 简介</h4>
+<p>Keil5软件帮助文档中指明了断点有三种类型：<mark>存取断点</mark>，<mark>执行断点</mark>，<mark>条件断点</mark>。</p>
+<ul>
+<li><strong>存取断点：</strong> 某一个变量度或者写操作时执行断点操作。</li>
+<li><strong>执行断点</strong>：执行到代码某个位置时产生断点操作。一般直接在代码左侧打的断点就是此类断点，用的最多。</li>
+<li><strong>条件断点</strong>：当满足某个表达式时，如某个变量==0x01时执行断点。</li>
+</ul>
+<p><img src="https://pic.imgdb.cn/item/643006aba682492fccdaed3c.png" alt="im11" /></p>
+<p>​                                                                          <mark>图为官方文档介绍</mark></p>
+<br>
+<hr />
+<h4 id="232-开启方法"><a class="markdownIt-Anchor" href="#232-开启方法"></a> 2.3.2 开启方法</h4>
+<p><img src="https://pic.imgdb.cn/item/643005fba682492fccd95728.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="233-窗口介绍"><a class="markdownIt-Anchor" href="#233-窗口介绍"></a> 2.3.3  窗口介绍</h4>
+<p><img src="https://pic.imgdb.cn/item/643006efa682492fccdb6dfc.png" alt="im15" /></p>
+<ul>
+<li>
+<p>仅操作1处表达式，表达式为某个函数地址时为 <strong><mark>执行断点</mark></strong> ，Count表示 <strong>执行次数</strong> 。</p>
+</li>
+<li>
+<p>1和3处同时操作时表示为<mark>存取断点</mark>，3中<code>SIZE</code>表示存取变量的字节大小，<code>Bytes</code>与<code>Objects</code>的区别在于单一变量与结构体的不同。当存取某个变量或者结构体中某个成员时使用<code>Bytes</code>，存取某个结构体时使用<code>Objects</code>。</p>
+</li>
+<li>
+<p>仅操作1和2为<mark>条件断点</mark>，如变量==、&gt;=某个值时执行printf指令打印变量值。注意此处的printf仅输出到调试界面的Command窗口。command指令的执行并不会使程序中断停止，相当于此处为软件断点。</p>
+</li>
+</ul>
+<p><strong>图中官方示例的各断点的定义的意义：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/64300720a682492fccdbd1aa.png" alt="im16" /></p>
+<p><img src="https://pic.imgdb.cn/item/6430078ea682492fccdcba13.png" alt="" /></p>
+<p><font face="华文彩云" color=red size=5>注意：</font></p>
+<ol>
+<li>除直接在代码左侧设置执行断点外，其余断点需要通过断点管理窗口来实现。</li>
+<li>断点管理窗口中的断点需要停止代码执行才能正确设置。</li>
+</ol>
+<br>
+<hr />
+<h4 id="234-断点操作"><a class="markdownIt-Anchor" href="#234-断点操作"></a> 2.3.4 断点操作</h4>
+<h5 id="2341-存取断点"><a class="markdownIt-Anchor" href="#2341-存取断点"></a> 2.3.4.1 存取断点</h5>
+<h6 id="23411-存取断点定义"><a class="markdownIt-Anchor" href="#23411-存取断点定义"></a> 2.3.4.1.1  <strong>存取断点定义</strong></h6>
+<p>可以在Watch中右键添加断点。</p>
+<p><img src="https://pic.imgdb.cn/item/643007a8a682492fccdcf073.png" alt="im17" /></p>
+<p>如果想知道某个变量在什么地方被访问，假定有一个变量a，可以按以下进行配置：</p>
+<p><img src="https://pic.imgdb.cn/item/643007c8a682492fccdd335c.png" alt="im18" /></p>
+<p>因为 Count 值设置为 1，所以<mark>每一次读取a的值</mark>，程序都会停止。</p>
+<br>
+<hr />
+<h6 id="23412-运行结果"><a class="markdownIt-Anchor" href="#23412-运行结果"></a> 2.3.4.1.2  <strong>运行结果</strong></h6>
+<p>在对<strong>变量a</strong> 进行读取的时候，程序自动停止运行</p>
+<p><img src="https://pic.imgdb.cn/item/64300772a682492fccdc7e98.gif" alt="在这里插入图片描述" /></p>
+<p>如果是写操作（Write）访问时，会发现从复位程序开始运行后，程序会停止在某个地方。</p>
+<p>因为<mark>全局变量</mark>会在进入 main 函数之前被初始化。</p>
+<p>还可以更改<code>Count</code> 的值，如把count 改成2， 则当a被<strong>写入两次</strong>时，程序会停止。</p>
+<p><img src="https://pic.imgdb.cn/item/6430080ea682492fccddbd99.png" alt="" /></p>
+<hr />
+<h5 id="2342-结构体断点"><a class="markdownIt-Anchor" href="#2342-结构体断点"></a> 2.3.4.2 结构体断点</h5>
+<p>实际结构体断点也是属于<mark>存取断点</mark>的一种，因为要写的比较多，单独列出来</p>
+<p><font face="华文彩云" color=red size=5>注意：这部分我测试的时候感觉有点问题，没完全解决</font></p>
+<h6 id="23421-设置结构断点"><a class="markdownIt-Anchor" href="#23421-设置结构断点"></a> 2.3.4.2.1  设置结构断点</h6>
+<p>1️⃣ <font face="华文彩云" color=red size=5>出现的问题</font></p>
+<p>试了一下，直接在<code>watch</code>窗口 将<strong>整个结构变量</strong>设为断点会报错(包括该变量里的其他结构体成员，如<strong>pitch.c</strong>)</p>
+<p><img src="https://pic.imgdb.cn/item/643008c5a682492fccdf1154.gif" alt="在这里插入图片描述" /></p>
+<p><img src="https://pic.imgdb.cn/item/643008e4a682492fccdf4be1.png" alt="im20" /></p>
+<p>​																	<mark>试着解决了一下 ，没解决</mark></p>
+<hr />
+<p>2️⃣ <font face="华文彩云" color=red size=5>简单的解决方法</font></p>
+<p>可以采用更加通用的方法：</p>
+<p><img src="https://pic.imgdb.cn/item/64300914a682492fccdf9c6c.png" alt="im21" /></p>
+<p>可以看到结构体变量各个成员的<strong>地址</strong>是不同的，比如我们<code>gimbal_control.auto.c</code> 的地址是<code>0x20004A10</code> （由此我们知道也可以通过这</p>
+<p>个来看出一个结构体变量的地址是多少），所以设置后的结果如下：</p>
+<p><img src="https://pic.imgdb.cn/item/6430094fa682492fccdff1ca.gif" alt="在这里插入图片描述" /></p>
+<p><font face="华文彩云" color=red size=5>注意：经测试好像是不支持指针操作，不太确定</font></p>
+<p>比如有这样三个结构体：<code>gimbal_pitch_control_t</code>、<code>gimbal_control_t</code>、</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">gimbal_control_t</span> gimbal_control;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">uint16_t</span> position;</span><br><span class="line">    <span class="type">int16_t</span> speed;</span><br><span class="line">    <span class="type">int16_t</span> given_current;</span><br><span class="line">    <span class="type">uint8_t</span> temperate;</span><br><span class="line">    <span class="type">int16_t</span> last_position;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">int16_t</span> angle;</span><br><span class="line">    <span class="type">int16_t</span> speed_filt;</span><br><span class="line">    <span class="type">int16_t</span> first_Flag;</span><br><span class="line">    <span class="type">int32_t</span> yaw_angle;</span><br><span class="line">    <span class="type">int32_t</span> pitch_angle;</span><br><span class="line">    <span class="type">int32_t</span> actual_Position;  <span class="comment">//真实位置</span></span><br><span class="line">&#125; <span class="type">motor_measure_t</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  //申明<span class="title">pitch</span>轴电机变量</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">motor_measure_t</span> *pitch_motor_measure;</span><br><span class="line"></span><br><span class="line">    <span class="type">float</span> accel_up;</span><br><span class="line">    <span class="type">float</span> accel_down;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int8_t</span> init_flag;    <span class="comment">//初始化成功标志</span></span><br><span class="line">    <span class="type">float</span> Auto_record_location;                      <span class="comment">// 实际位置</span></span><br><span class="line"></span><br><span class="line">    <span class="type">first_order_filter_type_t</span> LowFilt_Pitch_Data;    <span class="comment">//P轴低通滤波器</span></span><br><span class="line">    <span class="type">sliding_mean_filter_type_t</span> Slidmean_Pitch_Data;  <span class="comment">//P轴滑动滤波器</span></span><br><span class="line"></span><br><span class="line">    <span class="type">first_order_filter_type_t</span> LowFilt_auto_pitch;    <span class="comment">//自瞄P轴低通滤波器</span></span><br><span class="line">    <span class="type">sliding_mean_filter_type_t</span> Slidmean_auto_pitch;  <span class="comment">//自瞄P轴滑动滤波器</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int16_t</span> filt_output; <span class="comment">//P轴滤波值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int16_t</span> output;</span><br><span class="line"></span><br><span class="line">&#125; <span class="type">gimbal_pitch_control_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">const</span> RC_ctrl_t *gimbal_RC;     <span class="comment">//底盘使用的遥控器指针</span></span><br><span class="line">    Vision_Auto_Data_t *auto_c;     <span class="comment">//申明自瞄变量</span></span><br><span class="line"></span><br><span class="line">    VisionStatus_E VisionStatus;    <span class="comment">// 敌人出现状态</span></span><br><span class="line">    <span class="type">const</span> Fire_task_t *Fire_task_control;</span><br><span class="line">   </span><br><span class="line">    gimbal_behaviour_e gimbal_behaviour;</span><br><span class="line"></span><br><span class="line">    <span class="type">gimbal_pitch_control_t</span> pitch_c;   <span class="comment">//申明pitch轴电机变量</span></span><br><span class="line">    <span class="type">gimbal_yaw_control_t</span> yaw_c;       <span class="comment">//申明yaw轴电机变量</span></span><br><span class="line">    <span class="type">motor_measure_t</span> motor_chassis[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">    <span class="type">uint8_t</span> Gimbal_all_flag;  <span class="comment">//全部初始化完成标志</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="type">gimbal_control_t</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果要调用pitch轴的电机数据：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">gimbal_control.pitch_c.pitch_motor_measure-&gt;position</span><br></pre></td></tr></table></figure>
+<p>会导致报错：</p>
+<p><img src="https://pic.imgdb.cn/item/64300974a682492fcce034bc.png" alt="im22" /></p>
+<hr />
+<h5 id="2343-条件断点"><a class="markdownIt-Anchor" href="#2343-条件断点"></a> 2.3.4.3  条件断点</h5>
+<p>有些时候，我们并不关注地址访问情况，而对变量的数据内容感兴趣，比如变量<code>test_param.test1 == 10</code>的时候停下来。就可以这样设置：</p>
+<p><img src="https://pic.imgdb.cn/item/6430098fa682492fcce06ce2.png" alt="在这里插入图片描述" /></p>
+<p><strong>运行结果：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/643009b7a682492fcce0bc82.gif" alt="在这里插入图片描述" /></p>
+<hr />
+<h5 id="2344-添加命令"><a class="markdownIt-Anchor" href="#2344-添加命令"></a> 2.3.4.4  添加命令</h5>
+<p>可以在命令行增加命令，例如，程序运行100次后，将flag置1，以达到<mark>控制程序运行的目的</mark></p>
+<p><img src="https://pic.imgdb.cn/item/643009f7a682492fcce135b2.png" alt="im23" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300a36a682492fcce197d7.gif" alt="在这里插入图片描述" /></p>
+<p>通过Command命令还能做到很多事情，比如打印信息什么的</p>
+<p>例如：写入变量a 50次后打印信息：</p>
+<p><img src="https://pic.imgdb.cn/item/64300a5da682492fcce1d640.png" alt="im24" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300a85a682492fcce21216.gif" alt="在这里插入图片描述" /></p>
+<p>（👇详见下文）</p>
+<p><a href="#Command ">Command 窗口操作</a></p>
+<br>
+<hr />
+<h3 id="24-watch变量查"><a class="markdownIt-Anchor" href="#24-watch变量查"></a> 2.4  watch变量查</h3>
+<h4 id="241-常规操作"><a class="markdownIt-Anchor" href="#241-常规操作"></a> 2.4.1 常规操作</h4>
+<p>右键添加到变量观察窗口，或者直接选中后拖拉变量到窗口。</p>
+<p>观察的对象比较广泛：</p>
+<p><mark>全局/局部变量</mark>、<mark>寄存器</mark>、<mark>函数地址</mark>、<mark>数组结构体</mark>等，对于局部变量只能在变量的<mark>有效局部内</mark>才能显示具体数值。</p>
+<p><img src="https://pic.imgdb.cn/item/64300adaa682492fcce29bf5.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="242-表达式操作"><a class="markdownIt-Anchor" href="#242-表达式操作"></a> 2.4.2 表达式操作</h4>
+<p>表达式可进行简单的数学运算，甚至可以当做一个简单的进制转换、计算器来使用。如下所示，动态显示random的值减去70000，0xf777转换为十进制。</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64300c3ba682492fcce489e5.gif" alt="m21" /></p>
+<br>
+<hr />
+<h4 id="243-直接修改变量的值"><a class="markdownIt-Anchor" href="#243-直接修改变量的值"></a> 2.4.3 直接修改变量的值</h4>
+<p>可以直接在变量窗口<strong>修改变量的值</strong>，相当于直接在修改内存。 在<strong>调pid</strong>的时候比较有用， 直接修改，不用退出编译。</p>
+<p>（当然这只是<strong>临时</strong>的，不重新编译的话，下次进入debug还会是原来的值）</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64300c9da682492fcce51369.gif" alt="在这里插入图片描述" /></p>
+<hr />
+<hr />
+<h3 id="25-call-stack-locals回调栈局部变量窗口"><a class="markdownIt-Anchor" href="#25-call-stack-locals回调栈局部变量窗口"></a> 2.5  （Call Stack + Locals）回调栈局部变量窗口</h3>
+<h4 id="251-常规用法"><a class="markdownIt-Anchor" href="#251-常规用法"></a> 2.5.1 常规用法</h4>
+<p>打断点后，通过回调栈窗口可以看到当前函数的调用情况以及内部变量的值。</p>
+<p><img src="https://pic.imgdb.cn/item/64300cbaa682492fcce551bf.png" alt="im23" /></p>
+<p>当程序封装太多层时可参照如下方式进行一层一层跳转分析。</p>
+<p><img src="https://pic.imgdb.cn/item/64300ce2a682492fcce59824.png" alt="im24" /></p>
+<br>
+<hr />
+<h4 id="252-查看进入hardfault函数的位置"><a class="markdownIt-Anchor" href="#252-查看进入hardfault函数的位置"></a> 2.5.2  查看进入Hardfault函数的位置</h4>
+<p>当存在<mark>Hardfault等错误</mark>以及程序死循环时，可以通过<mark>断点</mark>或<mark>停止按钮</mark>停止程序运行，在<mark>回调栈窗口</mark>查看调用</p>
+<p>hardfault的位置，位置不是很准确，但是能反应大概位置，然后通过局部变量的值进行判断<mark>异常位置</mark>。下边演示</p>
+<p>了数组越界引起了异常，大概定位到了前后的位置，其它的错误定位可以再研究一下。</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64300d08a682492fcce5d850.gif" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h3 id="26-command-窗口操作"><a class="markdownIt-Anchor" href="#26-command-窗口操作"></a> 2.6 Command 窗口操作</h3>
+<p><span id="Command" name="Command"></span></p>
+<p><font face="华文彩云" color=red size=5>keil的命令调试功能很强大，用的好能解决很多问题</font></p>
+<br>
+<p>比如，通过执行命令函数或表达式直接实现查看与修改变量、对象、寄存器及内存。</p>
+<p>（👇详见官方文档）</p>
+<p><a href="https://developer.arm.com/documentation/101407/0537/Debug-Commands">command 命令</a></p>
+<br>
+<p>这里贴几张官方文档的图：</p>
+<h4 id="261-断点命令"><a class="markdownIt-Anchor" href="#261-断点命令"></a> 2.6.1 断点命令</h4>
+<p><img src="https://pic.imgdb.cn/item/64300e2aa682492fcce7810f.png" alt="im24" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300e2aa682492fcce78110.png" alt="在这里插入图片描述" /></p>
+<h4 id="262-一般命令"><a class="markdownIt-Anchor" href="#262-一般命令"></a> 2.6.2 一般命令</h4>
+<p><img src="https://pic.imgdb.cn/item/64300e2ba682492fcce781ea.png" alt="在这里插入图片描述" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300f06a682492fcce8d355.png" alt="im25" /></p>
+<h4 id="263-内存命令和程序命令"><a class="markdownIt-Anchor" href="#263-内存命令和程序命令"></a> 2.6.3  内存命令和程序命令</h4>
+<p><img src="https://pic.imgdb.cn/item/64300f37a682492fcce92398.png" alt="im26" /></p>
+<p><img src="https://pic.imgdb.cn/item/64300f51a682492fcce96951.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="264-使用示例"><a class="markdownIt-Anchor" href="#264-使用示例"></a> 2.6.4 使用示例</h4>
+<p><img src="https://pic.imgdb.cn/item/64300f69a682492fcce9a7f4.png" alt="在这里插入图片描述" /></p>
+<p><font face="华文彩云" color=red size=5>注意：当退出调试模式之后，KEIL 将自动保存 Command 数据到文件中（也就是说在此之前你是看不到这些调试数据的）</font></p>
+<p><img src="https://pic.imgdb.cn/item/64300f80a682492fcce9db8a.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="265-自定义toolbox按键"><a class="markdownIt-Anchor" href="#265-自定义toolbox按键"></a> 2.6.5 自定义TOOLBOX按键</h4>
+<p>有些时候我们并不满足监控数据，还想<strong>定义一些自己的按键</strong>，比如当我按下按钮时，系统电源关闭，再按下按钮时系统电源开启等。</p>
+<p>这个功能其实使用前面所说的<a href="#外设窗口">外设窗口</a> 也是完成能完成要求的，麻烦的是，如果使用外设窗口，要控制 IO 口，那你每次都得找到对应的 IO 口才行，很是麻烦，但是使用按键就会简单许多。</p>
+<h4 id="2651-定义按键"><a class="markdownIt-Anchor" href="#2651-定义按键"></a> 2.6.5.1 定义按键</h4>
+<h6 id="26511-可以通过建立ini文件"><a class="markdownIt-Anchor" href="#26511-可以通过建立ini文件"></a> 2.6.5.1.1 可以通过建立ini文件</h6>
+<p>（👇ini文件详见）</p>
+<p><a href="#ini">ini 文件</a></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Kill BUTTON * <span class="comment">//删除全部按键</span></span><br><span class="line">DEFINE BUTTON <span class="string">&quot;Power OFF&quot;</span>, <span class="string">&quot;GPIOB-&gt;ODR |= (0x01 &lt;&lt; 7)&quot;</span>  <span class="comment">//按键置1</span></span><br><span class="line">DEFINE BUTTON <span class="string">&quot;Power ON&quot;</span>, <span class="string">&quot;GPIOB-&gt;ODR &amp;= ~(0x01 &lt;&lt; 7)&quot;</span>  <span class="comment">//按键置1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>保存后导入</strong></p>
+<p><img src="https://pic.imgdb.cn/item/64300fafa682492fccea1cec.png" alt="在这里插入图片描述" /></p>
+<p><strong>之后进入 Debug 模式即可，在这里你可以看到你定义的按键：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/64300fd8a682492fccea7922.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h6 id="26512-通过命令窗口"><a class="markdownIt-Anchor" href="#26512-通过命令窗口"></a> 2.6.5.1.2 通过命令窗口</h6>
+<p>之前说过 <strong>.ini 文件</strong> 和手工在 <strong>Command 窗口</strong>输入命令没啥区别，只是使用文件的话可以将常用命令保存下来。</p>
+<p>所以直接在命令窗口写入命令也行</p>
+<p><img src="https://pic.imgdb.cn/item/64300feda682492fccea9c37.png" alt="在这里插入图片描述" /></p>
+<h6 id="26513-按键删除"><a class="markdownIt-Anchor" href="#26513-按键删除"></a> 2.6.5.1.3 按键删除</h6>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Kill Button <span class="number">3</span>   <span class="comment">//移除第3个按钮  （参数为* 的话会删除所有按键）</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h6 id="26514-运行结果"><a class="markdownIt-Anchor" href="#26514-运行结果"></a> 2.6.5.1.4 运行结果</h6>
+<p><img src="https://pic.imgdb.cn/item/64301012a682492fcceace84.gif" alt="在这里插入图片描述" /></p>
+<p>可以看到通过自定义按键 <strong>控制io口输出</strong>，控制灯的亮灭。</p>
+<hr />
+<p><font face="华文彩云" color=red size=5>注意：命令调试也存在缺点</font></p>
+<ul>
+<li>KEIL 命令调试不支持指针，这个已经多次强调了，要实现指针的功能，只能间接使用。</li>
+<li>对程序运行造成一定的影响（事实上这个不关 KEIL 的事，是调试系统本身的问题）</li>
+</ul>
+<p>调试器可以说是第三方监视器，虽然几乎没有侵入性（事实上对 CPU 还是有影响的），但是它还是会窃取 CPU 时钟的，而且在执行断点的时候，虽然由 ini 文件定义的函数由 KEIL 执行了，实际上上执行这些函数也是需要时间的，那这个时间怎么来，就是通过暂停 CPU 后去执行这些代码，这个你可以通过 DWT 计数器看出来，因为只有 CPU 执行了 DWT 才会计数，但是你会发现在执行这些代码时，DWT 是没有进行计数的（在 KEIL 函数的前后获取 DWT 计数，可以发现计数值不变）</p>
+<p>也就是说 CPU 和 KEI 是在交替使用系统时钟的。平常来看，由于 KEIL 执行速度很快，看不出来问题，但到中断的时候却会出现问题。</p>
+<br>
+<hr />
+<h2 id="3️⃣-itm程序跟踪"><a class="markdownIt-Anchor" href="#3️⃣-itm程序跟踪"></a> 3️⃣  ITM程序跟踪</h2>
+<p><span id="ITM" name="ITM"></span></p>
+<h3 id="31-itm简介"><a class="markdownIt-Anchor" href="#31-itm简介"></a> 3.1 ITM简介</h3>
+<p><strong>ITM：</strong> Instrumentation Trace Macrocell，指令跟踪宏单元</p>
+<p>ITM是一应用驱动的跟踪源，它支持printf类的调试手段来跟踪操作系统(OS)和应用事件，并发布判定的系统信息。ITM以包的形式发布跟踪信息，它由以下部分组成：<br />
+● 软件跟踪：软件可以通过直接写ITM激发寄存器来发布包信息。<br />
+● 硬件跟踪：ITM会发布由DWT产生的信息包。<br />
+● 时间戳：时间戳被发布到相应的包上。ITM包含一个21位的计数器以产生时间戳。Cortex-M3的时钟或串行线观测器(Serial Wire Viewer)的位时钟率给计数器提供时钟。<br />
+由ITM发送的信息包输出到TPIU(Trace Port Interface Unit)，TPIU再添加一些额外的包(参考TPIU)，然后输出完整的包序列给调试器。</p>
+<p>使用ITM能做到，在keil上显示各个中断的运行时间，进入时间；打印变量波形；打印虚拟串口数据等；</p>
+<p><mark>简单添加几张效果图</mark>：</p>
+<p>1️⃣中断时间戳：</p>
+<p><img src="https://pic.imgdb.cn/item/64301075a682492fcceb79b0.png" alt="在这里插入图片描述" /></p>
+<p>2️⃣ 打印变量波形：</p>
+<p><img src="https://pic.imgdb.cn/item/64301088a682492fcceb9f07.png" alt="在这里插入图片描述" /></p>
+<p>3️⃣ 打印虚拟串口：</p>
+<p><img src="https://pic.imgdb.cn/item/64301098a682492fccebba47.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h3 id="32-trace配置"><a class="markdownIt-Anchor" href="#32-trace配置"></a> 3.2  Trace配置</h3>
+<p><span id="Trace 配置" name="Trace 配置"></span></p>
+<h4 id="321-硬件准备"><a class="markdownIt-Anchor" href="#321-硬件准备"></a> 3.2.1 硬件准备</h4>
+<h5 id="3211-仿真器准备"><a class="markdownIt-Anchor" href="#3211-仿真器准备"></a> 3.2.1.1 仿真器准备</h5>
+<p>一个<strong>J-Link仿真器</strong>或是<strong>ST-LINK</strong>、有<strong>J-Trace</strong>更好，直接一步到位。</p>
+<p>不管是什么仿真器，只要能引出VCC、GND、TMS/SWDIO、TCK/SWCLK、JTDO这5根线的话就可以尝试一下。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>连接网络</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>VCC</td>
+<td>电源正，3.3V</td>
+</tr>
+<tr>
+<td>2</td>
+<td>GND</td>
+<td>电源负</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SWO</td>
+<td>SW跟踪功能</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SWDIO</td>
+<td>SW数据输入输出</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SWCLK</td>
+<td>SW时钟信号</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>这里我用的是J-Link：</p>
+<p><img src="https://pic.imgdb.cn/item/64301314a682492fccf1659b.png" alt="" /></p>
+<p><mark>通过平常的SWD四线接口，再加上一根SWO的飞线</mark></p>
+<h5 id="3212-开发板准备"><a class="markdownIt-Anchor" href="#3212-开发板准备"></a> 3.2.1.2 开发板准备</h5>
+<p>准备一个有引出 <strong><mark>PB3</mark></strong> 引脚的板子</p>
+<p><img src="https://pic.imgdb.cn/item/64301315a682492fccf1686e.png" alt="在这里插入图片描述" /></p>
+<p>​										<mark>图为数据手册</mark></p>
+<br>
+<p><font face="华文彩云" color=red size=5>我看了周围我能用的板子汇总如下：</font></p>
+<p>1️⃣</p>
+<p><img src="https://pic.imgdb.cn/item/64301356a682492fccf1cfe4.png" alt="" /></p>
+<blockquote>
+<p><strong>开发板：</strong> ACE实验室H7通用开发板</p>
+<blockquote>
+<p><strong>有无引出PB3：</strong>  否</p>
+</blockquote>
+<blockquote>
+<p><strong>能否飞线：</strong>        否</p>
+</blockquote>
+<p><strong>说明：</strong> 因为采用50pin 0.5mm的贴片排针，故无法飞线。</p>
+</blockquote>
+<br>
+<p>2️⃣</p>
+<p><img src="https://pic.imgdb.cn/item/64301356a682492fccf1cf9f.png" alt="im26" /></p>
+<blockquote>
+<p><strong>开发板：</strong> ACE实验室F4系列开发板</p>
+<blockquote>
+<p><strong>有无引出PB3：</strong>  否</p>
+</blockquote>
+<blockquote>
+<p><strong>能否飞线：</strong>        能</p>
+</blockquote>
+<p><strong>说明：</strong> 可从最小系统板飞线，也可从拓展板底部飞线</p>
+</blockquote>
+<br>
+<img src="https://pic.imgdb.cn/item/64301388a682492fccf22237.png" alt="在这里插入图片描述" style="zoom:67%;" />
+<p><font face="华文彩云" color=red size=5>最终我是选择了用F4的板子，飞线进行测试，之后可以让硬件在设计的时候就引出来PB3</font></p>
+<p>3️⃣</p>
+<p><img src="https://pic.imgdb.cn/item/643013a2a682492fccf24f3d.png" alt="在这里插入图片描述" /></p>
+<blockquote>
+<p><strong>开发板：</strong> 正点原子精英板</p>
+<blockquote>
+<p><strong>有无引出PB3：</strong>  有</p>
+</blockquote>
+<blockquote>
+<p><strong>能否飞线：</strong>        能</p>
+</blockquote>
+<p><strong>说明：</strong> 调起来怪怪的，能用但不想用，也没必要，而且还要外接电源供电</p>
+</blockquote>
+<br>
+<p>4️⃣</p>
+<p><img src="https://pic.imgdb.cn/item/643013c1a682492fccf2887b.png" alt="在这里插入图片描述" /></p>
+<blockquote>
+<p><strong>开发板：</strong> RM官方开发板C型</p>
+<blockquote>
+<p><strong>有无引出PB3：</strong>  无</p>
+</blockquote>
+<blockquote>
+<p><strong>能否飞线：</strong>        否</p>
+</blockquote>
+<p><strong>说明：</strong> PB3被用于SPI1_CLK ,也无法复用😭</p>
+</blockquote>
+<hr />
+<h4 id="322-软件配置"><a class="markdownIt-Anchor" href="#322-软件配置"></a> 3.2.2 软件配置</h4>
+<h5 id="3221-cubemx配置"><a class="markdownIt-Anchor" href="#3221-cubemx配置"></a> 3.2.2.1 CUBEMX配置</h5>
+<p>选择异步跟踪模式，此时PB3将会自动定义为SWO端口。</p>
+<p><img src="https://pic.imgdb.cn/item/64301576e03e90d874574b8e.png" alt="在这里插入图片描述" /></p>
+<h5 id="3222-keil软件设置"><a class="markdownIt-Anchor" href="#3222-keil软件设置"></a> 3.2.2.2 KEIL软件设置</h5>
+<p><strong>在debug 的Trace窗口进行配置：</strong></p>
+<p>确保用的是<mark>SW模式</mark> :</p>
+<p><img src="https://pic.imgdb.cn/item/6430158fa682492fccf36b81.png" alt="在这里插入图片描述" /></p>
+<hr />
+<h3 id="33-keil调试的ini文件用法"><a class="markdownIt-Anchor" href="#33-keil调试的ini文件用法"></a> 3.3  keil调试的ini文件用法</h3>
+<p><span id="ini" name="ini"></span></p>
+<p><font face="华文彩云" color=red size=5>通过ini文件，可以动态的分析调试，也可以还原bug发生的情景。</font></p>
+<p>（感觉很有用，但我自己只是简单测试，就不乱说了，后面附上文章自己看）</p>
+<br>
+<hr />
+<h4 id="331-ini-文件使用"><a class="markdownIt-Anchor" href="#331-ini-文件使用"></a> 3.3.1 ini 文件使用</h4>
+<p>ini文件可解释为一个配置文件，相当于一个 <strong>.C文件</strong> ，这个文件的执行本质与仿真时的<strong>命令行</strong>执行一致(如果觉得不麻烦可以在命令行中敲所有的命令而不用加载ini文件).</p>
+<p><strong><mark>ini文件的加载主要在两个地方：</mark></strong></p>
+<p>1️⃣ 点击调试时会加载图片所示的ini文件:</p>
+<p><img src="https://pic.imgdb.cn/item/6430163ce03e90d87457c76e.png" alt="在这里插入图片描述" /></p>
+<br>
+<p>2️⃣ 调试时使用专用管理器调用</p>
+<p><img src="https://pic.imgdb.cn/item/643017aaa682492fccf42d9a.png" alt="" /></p>
+<p><img src="https://pic.imgdb.cn/item/643019890d2dde577798531b.png" alt="" /></p>
+<p>调用ini主要用来生成一些配置，如打开<strong>itm端口</strong>、<strong>生成log</strong>、<strong>设置断点</strong>等功能，下边介绍一下小功能。</p>
+<br>
+<hr />
+<h4 id="332-新建按钮"><a class="markdownIt-Anchor" href="#332-新建按钮"></a> 3.3.2 <strong>新建按钮</strong></h4>
+<p>使用任何编辑器新建后缀为.ini的文件，内容如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">DEFINE BUTTON <span class="string">&quot;显示random值&quot;</span>, <span class="string">&quot;printf (\&quot;random=%04XH\\n\&quot;,random)&quot;</span></span><br><span class="line">DEFINE BUTTON <span class="string">&quot;置位&quot;</span>, <span class="string">&quot;GPIOF-&gt;ODR |= (1&lt;&lt;9)&quot;</span></span><br><span class="line">DEFINE BUTTON <span class="string">&quot;复位&quot;</span>, <span class="string">&quot;GPIOF-&gt;ODR &amp;= ~(1&lt;&lt;9)&quot;</span></span><br></pre></td></tr></table></figure>
+<p>这样即可实现按钮的多个定义。</p>
+<br>
+<hr />
+<h4 id="333-功能函数"><a class="markdownIt-Anchor" href="#333-功能函数"></a> 3.3.3 功能函数</h4>
+<p>命令行不能直接调用函数，与之前讲过的一样，这里的功能函数仅用来调试使用，可以定义一些打印输出，修改变量、外设寄存器值等操作。</p>
+<p>使用任何编辑器新建后缀为.ini的文件，内容如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">FUNC <span class="type">void</span> <span class="title function_">clearValue</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> random =<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">FUNC <span class="type">void</span> <span class="title function_">LEDON</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> GPIOF-&gt;ODR |= (<span class="number">1</span>&lt;&lt;<span class="number">9</span>);</span><br><span class="line">&#125;</span><br><span class="line">DEFINE BUTTON <span class="string">&quot;CLEAR&quot;</span>,<span class="string">&quot;clearValue();&quot;</span></span><br><span class="line">DEFINE BUTTON <span class="string">&quot;LED&quot;</span>,<span class="string">&quot;LEDON();&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以上内容为定义了两个函数清除变量<strong>clearValue</strong>和打开LED灯<strong>LEDON</strong>，然后将两个函数做成<strong>toolbox</strong>按钮。</p>
+<br>
+<hr />
+<h4 id="334-不复位在线调试"><a class="markdownIt-Anchor" href="#334-不复位在线调试"></a> <strong>3.3.4 不复位在线调试</strong></h4>
+<h6 id="3341-使用swd4线连接目标板jtag接口会产生复位"><a class="markdownIt-Anchor" href="#3341-使用swd4线连接目标板jtag接口会产生复位"></a> 3.3.4.1 使用SWD4线连接目标板(Jtag接口会产生复位)</h6>
+<h6 id="3342-外部工程目录下创建一个noresetdbgini配置文件内容为"><a class="markdownIt-Anchor" href="#3342-外部工程目录下创建一个noresetdbgini配置文件内容为"></a> 3.3.4.2 外部工程目录下创建一个noresetDBG.ini配置文件，内容为：</h6>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">LOAD %L INCREMENTAL</span><br></pre></td></tr></table></figure>
+<p>没有这个也可以不复位调试，但打不了断点</p>
+<p><img src="https://pic.imgdb.cn/item/643019ae0d2dde577798bc75.png" alt="" /></p>
+<br>
+<hr />
+<h6 id="3343-取消勾选load-application-at-startup加载调试初始化配置"><a class="markdownIt-Anchor" href="#3343-取消勾选load-application-at-startup加载调试初始化配置"></a> 3.3.4.3 取消勾选<code>Load Application at Startup</code>，加载调试初始化配置</h6>
+<p><img src="https://pic.imgdb.cn/item/643019c20d2dde577798fc01.png" alt="" /></p>
+<p><em>(2也可省略，直接在仿真后的command窗口输入效果是一样的)</em></p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/643019e40d2dde5777994369.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h6 id="3344-取消调试器连接后的复位这个建议不连接板子只插烧写器进行设置否则会造成复位一次"><a class="markdownIt-Anchor" href="#3344-取消调试器连接后的复位这个建议不连接板子只插烧写器进行设置否则会造成复位一次"></a> 3.3.4.4 取消调试器连接后的复位(这个建议不连接板子，只插烧写器进行设置，否则会造成复位一次)</h6>
+<p><img src="https://pic.imgdb.cn/item/64301a14e03e90d874595240.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h6 id="3345-调试时目标更新也取消勾选这一步在f407上调试发现不操作也能实现可有可无的样子"><a class="markdownIt-Anchor" href="#3345-调试时目标更新也取消勾选这一步在f407上调试发现不操作也能实现可有可无的样子"></a> 3.3.4.5 调试时目标更新也取消勾选(这一步在F407上调试发现不操作也能实现，可有可无的样子)</h6>
+<p><img src="https://pic.imgdb.cn/item/64301a14e03e90d874595240.png" alt="在这里插入图片描述" /></p>
+<h6 id="3346-效果测试"><a class="markdownIt-Anchor" href="#3346-效果测试"></a> 3.3.4.6 效果测试:</h6>
+<p><img src="https://pic.imgdb.cn/item/64301a850d2dde57779cc239.gif" alt="在这里插入图片描述" /></p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64301abd0d2dde57779e1d61.gif" alt="在这里插入图片描述" /></p>
+<p>（👇详见下文）</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MDgyNzgyMw%3D%3D&amp;chksm=fc035d33cb74d425b8daf8e162aa4f24b2993698426823b7c77f25e38d7c7fa6730f202f995f&amp;idx=1&amp;mid=2247483891&amp;scene=21&amp;sn=569d5e4f49cfff2b59da5b68b707fe51#wechat_redirect">KEIL 调试的ini文件有什么用</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MDgyNzgyMw==&amp;mid=2247484451&amp;idx=1&amp;sn=73a0e08b6fbe15982fecd70c56f1ef66&amp;chksm=fc0358e3cb74d1f56616fc0d8d5148ee3382280bb95de908b4adff1eddcdb3cf446c307c32b1&amp;scene=178&amp;cur_album_id=1341389839287156737#rd">BUG 终结者，现场抓获！|颠覆认知</a></p>
+<br>
+<hr />
+<h3 id="34-打印变量波形"><a class="markdownIt-Anchor" href="#34-打印变量波形"></a> 3.4  打印变量波形</h3>
+<p>keil本身是有逻辑分析仪的，你们应该都知道，但一般我们调车的时候<strong>打印波形</strong>都是用的<font face="宋体" color=red size=5>J-Scope</font>，因为正常我</p>
+<p>们不配置<a href="#ini">ITM</a>的话，波形是不会刷新的，就一直卡在那里。</p>
+<h4 id="341-使用方法"><a class="markdownIt-Anchor" href="#341-使用方法"></a> 3.4.1 使用方法</h4>
+<p>直接将变量添加至<code>analyzer</code>窗口就行</p>
+<p><font face="华文彩云" color=red size=5>注意：最多只能有四个变量</font></p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64301b400d2dde5777a145da.gif" alt="" /></p>
+<br>
+<hr />
+<h4 id="342-与j-scope的区别"><a class="markdownIt-Anchor" href="#342-与j-scope的区别"></a> 3.4.2 与J-Scope的区别</h4>
+<ul>
+<li>
+<p><mark>J-Scope</mark>： 采样频率高，波形更加准确，可以将不同波形放在一起对比； 例如，将pitch轴的<strong>实际曲线</strong>和设<strong>定</strong></p>
+<p><strong>曲线</strong>对比，可以直观的看出当前的<strong>闭环控制效果</strong></p>
+</li>
+<li>
+<p><mark>逻辑分析仪：</mark>  方便快捷，直接将变量拖入即可显示，前提是已经配置好了；缩放范围大，可更直观的看出整</p>
+<p>体的趋势； 可查看io端口的电平变化。</p>
+</li>
+</ul>
+<br>
+<hr />
+<h4 id="343-使用示例"><a class="markdownIt-Anchor" href="#343-使用示例"></a> 3.4.3 使用示例：</h4>
+<p>通过逻辑分析仪 <strong>打印电机速度曲线</strong>：</p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64301bd20d2dde5777a44f0d.gif" alt="在这里插入图片描述" /></p>
+<hr />
+<br>
+<h3 id="35-虚拟串口"><a class="markdownIt-Anchor" href="#35-虚拟串口"></a> 3.5 虚拟串口</h3>
+<p>直接用虚拟串口<strong>打印信息</strong>，不再需要占用串口来打印信息：</p>
+<p>利用这个函数，<strong>直接调用</strong>就行</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  \brief   ITM Send Character</span></span><br><span class="line"><span class="comment">  \details Transmits a character via the ITM channel 0, and</span></span><br><span class="line"><span class="comment">           \li Just returns when no debugger is connected that has booked the output.</span></span><br><span class="line"><span class="comment">           \li Is blocking when a debugger is connected, but the previous character sent has not been transmitted.</span></span><br><span class="line"><span class="comment">  \param [in]     ch  Character to transmit.</span></span><br><span class="line"><span class="comment">  \returns            Character to transmit.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">__STATIC_INLINE <span class="type">uint32_t</span> <span class="title function_">ITM_SendChar</span> <span class="params">(<span class="type">uint32_t</span> ch)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (((ITM-&gt;TCR &amp; ITM_TCR_ITMENA_Msk) != <span class="number">0UL</span>) &amp;&amp;      <span class="comment">/* ITM enabled */</span></span><br><span class="line">      ((ITM-&gt;TER &amp; <span class="number">1UL</span>               ) != <span class="number">0UL</span>)   )     <span class="comment">/* ITM Port #0 enabled */</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> (ITM-&gt;PORT[<span class="number">0U</span>].u32 == <span class="number">0UL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      __NOP();</span><br><span class="line">    &#125;</span><br><span class="line">    ITM-&gt;PORT[<span class="number">0U</span>].u8 = (<span class="type">uint8_t</span>)ch;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个函数相当于串口字节发送函数，只不过串口字节发送函数是通过串口传输的，这里就通过JTDO这根线传输。然后你可能需要使用printf函数打印，那么重定向即可</p>
+<p><img src="https://pic.imgdb.cn/item/64301bed0d2dde5777a4ca4a.png" alt="在这里插入图片描述" /></p>
+<p><strong>查看输出：</strong></p>
+<p><img src="https://pic.imgdb.cn/item/64301c130d2dde5777a566eb.gif" alt="在这里插入图片描述" /></p>
+<hr />
+<h3 id="36-统计进入中断的数据"><a class="markdownIt-Anchor" href="#36-统计进入中断的数据"></a> 3.6 统计进入中断的数据</h3>
+<br>
+<h4 id="351-trace-exceptions简介"><a class="markdownIt-Anchor" href="#351-trace-exceptions简介"></a> 3.5.1 Trace Exceptions简介</h4>
+<p><strong>Trace Exceptions</strong>窗口显示有关跟踪的异常和中断的统计数据，如<strong>在此中断中花费的最短和最长时间</strong>、 <strong>上次输入此异常的时间</strong>等。</p>
+<br>
+<p><mark>这是官方文档的介绍：</mark></p>
+<p><img src="https://pic.imgdb.cn/item/64301c580d2dde5777a666ce.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="352-event-counters简介"><a class="markdownIt-Anchor" href="#352-event-counters简介"></a> 3.5.2 Event Counters简介</h4>
+<p>事件计数，用于统计<mark>总指令</mark>、<mark>异常</mark>、<mark>休眠</mark>、<mark>存储</mark>、<mark>折叠</mark>指令。<br />
+<img src="https://pic.imgdb.cn/item/64301c780d2dde5777a6fd98.png" alt="在这里插入图片描述" /></p>
+<p>👇  <mark>官方文档介绍：</mark></p>
+<p><img src="https://pic.imgdb.cn/item/64301c960d2dde5777a75ec4.png" alt="在这里插入图片描述" /></p>
+<br>
+<hr />
+<h4 id="353-使用示例"><a class="markdownIt-Anchor" href="#353-使用示例"></a> 3.5.3 使用示例</h4>
+<p>通过<strong>can分析仪</strong>，发送can数据，并<strong>查看统计情况</strong>：</p>
+<p><img src="https://pic.imgdb.cn/item/64301cbd0d2dde5777a7fb52.webp" alt="" /></p>
+<br>
+<hr />
+<h2 id="4️⃣-其它调试工具"><a class="markdownIt-Anchor" href="#4️⃣-其它调试工具"></a> 4️⃣  其它调试工具</h2>
+<h3 id="41-systemview"><a class="markdownIt-Anchor" href="#41-systemview"></a> 4.1 Systemview</h3>
+<p><span id="Systemview" name="Systemview"></span></p>
+<h4 id="411-systemview简介"><a class="markdownIt-Anchor" href="#411-systemview简介"></a> 4.1.1 Systemview简介</h4>
+<p><a href="https://www.segger.com/products/development-tools/systemview/">SystemView</a>是SEGGER开发的针对嵌入式系统的trace工具，支持多种RTOS，也支持自定义OS的移植（需实现trace API，参见User</p>
+<p>Manual）。其核心基于<strong>SEGGER RTT</strong>，一个<strong>Host-Targe</strong>t间的通信框架，可通过多种方式连接，除J-LINK之外还可以使用串口及TCP-IP协</p>
+<p>议，对非商业用途免费且无功能限制。</p>
+<p>SystemView 是一个用于虚拟分析嵌入式系统的工具包。SystemView 可以完整的深入观察一个应用程序的运行时行为，这远远超出一个</p>
+<p>调试器所能提供的。这在开发和处理具有多个线程和事件的复杂系统时尤其有效。</p>
+<p><a href="http://www.segger.com/products/development-tools/systemview/">官方介绍</a></p>
+<br>
+<hr />
+<h4 id="412-使用效果"><a class="markdownIt-Anchor" href="#412-使用效果"></a> 4.1.2 使用效果</h4>
+<p><img src="https://pic.imgdb.cn/item/64301ce80d2dde5777a8c739.png" alt="在这里插入图片描述" /></p>
+<p><a href="https://blog.csdn.net/weixin_51330198/article/details/126063836">SystemView 介绍与移植</a></p>
+<hr />
+<h3 id="42-j-link的rtt打印"><a class="markdownIt-Anchor" href="#42-j-link的rtt打印"></a> 4.2  J-Link的RTT打印</h3>
+<p>可以通过占用一部分内存空间来实现非在线调试时swd端口的数据输出，一般用在串口紧张时代替串口实现printf调试。</p>
+<p>我没用过，所以具体见网上教程</p>
+<p>（👇详见下文）</p>
+<p><a href="https://blog.csdn.net/qq1291917670/article/details/119414735?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-3-119414735-blog-120769285.pc_relevant_default&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-3-119414735-blog-120769285.pc_relevant_default&amp;utm_relevant_index=6">JLink的RTT使用</a></p>
+<hr />
+<h3 id="43-j-scope"><a class="markdownIt-Anchor" href="#43-j-scope"></a> 4.3 J-Scope</h3>
+<h4 id="431-j-scope-简介"><a class="markdownIt-Anchor" href="#431-j-scope-简介"></a> 4.3.1  J-Scope 简介</h4>
+<p>J-Scope是SEGGER公司推出的，可以在目标MCU运行时，实时分析数据并图形化显示的软件。它不需要SWO或目</p>
+<p>标上的任何额外引脚等功能，但使用可用的标准调试端口。J-Scope可以以类似示波器的方式显示多个变量的值。</p>
+<p><font face="宋体" color=red size=5>可以用于平时调车的时候，打印变量波形，如对比电机设定曲线和实际曲线来观察闭环控制效果。</font></p>
+<h4 id="432-使用效果"><a class="markdownIt-Anchor" href="#432-使用效果"></a> 4.3.2 使用效果</h4>
+<p><mark>如图是六轴陀螺仪三轴的工作曲线：</mark></p>
+<p><img src="https://pic.imgdb.cn/item/64301d140d2dde5777a9999d.png" alt="在这里插入图片描述" /></p>
+<br>
+<p>（👇<strong>官网</strong>及<strong>使用教程</strong>）</p>
+<p><a href="https://www.segger.com/products/debug-probes/j-link/tools/j-scope/">J-Scope 官网</a></p>
+<p><a href="https://blog.csdn.net/qq_23852045/article/details/108837881">使用教程</a></p>
+<br>
+<hr />
+<h3 id="44-matlab"><a class="markdownIt-Anchor" href="#44-matlab"></a> 4.4 MATLAB</h3>
+<p>作为一个工科生，<mark>MATLAB</mark>有多重要就不用多说了吧，基本什么都能干。 比如，我们调车的时候，云台的串级pid大部分都是用的经验调</p>
+<p>参。如果能熟练掌握<mark>MATLAB</mark> ,就可以通过仿真来整定参数。</p>
+<p><img src="https://pic.imgdb.cn/item/64301d330d2dde5777aa1643.png" alt="在这里插入图片描述" /></p>
+<p>（👇具体的实现方法可以参考这两篇文章）</p>
+<p><a href="https://bbs.robomaster.com/thread-4941-1-1.html">系统辨识基础</a></p>
+<p><a href="https://bbs.robomaster.com/thread-5059-1-1.html">云台传递函数</a></p>
+<br>
+<hr />
+<br>
+<h2 id="️参考文章"><a class="markdownIt-Anchor" href="#️参考文章"></a> ❗️参考文章</h2>
+<p><a href="https://developer.arm.com/documentation/101407/0537/Debugging/Code-and-Data-Trace--Cortex-M-/Tracepoint-Expressions">官方文档</a></p>
+<p><a href="https://blog.csdn.net/weixin_42876465/article/details/107171974?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165881686416780357239382%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=165881686416780357239382&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-107171974-null-null.185%5Ev2%5Econtrol&amp;utm_term=%E8%B0%83%E8%AF%95&amp;spm=1018.2226.3001.4450"> keil 调试经验总结</a></p>
+<p><a href="https://blog.csdn.net/weixin_42876465/article/details/86545913">STM32调试利器之ITM</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzU2MDgyNzgyMw%3D%3D&amp;chksm=fc035d33cb74d425b8daf8e162aa4f24b2993698426823b7c77f25e38d7c7fa6730f202f995f&amp;idx=1&amp;mid=2247483891&amp;scene=21&amp;sn=569d5e4f49cfff2b59da5b68b707fe51#wechat_redirect">KEIL 调试的 ini 文件有什么用</a></p>
+<p><a href="https://blog.csdn.net/weixin_46623350/article/details/105305426">STM32开发，通过SWO功能输出Printf函数到Utility</a></p>
+]]></content>
+      <categories>
+        <category>stm32</category>
+      </categories>
+      <tags>
+        <tag>arm</tag>
+        <tag>单片机</tag>
+        <tag>stm32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序编译过程</title>
+    <url>/2023/04/07/%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="程序编译过程"><a class="markdownIt-Anchor" href="#程序编译过程"></a> 程序编译过程</h1>
+<br>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充</p>
+<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
+<br>
+<p><strong>简介：</strong> 简单程序的编译过程</p>
+</blockquote>
+<br>
+<hr />
+<br>
+<span id="more"></span>
+<hr />
+<h3 id="1️⃣-编译流程"><a class="markdownIt-Anchor" href="#1️⃣-编译流程"></a> 1️⃣ 编译流程</h3>
+<p>程序的整个编译流程大致分成<strong>几个阶段</strong>:</p>
+<ul>
+<li><em><strong>预处理 :</strong></em>  将预处理指令进行处理 , 预处理器将<strong>源文件(.c)</strong> 经过预处理变成 <strong>文件(.i )</strong></li>
+<li><em><strong>编译 :</strong></em>   编译器调用解析工具 , 将预处理后的<strong>源文件( .i )<strong>编译成</strong>汇编文件( .s)</strong></li>
+<li><em><strong>汇编 :</strong></em>  这是也是编译的第二阶段 , 通过汇编器将<strong>汇编文件( .s)</strong> 汇编成可重定位的<strong>目标文件( .o)</strong></li>
+<li><em><strong>链接 :</strong></em>  将各个<strong>目标文件( .o)<strong>链接成</strong>可执行文件</strong>( 也是可执行文件的一种 )</li>
+</ul>
+<br>
+<p><em><strong>程序编译  , 链接流程图:</strong></em></p>
+<p><img src="https://pic1.imgdb.cn/item/633aa48716f2c2beb1e98a0d.png" alt="image-20220928113639502" /></p>
+<br>
+<hr />
+<h3 id="2️⃣-可执行文件"><a class="markdownIt-Anchor" href="#2️⃣-可执行文件"></a> 2️⃣ 可执行文件</h3>
+<p>一个可执行文件通常由一系列不同的段<code>(section)</code>构成:<strong>代码段</strong>、<strong>数据段</strong>、<strong>BSS段</strong>、<strong>只读数据段</strong>等。</p>
+<p><em><strong>C语言到可执行文件 :</strong></em></p>
+<p><img src="https://pic1.imgdb.cn/item/633aa48716f2c2beb1e98a1c.png" alt="image-20220928114314496" /></p>
+<ul>
+<li><em><strong>函数</strong></em> 翻译成二进制指令放在 <em><strong>代码段</strong></em> 中</li>
+<li><em><strong>初始化的全局变量</strong></em> 和 <em><strong>静态局部变量</strong></em> 放在 <em><strong>数据段</strong></em> 中(.data)</li>
+<li><em><strong>未初始化的全局变量</strong></em> 和 <em><strong>静态变量</strong></em> 放在 <em><strong>BSS段</strong></em> 中(.bss)</li>
+<li>程序中定义的一些<strong>字符串</strong> , <strong>printf函数打印的字符串常量</strong>放在 <strong>只读数据段( .rodata)</strong> 中</li>
+</ul>
+<br>
+<hr />
+<h3 id="3️⃣-预处理"><a class="markdownIt-Anchor" href="#3️⃣-预处理"></a> 3️⃣ 预处理</h3>
+<blockquote>
+<p><em><strong>预处理过程</strong></em> 就是 在编译源程序之前 , 先处理源文件中的各种<strong>预处理指令</strong></p>
+</blockquote>
+<br>
+<p>预处理主要包括以下操作 :</p>
+<ul>
+<li><em><strong>头文件展开:</strong></em>  将<code>#include</code>包含的头文件内容展开到当前位置 , 并删除<code>#include</code></li>
+<li><em><strong>宏展开:</strong></em> 展开所有的宏定义,并删除<code>#define</code>。</li>
+<li><em><strong>条件编译:</strong></em>  根据宏定义条件,选择要参与编译的分支代码,其余的分支丢弃。</li>
+<li><em><strong>删除注释</strong></em>。</li>
+<li><em><strong>添加行号和文件名标识:</strong></em>   编译过程中根据需要可以显示这些信息。</li>
+<li><em><strong>保留<code>#pragma</code>命令:</strong></em> 该命令会在程序编译时指示编译器执行一些特定行为。</li>
+</ul>
+<br>
+<hr />
+<h3 id="4️⃣-编译"><a class="markdownIt-Anchor" href="#4️⃣-编译"></a> 4️⃣ 编译</h3>
+<p><em><strong>汇编过程主要包括以下步骤 :</strong></em></p>
+<ul>
+<li>
+<p>词法分析</p>
+</li>
+<li>
+<p>语法分析</p>
+</li>
+<li>
+<p>语义分析</p>
+</li>
+<li>
+<p>中间代码生成</p>
+</li>
+<li>
+<p>汇编代码生成</p>
+</li>
+<li>
+<p>目标代码生成</p>
+<br>
+</li>
+</ul>
+<hr />
+<h4 id="41-词法分析"><a class="markdownIt-Anchor" href="#41-词法分析"></a> 4.1  词法分析</h4>
+<blockquote>
+<p>词法分析主要用来解析C程序语句 , 词法分析一般会通过词法扫描器从左到右 , 将源程序分解为一系列不能再分解的记号单元–token。</p>
+</blockquote>
+<br>
+<p><em><strong>常见<code>token</code></strong></em></p>
+<ul>
+<li>C语言的各种 <em><strong>关键字</strong></em> : <code>int</code>,<code>float</code>、<code>for</code>,<code>while</code>、<code>break</code>等。</li>
+<li>用户定义的各种 <em><strong>标识符</strong></em> :  <strong>函数名</strong>、<strong>变量名</strong>、<strong>标号</strong>等。</li>
+<li>字面量: <strong>数字</strong>、<strong>字符串</strong>等。</li>
+<li><em><strong>运算符</strong></em>: C语言标准定义的40多个运算符。</li>
+<li><em><strong>分隔符</strong></em>: 程序结束符分号、for循环中的等</li>
+</ul>
+<p><font face="华文彩云" color=red size=5>示例：</font ></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sum = a + b / c;</span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li>经过词法分析后 分解成 <code>sum</code> ,<code>=</code>, <code>a</code> ,<code>+</code>, <code>b</code>, <code>/</code>, <code>c</code>,<code>;</code>  八个<code>token</code></li>
+<li>如果程序出现<strong>中文符号</strong>、<strong>圆角\半角字符</strong> 等 ,程序就会在这个阶段发错编译错误</li>
+</ul>
+<br>
+<hr />
+<h4 id="42-语法分析"><a class="markdownIt-Anchor" href="#42-语法分析"></a> 4.2 语法分析</h4>
+<blockquote>
+<p>语法分析主要是对前一阶段产生的<code>token</code>序列进行解析,  看是否能构建成一个语法上正确的<strong>语法短语</strong>(程序、语句、表达式等)。</p>
+</blockquote>
+<br>
+<p><font face="华文彩云" color=red size=5>说明：</font ></p>
+<ul>
+<li>词法分析语法分析工具在对<code>token</code>序列分析过程中, 如果发现不能构建语法上正确的语句或表达式,就会报语法错误: <code>syntax error</code></li>
+<li>如果程序语句后 少了 **结束分号 ** 或 <strong>循环中少了分号</strong> ，就会在此阶段产生编译错误</li>
+</ul>
+<br>
+<hr />
+<h4 id="43-语义分析"><a class="markdownIt-Anchor" href="#43-语义分析"></a> 4.3 语义分析</h4>
+<blockquote>
+<p>语义分析主要对语法分析输出的各种表达式、语句进行检查,看看有没有错误。</p>
+</blockquote>
+<br>
+<p><em><strong>例如 :</strong></em></p>
+<ul>
+<li>传递给函数的实参与函数声明的形参类型不匹配,</li>
+<li>使用了一个未声明的变量</li>
+<li>除数为零了;</li>
+<li><code>break</code>在循环语句或<code>switch</code>语句之外出现了,</li>
+<li>在循环语句之外发现了<code>continue</code>语句等</li>
+</ul>
+<br>
+<hr />
+<h4 id="44-生成中间代码"><a class="markdownIt-Anchor" href="#44-生成中间代码"></a> 4.4 生成中间代码</h4>
+<blockquote>
+<p><em><strong>说明:</strong></em></p>
+<ul>
+<li>中间代码是一维线性结构 , 类似伪代码</li>
+<li>通过中间代码 , 可以很容易的将中间代码翻译成汇编代码</li>
+</ul>
+</blockquote>
+<br>
+<p><font face="华文彩云" color=red size=5>示例：</font ></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">1</span>;</span><br><span class="line">    sum = a + b / c;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转换为中间代码 <em><strong>三地址码:</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">main ()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> D<span class="number">.4227</span>;</span><br><span class="line">    <span class="type">int</span> D<span class="number">.4228</span>;</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> sum;</span><br><span class="line">        <span class="type">int</span> a;</span><br><span class="line">        <span class="type">int</span> b;</span><br><span class="line">        <span class="type">int</span> c;</span><br><span class="line">        </span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        a= <span class="number">2</span>;</span><br><span class="line">        b= <span class="number">1</span>;</span><br><span class="line">        C= <span class="number">1</span>;</span><br><span class="line">        D<span class="number">.4227</span> = b / c;</span><br><span class="line">        sum =D<span class="number">.4227</span> + a;</span><br><span class="line">        D<span class="number">.4228</span> = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">return</span> D<span class="number">.4228</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    D<span class="number">.4228</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> D<span class="number">.4228</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中间代码转换为 <em><strong>汇编代码</strong></em> :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV R0, #2		</span><br><span class="line">MOV R1, #1</span><br><span class="line">MOV R2, #1</span><br><span class="line">DIV R3, R1, R2		; R3 = R1 / R1</span><br><span class="line">ADD R0 RO.R3		; R0 = R0 + R3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将变量变量a、b、c分别放到寄存器R0、R1、R2中,</li>
+<li>临时变量<code>D.4427</code>使用R3代替,然后使用<code>ADD</code>命令完成累加。</li>
+</ul>
+<br>
+<hr />
+<h4 id="45-汇编过程"><a class="markdownIt-Anchor" href="#45-汇编过程"></a> 4.5 汇编过程</h4>
+<blockquote>
+<ul>
+<li>汇编器主要是 将汇编代码翻译成对应的二进制指令;</li>
+<li>同时生成一些必要的信息 , 以section的形式组装到目标文件中</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>汇编过程:</strong></em></p>
+<p><img src="https://pic1.imgdb.cn/item/633aa48716f2c2beb1e98a26.png" alt="image-20220928233023855" /></p>
+<br>
+<hr />
+<h3 id="5️⃣-链接过程"><a class="markdownIt-Anchor" href="#5️⃣-链接过程"></a> 5️⃣ 链接过程</h3>
+<blockquote>
+<ul>
+<li>编译器在编译一个项目时,是以C源文件为单位进行编译的,每一个源文件编译生成一个对应的目标文件(.o)</li>
+<li>但这些单独的<strong>目标文件(</strong>.o)是不可执行的 , 属于可重定位的目标文件;</li>
+<li>它们要经过链接器 <em><strong>重定位</strong></em> 、<em><strong>链接</strong></em> 之后,才能组装成一个可执行的目标文件a.out。</li>
+<li>链接器将各个目标文件组装在一起后, 重新 <strong>修改</strong> 各个目标文件中的变量或函数的 <strong>地址</strong> ,这个过程一般称为 <em><strong>重定位</strong></em> 。</li>
+<li>链接过程中 , 将各个目标文件<strong>分段组装</strong> ; 例如 :  将各个目标文件的代码段放在一起,作为最终生成的可执行文件的代码段; 将各个目标文件的数据段放在一起,作为可执行文件的数据段。</li>
+</ul>
+</blockquote>
+<br>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>学习记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test2</title>
+    <url>/2023/04/07/test2/</url>
+    <content><![CDATA[<h1 id="嵌入式c语言补充"><a class="markdownIt-Anchor" href="#嵌入式c语言补充"></a> 嵌入式C语言补充</h1>
+<br>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充</p>
+<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
+<p><strong>摘要：</strong></p>
+<p><strong>简介：</strong></p>
+</blockquote>
+<br>
+<hr />
+<br>
+<span id="more"></span>
+<p>⭐️<font face="华文行楷" color=black size=7> 目录</font></p>
+<p>[TOC]</p>
+<br>
+<hr />
+<br>
+<p><a href="https://blog.csdn.net/as480133937/article/details/100138838">链接</a></p>
+<h4 id="221-基本公式"><a class="markdownIt-Anchor" href="#221-基本公式"></a> 2.2.1 <em><strong>基本公式:</strong></em></h4>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>α</mi></msub><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>−</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>β</mi></msub><mtext> </mtext><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>+</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+V_\alpha =\ V_d\cdot\cos{\theta}\ -\ V_q\cdot\sin{\theta}  \\\\
+V_\beta\ =\ V_d\cdot\sin{\theta}\ +\ V_q\cdot\cos{\theta} \\\\
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:5.76em;vertical-align:-2.63em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.9500200000000003em;"><span style="top:-1.59999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-1.59999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-1.89999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.90001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-5.20002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.45002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.1300000000000003em;"><span style="top:-5.130000000000001em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-3.6900000000000004em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-0.8100000000000002em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.63em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>V</mi><mi>α</mi></msub><mo>=</mo><mtext> </mtext><msub><mi>V</mi><mi>d</mi></msub><mo>⋅</mo><mi>cos</mi><mo>⁡</mo><mi>θ</mi><mtext> </mtext><mo>−</mo><mtext> </mtext><msub><mi>V</mi><mi>q</mi></msub><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+V_\alpha =\ V_d\cdot\cos{\theta}\ -\ V_q\cdot\sin{\theta} \\\\
+
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h4 id="551-数据传输"><a class="markdownIt-Anchor" href="#551-数据传输"></a> 5.5.1  数据传输</h4>
+<blockquote>
+<p>用于传输浮点数据</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">f_data</span> &#123;</span></span><br><span class="line">    <span class="type">float</span> f;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="type">uint8_t</span> byte[<span class="number">4</span>];</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这样在进行数据传输的时候会方便很多，比如<strong>串口传输</strong>只需要把这个数组 <code>byte[4]</code> 进行传输就可以了。</p>
 ]]></content>
   </entry>
 </search>

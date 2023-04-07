@@ -158,6 +158,16 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
   </nav>
 </div>
   <div class="links-of-author animated">
@@ -225,7 +235,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-07 15:54:29" itemprop="dateModified" datetime="2023-04-07T15:54:29+08:00">2023-04-07</time>
+      <time title="修改时间：2023-04-07 16:10:53" itemprop="dateModified" datetime="2023-04-07T16:10:53+08:00">2023-04-07</time>
     </span>
 
   
@@ -252,6 +262,211 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/06/%E6%B5%8B%E8%AF%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+<div>
+  
+</div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/07/Keil%E8%B0%83%E8%AF%95%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/photo.jpg">
+      <meta itemprop="name" content="yezhaotin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y.Z.T">
+      <meta itemprop="description" content="呜呜呜 , Fxxk hcz !!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Y.Z.T">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/07/Keil%E8%B0%83%E8%AF%95%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Keil调试汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-07 18:51:20 / 修改时间：21:49:18" itemprop="dateCreated datePublished" datetime="2023-04-07T18:51:20+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/stm32/" itemprop="url" rel="index"><span itemprop="name">stm32</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="arm-mdk-调试汇总"><a class="markdownIt-Anchor" href="#arm-mdk-调试汇总"></a> ARM- MDK 调试汇总</h1>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.25」</em>    <em>第一版赶在回家前写出来的，可能存在问题，或链接视频失效什么的</em><br />
+<br><br />
+<strong>author：</strong>  <em>Y.Z.T.</em><br />
+<br></p>
+<p><strong>摘要：</strong>  <em>汇总在使用keil的过程中的一些调试方法</em></p>
+<p><strong>简介：</strong></p>
+<p><em>1️⃣前几天看哈工程直播的时候，发现他们是用的<strong>Ozone</strong>进行开发，花了点时间去简单了解了一下；</em><br />
+<br><br />
+<em>2️⃣发现了<strong>Ozone</strong>的调试功能是比较强的，具备了一些<strong>keil</strong>所没有的功能（如：DebugSnapshot（快照功能））,所以谁比较闲可以试一下用（<strong>VSCode 编辑代码 + Keil 编译 + Ozone 调试</strong>）来开发。</em><br />
+<br><br />
+<em>3️⃣但更多的，我发现<strong>Ozone</strong> 有的功能<strong>keil</strong>也基本都有，虽然很多因为硬件限制而用不了；所以我打算汇总一下keil的调试技巧 ,毕竟keil本身的调试功能是非常强的，我们平时用的很多都是比较浅的</em><br />
+<br><br />
+<em>4️⃣ 本篇文章的内容来自笔者的调试经验及网络，<strong>受限于硬件</strong>笔者并未全部尝试过，仅<strong>意在抛砖引玉</strong>。借用蔡老板一句话：</em> <font face="华文行楷" color=black size=4> “不要老是说什么学这个没用，我用keil就行了，不要搞那种奇奇怪怪的开发方式，有些东西就是得尝试一下”</font></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/07/Keil%E8%B0%83%E8%AF%95%E6%B1%87%E6%80%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    
+<div>
+  
+</div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/07/%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/photo.jpg">
+      <meta itemprop="name" content="yezhaotin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y.Z.T">
+      <meta itemprop="description" content="呜呜呜 , Fxxk hcz !!">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Y.Z.T">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/07/%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">程序编译过程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-07 16:39:17 / 修改时间：18:52:17" itemprop="dateCreated datePublished" datetime="2023-04-07T16:39:17+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">学习记录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="程序编译过程"><a class="markdownIt-Anchor" href="#程序编译过程"></a> 程序编译过程</h1>
+<br>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充</p>
+<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
+<br>
+<p><strong>简介：</strong> 简单程序的编译过程</p>
+</blockquote>
+<br>
+<hr />
+<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/07/%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -343,173 +558,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/07/test2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-<div>
-  
-</div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/05/test-my-site/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/photo.jpg">
-      <meta itemprop="name" content="yezhaotin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Y.Z.T">
-      <meta itemprop="description" content="呜呜呜 , Fxxk hcz !!">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Y.Z.T">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/05/test-my-site/" class="post-title-link" itemprop="url">test_my_site</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-05 20:39:20" itemprop="dateCreated datePublished" datetime="2023-04-05T20:39:20+08:00">2023-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-06 16:33:37" itemprop="dateModified" datetime="2023-04-06T16:33:37+08:00">2023-04-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-
-      
-    </div>
-
-    
-    
-    
-    
-<div>
-  
-</div>
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/05/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/photo.jpg">
-      <meta itemprop="name" content="yezhaotin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Y.Z.T">
-      <meta itemprop="description" content="呜呜呜 , Fxxk hcz !!">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Y.Z.T">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/05/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-05 20:32:39" itemprop="dateCreated datePublished" datetime="2023-04-05T20:32:39+08:00">2023-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-06 16:33:29" itemprop="dateModified" datetime="2023-04-06T16:33:29+08:00">2023-04-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/04/05/hello-world/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -651,7 +699,7 @@ setInterval("createtime()",250);
 </script>
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":250,"height":400,"position":"lift","hOffset":150,"vOffset":-30},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2}});</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":250,"height":400,"position":"lift","hOffset":150,"vOffset":-30},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2}});</script>
         <style>
             [bg-lazy] {
                 background-image: none !important;
