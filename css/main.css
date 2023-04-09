@@ -2642,3 +2642,13 @@ code {
   border-radius: 3px;
   font-size: 18px;
 }
+.main-inner {
+  background-color: rgba(255,255,255,0);
+}
+.post-block {
+  background-color: #fff;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 30px 30px 30px 30px;
+}

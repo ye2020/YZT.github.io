@@ -350,8 +350,8 @@ I_q\ =\ -I_\alpha\cdot\sin{\theta}\ +\ I_\beta\cdot\cos{\theta}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>c语言</tag>
         <tag>单片机</tag>
+        <tag>c语言</tag>
         <tag>驱动开发</tag>
       </tags>
   </entry>
@@ -2851,9 +2851,9 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <category>学习记录</category>
       </categories>
       <tags>
+        <tag>C语言</tag>
         <tag>c++</tag>
         <tag>学习</tag>
-        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -5805,8 +5805,8 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>单片机</tag>
         <tag>Ui</tag>
+        <tag>单片机</tag>
         <tag>mcu</tag>
         <tag>物联网</tag>
       </tags>
@@ -6074,9 +6074,9 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
         <category>调试</category>
       </categories>
       <tags>
-        <tag>操作系统</tag>
         <tag>单片机</tag>
         <tag>arm</tag>
+        <tag>操作系统</tag>
       </tags>
   </entry>
   <entry>
@@ -7540,8 +7540,8 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
-        <tag>c语言</tag>
         <tag>单片机</tag>
+        <tag>c语言</tag>
         <tag>gun</tag>
       </tags>
   </entry>
@@ -8187,9 +8187,9 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
-        <tag>c语言</tag>
         <tag>单片机</tag>
         <tag>arm</tag>
+        <tag>c语言</tag>
       </tags>
   </entry>
   <entry>
