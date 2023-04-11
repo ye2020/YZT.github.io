@@ -350,8 +350,8 @@ I_q\ =\ -I_\alpha\cdot\sin{\theta}\ +\ I_\beta\cdot\cos{\theta}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>单片机</tag>
         <tag>c语言</tag>
+        <tag>单片机</tag>
         <tag>驱动开发</tag>
       </tags>
   </entry>
@@ -2851,9 +2851,9 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>C语言</tag>
         <tag>c++</tag>
         <tag>学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -7484,7 +7484,7 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
 <blockquote>
 <p><em><strong>作用域 :</strong></em>  作用域是为代码块内</p>
 <p><em><strong>储存属性 :</strong></em> 用<code>static</code>定义的局部变量的生命周期 , 会变成静态储存 , 即全局都存在 ;</p>
-<p><strong>储存位置 :</strong> 储存位置由 <em><strong>栈</strong></em> 转移到了 <em><strong>数据段</strong></em> (.text)中</p>
+<p><strong>储存位置 :</strong> 储存位置由 <em><strong>栈</strong></em> 转移到了 <em><strong>数据段</strong></em> (.data)中</p>
 <p><strong>值 :</strong></p>
 <ul>
 <li>静态局部变量如果没有被用户初始化，则会被编译器自动赋值为0</li>
@@ -7540,8 +7540,8 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
-        <tag>单片机</tag>
         <tag>c语言</tag>
+        <tag>单片机</tag>
         <tag>gun</tag>
       </tags>
   </entry>
@@ -8187,9 +8187,9 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
+        <tag>c语言</tag>
         <tag>单片机</tag>
         <tag>arm</tag>
-        <tag>c语言</tag>
       </tags>
   </entry>
   <entry>
