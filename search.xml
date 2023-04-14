@@ -1793,8 +1793,8 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>C语言</tag>
         <tag>单片机</tag>
+        <tag>C语言</tag>
         <tag>驱动开发</tag>
       </tags>
   </entry>
@@ -2572,6 +2572,901 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <tag>单片机</tag>
         <tag>arm</tag>
         <tag>stm32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Makefile学习笔记</title>
+    <url>/2023/04/14/Makefile%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="makefile学习笔记"><a class="markdownIt-Anchor" href="#makefile学习笔记"></a> Makefile学习笔记</h1>
+<br>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2023.4.12」</em>   最后补充</p>
+<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
+<p><strong>摘要：</strong> none</p>
+<p><strong>简介：</strong> 记录Make的简单特性 , 记录学习的过程</p>
+</blockquote>
+<span id="more"></span>
+<br>
+<hr />
+<br>
+<hr />
+<br>
+<h2 id="0️⃣-前言"><a class="markdownIt-Anchor" href="#0️⃣-前言"></a> 0️⃣ 前言</h2>
+<ul>
+<li>
+<p><code>Make</code>是常用的构建工具, 一般是编译一个工程时使用的工具 。</p>
+</li>
+<li>
+<p>用来描述哪些文件需要编译、哪些需要重新编译的文件就叫做 <code>Makefile</code>，<code>Makefile</code> 带来的好处就是可以实现工程的全自动编译</p>
+</li>
+<li>
+<p><code>make</code>是 一个命令工具，一个解释 <code>makefile</code> 中指令的命令工具</p>
+</li>
+<li>
+<p>从程序源码到可执行文件  <em>（如<code>.out</code>文件）</em> 的过程就是编译的过程吗，程序的整个编译流程大致分成 几个阶</p>
+<p>段 :  <em><strong>预处理</strong></em>、<em><strong>编译</strong></em> 、<em><strong>汇编</strong></em> 、<em><strong>链接</strong></em>。（可以参考我之前的一篇笔记<a href="https://ye2020.github.io/2023/04/07/%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/#more">程序编译过程</a>）</p>
+</li>
+</ul>
+<br>
+<hr />
+<h2 id="1️⃣-makefile概况"><a class="markdownIt-Anchor" href="#1️⃣-makefile概况"></a> 1️⃣ Makefile概况</h2>
+<h3 id="11-gcc与make命令"><a class="markdownIt-Anchor" href="#11-gcc与make命令"></a> 1.1 gcc与make命令</h3>
+<h4 id="111-gcc常用参数"><a class="markdownIt-Anchor" href="#111-gcc常用参数"></a> 1.1.1 gcc常用参数</h4>
+<p>gcc 命令格式如下:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">gcc <span class="selector-attr">[选项]</span> <span class="selector-attr">[文件名字]</span></span><br></pre></td></tr></table></figure>
+<p>主要选项如下：</p>
+<ul>
+<li>
+<p><strong>-c</strong>：只编译不链接为可执行文件，编译器将输入的<code>.c</code> 文件编译为<code>.o</code> 的目标文件。</p>
+</li>
+<li>
+<p><strong>-o</strong>：&lt;输出文件名&gt;用来指定编译结束以后的输出文件名，如果不使用这个选项的话 <code>GCC</code> 默认编译出来的可执行文件名字为 <code>a.out</code>。</p>
+</li>
+<li>
+<p><strong>-g</strong>：添加调试信息，如果要使用调试工具(如 <code>GDB</code>)的话就必须加入此选项，此选项指示编译的时候生成调试所需的符号信息。(生成<code>debug</code>模式的可执行文件)</p>
+</li>
+<li>
+<p><strong>-O</strong>：对程序进行优化编译，如果使用此选项的话整个源代码在编译、链接的的时候都会进</p>
+</li>
+<li>
+<p>行优化，这样产生的可执行文件执行效率就高。</p>
+</li>
+<li>
+<p><strong>-O2</strong>：比<code>-O</code> 更幅度更大的优化，生成的可执行效率更高，但是整个编译过程会很慢。</p>
+</li>
+</ul>
+<br>
+<hr />
+<h4 id="112-make常用参数"><a class="markdownIt-Anchor" href="#112-make常用参数"></a> 1.1.2 make常用参数</h4>
+<blockquote>
+<p>环境: GNU Make 4.3</p>
+</blockquote>
+<p><em><strong>常用参数</strong></em></p>
+<ul>
+<li><strong>-B</strong> : 认为所有的目标都需要更新（重编译），即强制编译所有目标。</li>
+<li><strong>-f</strong> ：指定<code>makefile</code>文件；</li>
+<li><strong>-I &lt;dir&gt;</strong>：当包含其他 <code>makefile</code>文件时，利用该选项指定搜索目录；</li>
+<li><strong>-d</strong>：<code>Debug</code>模式，相当于<code>--debug=a</code>输出有关文件和检测时间的详细信息。</li>
+<li><strong>-i</strong> ：忽略命令执行返回的出错信息；</li>
+<li><strong>-r</strong>：禁止 <code>make</code> 使用任何隐含规则</li>
+<li><strong>-t</strong> : 只是把目标的修改日期变成最新的，也就是阻止生成目标的命令运行。</li>
+</ul>
+<br>
+<hr />
+<h3 id="12-makefile概念"><a class="markdownIt-Anchor" href="#12-makefile概念"></a> 1.2 Makefile概念</h3>
+<p><code>Makefile</code>文件是用来告诉<code>make</code>命令怎么去编译和链接程序的 , Makefile的书写有以下 <em><strong>三个规则</strong></em>:</p>
+<ul>
+<li>如果这个工程没有编译过，那么我们的所有 C 文件都要编译并被链接。</li>
+<li>如果这个工程的某几个 C 文件被修改，那么我们只编译被修改的 C 文件，并链接目标程序。</li>
+<li>如果这个工程的头文件被改变了，那么我们需要编译引用了这几个头文件的 C 文件，并链接成可执行文件.</li>
+</ul>
+<p><em><strong>注意:</strong></em></p>
+<ul>
+<li><code>Makefile</code>文件的文件名最好使用&quot;<code>Makefile</code>“或”<code>makefile</code>&quot; 。如果要指定命名为其他名字的<code>Makefile</code>文件的话，可以使用<code>make</code>的 <code>-f</code> 和<code>--file</code> 参数，如：<code>make -f Make.Linux</code>。</li>
+</ul>
+<hr />
+<h3 id="13-makefile语法"><a class="markdownIt-Anchor" href="#13-makefile语法"></a> 1.3 Makefile语法</h3>
+<p><code>Makefile</code> 是由件由一系列规则（rules）构成。每条规则的形式如下:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">&lt;target&gt;  : &lt;prerequisites&gt;</span><br><span class="line">[tab]&lt;command&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>target</code>是 <em><strong>目标文件</strong></em>  , 如<code>.o</code>文件或<code>.out</code>文件</li>
+<li><code>prerequisites</code> 是 <em><strong>前置条件</strong></em> , 即要生成那个 <code>target</code>文件 所需要的文件或是目标</li>
+<li><code>command</code>是<code>make</code> 需要执行的命令。（任意的 <code>Shell</code> 命令） , 每条命令前面一定要加<mark>tab</mark> ,不能是空格。<em>（<code>make</code> 命令会为 <code>Makefile</code> 中的每个以 <code>TAB</code> 开始的命令创建一个 <code>Shell</code> 进程去执行。）</em></li>
+</ul>
+<p><em><strong>注意:</strong></em></p>
+<ul>
+<li>
+<p>一个目标（target）就构成一条规则。目标通常是文件名，指明Make命令所要构建的对象, 目标可以是一个文</p>
+<p>件名，也可以是多个文件名，之间用空格分隔。</p>
+</li>
+<li>
+<p>其中第一条规则的目标成为 <em><strong>默认目标</strong></em> , 也即是<code>make</code>命令编译生成的最终目标文件</p>
+</li>
+<li>
+<p><em><strong>目标</strong></em> 是必需的，不可省略；<em><strong>前置条件</strong></em> 和 <em><strong>命令</strong></em> 都是可选的，但是两者之中必须至少存在一个。</p>
+</li>
+</ul>
+<br>
+<hr />
+<h3 id="14-示例代码"><a class="markdownIt-Anchor" href="#14-示例代码"></a> 1.4 示例代码</h3>
+<p>以<a href="https://www.gnu.org/software/make/manual/make.html">GUN make</a> 中的一个<code>Makefile</code>程序为例:</p>
+<blockquote>
+<ul>
+<li>该文件描述了一个称为文本编辑器（<code>edit</code>）的可执行文件生成方法, 该文件依靠8个(<code>.o文件</code>);</li>
+<li>这8个<code>.o</code>文件有依赖于8个源文件和3个头文件</li>
+</ul>
+</blockquote>
+<br>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一条规则说明 ， edit这个目标依赖于后面8个.o文件</span></span><br><span class="line"><span class="comment"># gcc命令的作用是将后面8个.o文件链接成可执行文件edit</span></span><br><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">       insert.o search.o files.o utils.o</span><br><span class="line">        gcc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">                   insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二条规则说明 main.o文件依赖于main.c和defs.h两个文件</span></span><br><span class="line"><span class="comment"># gcc命令的作用是不链接编译main.c和defs.h, 生成main.o</span></span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">        gcc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">        gcc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">        gcc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">        gcc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">        gcc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">        gcc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">        gcc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">        gcc -c utils.c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#clean 不是一个文件, 仅仅是一个动作的名称。用于清理目标文件(.o和执行文件)</span></span><br><span class="line"><span class="comment">#它有依赖文件,没有被第一个目标文件直接或间接关联,</span></span><br><span class="line"><span class="comment">#所以它对应的命令不会被自动执行, 可以显性的要求make 执行,即 &quot;make clean命令&quot;</span></span><br><span class="line">clean :</span><br><span class="line">        rm edit main.o kbd.o command.o display.o \</span><br><span class="line">           insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li>
+<p>上述代码中一共有10个规则。1~4行为第一个规则, 也是 <em><strong>默认目标</strong></em>  即最终的目标文件</p>
+</li>
+<li>
+<p>反斜杆 <code>/</code> 是换行符的意思, 这样比较便于 <code>Makefile</code> 的易读。</p>
+</li>
+</ul>
+<p>因此由上述程序可以总结出<code>make</code>命令工作的 <em><strong>执行流程:</strong></em></p>
+<ul>
+<li>
+<p><code>make</code> 会在当前目录下找名字叫<code>Makefile</code>或<code>makefile</code>的文件。</p>
+</li>
+<li>
+<p>如果找到，它会找文件中的第一个目标文件（<code>target</code>），在上面的例子中，他会找到<code>edit</code>这个文件，并把这个文件作为 <em><strong>最终的目标文件</strong></em>。</p>
+</li>
+<li>
+<p>如果 <code>edit</code> 文件不存在，或是 <code>edit</code> 所依赖的后面的 <code>.o</code> 文件的文件修改时间要比 <code>edit</code>这个文件新，那么，他就会执行后面所定义的命令来生成 <code>edit</code> 这个文件。</p>
+</li>
+<li>
+<p>如果 <code>edit</code> 所依赖的<code>.o</code> 文件也不存在，或者目标所依赖的文件比目标文件新 <em>(也就是最后修改时间比</em></p>
+<p><em>目标文件晚)</em> 的话, 那么 <code>make</code> 会在当前文件中找目标为<code>.o</code> 文件的依赖性，如果找到则再根据那一个规则生成<code>.o</code> 文件。</p>
+</li>
+</ul>
+<br>
+<blockquote>
+<ul>
+<li>
+<p>这就是整个 <code>make</code> 的依赖性，<code>make</code> 会一层又一层地去找文件的依赖关系，直到最终编译出 <em><strong>第一个目标文件</strong></em>。</p>
+</li>
+<li>
+<p><code>make</code> 只管文件的依赖性, 在找寻的过程中，如果出现错误，比如最后被依赖的文件找不到，那么</p>
+<p><code>make</code> 就会直接退出，并报错。对于定义命令的错误，<code>make</code>不会理会</p>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h2 id="2️⃣-简化makefile"><a class="markdownIt-Anchor" href="#2️⃣-简化makefile"></a> 2️⃣ 简化Makefile</h2>
+<h3 id="21-变量"><a class="markdownIt-Anchor" href="#21-变量"></a> 2.1 变量</h3>
+<blockquote>
+<p>前面的例子只是一个最简单的Makefile程序, 我们可以使用变量来简化程序</p>
+</blockquote>
+<ul>
+<li>在<code>Makefile</code>中 , 变量值可以使用在“ <em><strong>目标</strong></em>”，<em><strong>前置条件</strong></em>，<em><strong>命令</strong></em> 或是 <code>Makefile</code> 的其它部分中。</li>
+<li><code>Makefile</code> 中的变量其实就是 <code>C/C++</code>中的宏 , 当 <code>Makefile</code> 被执行时, 变量都会被 <em><strong>扩展</strong></em> 到相应的引用位置上。</li>
+<li>变量的命名可以包含 <em><strong>字符</strong></em>、<em><strong>数字</strong></em>，<em><strong>下划线</strong></em> <em>（可以是数字开头）</em>，但不应该含有  <code>：</code>    <code>#</code> 、<code>=</code>  或是 <em><strong>空字符</strong></em> <em>（空格、回车等）</em></li>
+<li>变量是大小写敏感的 , 可以使用大小写搭配的变量名 , 如:<code>MakeFlags</code> ,避免和系统的变量冲突</li>
+</ul>
+<p><em><strong>例: 以下两段代码是等同的</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">       insert.o search.o files.o utils.o</span><br><span class="line">	gcc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">          insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#变量定义</span></span><br><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">          insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line"><span class="comment">#变量使用</span></span><br><span class="line"><span class="section">edit: <span class="variable">$(objects)</span></span></span><br><span class="line">	 gcc -o edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="211变量的使用"><a class="markdownIt-Anchor" href="#211变量的使用"></a> 2.1.1变量的使用</h4>
+<p><code>Makefile</code> 中变量的引用方法是 <code>$(变量名)</code>，比如本例中的<code>$(objects)</code>就是使用变量 <code>objects</code>。括号不加也可以, 但给变量加上括号完全是为了更加安全</p>
+<p>地使用这个变量, 最好还是给变量加上括号.</p>
+<br>
+<hr />
+<h5 id="2111-变量赋值符"><a class="markdownIt-Anchor" href="#2111-变量赋值符"></a> 2.1.1.1 变量赋值符</h5>
+<p><code>Makefile</code>一共提供了四个赋值运算符  <code>=</code>、<code>:=</code>、<code>？=</code>、<code>+=</code></p>
+<br>
+<hr />
+<h6 id="21111-赋值符"><a class="markdownIt-Anchor" href="#21111-赋值符"></a> 2.1.1.1.1 赋值符 “=”</h6>
+<p>赋值符 <code>=</code>是在  <em><strong>执行的时候</strong></em> 进行拓展 , 允许 <strong>递归拓展</strong> .</p>
+<p>所以在使用<code>=</code>在给变量的赋值的时候，不一定要用已经定义好的值，也可以 <em><strong>使用后面定义的值</strong></em></p>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">a = <span class="variable">$(b)</span></span><br><span class="line">b = <span class="variable">$(c)</span></span><br><span class="line">c = Hello</span><br><span class="line"></span><br><span class="line"><span class="section">main:</span></span><br><span class="line">	@echo <span class="variable">$(a)</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>输出结果:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/643954fe0d2dde57771be688.png" alt="5c05fcbc167f29d1aa46fcf01f2e686" /></p>
+<p><em><strong>解释:</strong></em></p>
+<ul>
+<li>赋值符 <code>=</code>是在 <em><strong>执行的时候</strong></em> 才进行拓展 的</li>
+<li><code>$(a)</code>的值是 <code>$(b)</code> , <code>$(b)</code>的值是 <code>$(c)</code> , <code>$(c)</code>的值是 <em><strong>&quot;Hello&quot;</strong></em></li>
+<li>说明使用赋值符 <code>=</code>的变量是可以使用后面的变量来进行定义的 , 也就是 <em><strong>变量的值</strong></em> 是取决于它所引用的变量的 <em><strong>最后一次有效值</strong></em></li>
+</ul>
+<br>
+<p><font face="华文彩云" color=red size=5> 注意：</font></p>
+<ul>
+<li>因为赋值 <code>=</code> 是允许递归拓展的 , 所以有可能让 <code>make</code> 陷入无限的变量展开过程中去 , 会让<code>make</code>发出报错</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">a = <span class="variable">$(b)</span></span><br><span class="line">b = <span class="variable">$(a)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果在 <em><strong>变量</strong></em> 中使用 <em><strong>函数</strong></em> 的话 , 会让<code>make</code>在运行时十分缓慢</li>
+</ul>
+<br>
+<hr />
+<h6 id="21112-赋值符"><a class="markdownIt-Anchor" href="#21112-赋值符"></a> 2.1.1.1.2 赋值符 “:=”</h6>
+<p>为了避免使用 <code>=</code>赋值符时 , 发送变量无限展开的情况 , 可以使用 赋值符 <code>:=</code></p>
+<p>赋值符 <code>:=</code> 是在 <em><strong>定义时</strong></em> 扩展。</p>
+<p>使用赋值符 <code>:=</code> 的话 , 前面的变量不能使用后面的变量，只能使用前面已定义好了的变量。</p>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">x := foo </span><br><span class="line">y := <span class="variable">$(x)</span> bar </span><br><span class="line">x := later</span><br></pre></td></tr></table></figure>
+<p><em><strong>等价于</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">y := foo bar </span><br><span class="line">x := later</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以看到前面的变量不能使用后面的变量，只能使用前面已定义好了的变量。</p>
+</blockquote>
+<br>
+<p><em><strong>赋值符 “:=” 的一种特殊用法</strong></em></p>
+<blockquote>
+<p>操作符的右边是很难描述一个空格的, 但可以使用 赋值符 <code>:=</code> 来定义一个变量 , 其值是一个空格</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">nullstring := </span><br><span class="line">space := <span class="variable">$(nullstring)</span> <span class="comment"># end of the line</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>nullstring</code> 是一个 <code>Empty</code> 变量 , 其值为空</li>
+<li>而<code>space</code> 的值是一个空格</li>
+<li>先用一个 <code>Empty</code> 变量来标明变量的值开始了，而后面采用<code>“#”</code>注释符来表示变量定义的终止</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h6 id="21113-赋值符"><a class="markdownIt-Anchor" href="#21113-赋值符"></a> 2.1.1.1.3 赋值符 “?=”</h6>
+<p>赋值符 <code>?=</code> 只有在该变量为空时才设置值。</p>
+<p>即当一个变量先前被定义过 , 那么这条命令将什么都不做 , 如果先前没有定义 , 那么变量值就是 赋值符右边的值</p>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">FOO ?= bar</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其含义是，如果 FOO 没有被定义过，那么变量 FOO 的值就是“bar”，如果 FOO 先前被定义过，那么这条语将什么也不做。</p>
+</blockquote>
+<br>
+<p><span id="4" name="4"></span></p>
+<p><em><strong>等价于：</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#第一句是条件判断语句 , 使用origin函数判断 FOO变量是否被定义过</span></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(<span class="built_in">origin</span> FOO)</span>, undefined) </span><br><span class="line">FOO = bar </span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<br>
+<p>(<a href="#3">origin 函数</a>)</p>
+<hr />
+<h6 id="21114-赋值符"><a class="markdownIt-Anchor" href="#21114-赋值符"></a> 2.1.1.1.4 赋值符 “+=”</h6>
+<p>赋值符 <code>+=</code> 用于将值追加到变量的尾端。</p>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">objects = main.o foo.o bar.o utils.o </span><br><span class="line">objects += another.o</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>变量 <code>objects</code> 的值为 <code>main.o foo.o bar.o utils.o</code>  , 后面我们给它追加了一个<code>another.o</code></p>
+<p>因此变量 <code>objects</code> 变成了<code>main.o foo.o bar.o utils.o another.o</code></p>
+</blockquote>
+<br>
+<p><font face="华文彩云" color=red size=5> 注意：</font></p>
+<ul>
+<li>如果变量之前没有定义过，那么，<code>+=</code>会自动变成 <code>=</code></li>
+<li>如果前面有变量定义，那 <code>+=</code> 会继承于前次操作的赋值符。</li>
+</ul>
+<br>
+<p><em><strong>如下所示</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">variable := value </span><br><span class="line">variable += more</span><br></pre></td></tr></table></figure>
+<p><em><strong>等价于</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">variable := value </span><br><span class="line">variable := <span class="variable">$(variable)</span> more</span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2112变量的值指向另一个变量"><a class="markdownIt-Anchor" href="#2112变量的值指向另一个变量"></a> 2.1.1.2变量的值指向另一个变量</h5>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">x = y </span><br><span class="line">y = z </span><br><span class="line">a := $(<span class="variable">$(x)</span>)</span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li><code>$(x)</code> 的值是  <code>y</code>，所以  <code>$($(x))</code>就是<code>$(y)</code></li>
+<li><code>$(a)</code>的值就是 <code>z</code></li>
+</ul>
+<br>
+<p>使用这种 方式可以使用多个变量来 <em><strong>组成一个变量的名字</strong></em>，然后再取其值：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">first_second = Hello </span><br><span class="line">a = first </span><br><span class="line">b = second </span><br><span class="line">all = $($a_$b)</span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<p>这里的<code>$a_$b</code>组成了<code>first_second</code>，于是，<code>$(all)</code>的值就是 <em><strong>Hello</strong></em> 。</p>
+<br>
+<hr />
+<h5 id="2113-变量值的替换"><a class="markdownIt-Anchor" href="#2113-变量值的替换"></a> 2.1.1.3 变量值的替换</h5>
+<p>可以替换变量中<strong>共有的部分</strong>:</p>
+<p>写法是: <em><strong>变量名</strong></em> + <em><strong>冒号</strong></em> + <em><strong>后缀名替换规则</strong></em>。</p>
+<p>如: <code>$(var:.o=.c)</code> 是将把变量<code>var</code>中所有以<code>.o</code>结尾的文件替换成<code>.c</code>结尾的文件。</p>
+<p>它实际上<code>patsubst</code>函数的一种简写形式。( <a href="#two">patsubst 函数</a>)</p>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">foo := a.o b.o c.o </span><br><span class="line">bar := $(foo:.o=.c)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这两行代码的意思是 : 将变量<code>foo</code>中所有后缀名<code>.o</code> 替换成<code>.c</code></p>
+</blockquote>
+<br>
+<hr />
+<h4 id="212-自动变量"><a class="markdownIt-Anchor" href="#212-自动变量"></a> 2.1.2 自动变量</h4>
+<p><code>Make</code>命令还提供一些自动变量，它们的值 <em><strong>与当前规则有关</strong></em>。</p>
+<p>所谓自动化变量，就是这种变量会把模式中所定义的一系列的文件自动地挨个取出，直至所有的符合模式的文件都取完了。</p>
+<p>这种自动化变量只应出现在规则的 <em><strong>命令</strong></em> 中。</p>
+<p><em><strong>主要有以下几个:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>$@</th>
+<th><code>$@</code>指代当前目标，就是Make命令当前构建的那个目标。比如，<code>make foo</code>的 <code>$@</code> 就指代foo。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>$&lt;</strong></td>
+<td><code>$&lt;</code> 指代第一个前置条件。比如，规则为 <code>t: p1 p2</code>，那么<code>$&lt;</code> 就指代<code>p1</code>。</td>
+</tr>
+<tr>
+<td><strong>$?</strong></td>
+<td><code>$?</code> 指代 <em><strong>比目标更新</strong></em> 的所有前置条件，之间以 <em><strong>空格分隔</strong></em> 。比如，规则为 <code>t: p1 p2</code>，其中 <code>p2</code> 的时间戳比 <code>t</code> 新，<code>$?</code>就指代<code>p2</code>。</td>
+</tr>
+<tr>
+<td><strong>$^</strong></td>
+<td><code>$^</code> 指代所有 <em><strong>前置条件</strong></em>，之间以空格分隔。比如，规则为 <code>t: p1 p2</code>，那么 <code>$^</code> 就指代 <code>p1 p2</code> 。</td>
+</tr>
+<tr>
+<td><strong>$*</strong></td>
+<td><code>$*</code> 指代匹配符 <code>%</code> 匹配的部分， 比如<code>%</code> 匹配 <code>f1.txt</code> 中的<code>f1</code> ，<code>$*</code> 就表示 <code>f1</code>。</td>
+</tr>
+<tr>
+<td><strong>$(@D) 和 $(@F)</strong></td>
+<td><code>$(@D)</code> 和 <code>$(@F)</code> 分别指向 <code>$@</code> 的<strong>目录名</strong>和<strong>文件名</strong>。比如，<code>$@</code>是 <code>src/input.c</code>，那么<code>$(@D)</code> 的值为 <code>src</code> ，<code>$(@F)</code> 的值为 <code>input.c</code>。</td>
+</tr>
+<tr>
+<td><strong>$(&lt;D) 和 $(&lt;F)</strong></td>
+<td><code>$(&lt;D)</code> 和 <code>$(&lt;F)</code> 分别指向 <code>$&lt;</code> 的 <strong>目录名</strong>和 <strong>文件名</strong>。</td>
+</tr>
+</tbody>
+</table>
+<br>
+<hr />
+<h5 id="2121"><a class="markdownIt-Anchor" href="#2121"></a> 2.1.2.1  $@</h5>
+<blockquote>
+<p><code>$@</code> 表示规则中的目标文件集。在模式规则中，如果有多个目标，那么，<code>$@</code>就是匹配于 目标中模式定义的集合。</p>
+<p><code>$@</code>指代当前目标，就是<code>Make</code>命令当前构建的那个目标。比如，<code>make foo</code>的 <code>$@</code> 就指代foo。</p>
+</blockquote>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">a.txt b.txt: </span><br><span class="line">    touch <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>等价于:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">a.txt:</span></span><br><span class="line">    touch a.txt</span><br><span class="line"><span class="section">b.txt:</span></span><br><span class="line">    touch b.txt</span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2122"><a class="markdownIt-Anchor" href="#2122"></a> 2.1.2.2  $&lt;</h5>
+<blockquote>
+<p><code>$&lt;</code>指的是依赖文件集合中的第一个文件</p>
+<p>如果依赖文件是以模式 (即<code>%</code>) 定义的，那么<code>$&lt;</code> 就是符合模式的一系列的文件集合。</p>
+</blockquote>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">a.txt: b.txt c.txt</span></span><br><span class="line">    cp <span class="variable">$&lt;</span> <span class="variable">$@</span> </span><br></pre></td></tr></table></figure>
+<p><em><strong>等价于:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">a.txt: b.txt c.txt</span></span><br><span class="line">    cp b.txt a.txt </span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2123"><a class="markdownIt-Anchor" href="#2123"></a> 2.1.2.3  $^</h5>
+<blockquote>
+<p><code>$^</code> 指代所有 <em><strong>前置条件</strong></em>，之间以空格分隔。</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">test1.o:test1.c head.c</span></span><br><span class="line">	gcc -o <span class="variable">$@</span> <span class="variable">$^</span></span><br></pre></td></tr></table></figure>
+<p>指的就是<code>test1.c head.c</code></p>
+</blockquote>
+<br>
+<hr />
+<h5 id="2124-自动化变量示例"><a class="markdownIt-Anchor" href="#2124-自动化变量示例"></a> 2.1.2.4 自动化变量示例</h5>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">dest/%.txt: src/%.txt</span></span><br><span class="line">    @[ -d dest ] || mkdir dest</span><br><span class="line">    cp <span class="variable">$&lt;</span> <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li>上面代码将 src 目录下的 txt 文件，拷贝到 dest 目录下。</li>
+<li>首先判断 dest 目录是否存在，如果不存在就新建</li>
+<li>然后，<code>$&lt;</code> 指代前置文件<code>（src/%.txt）</code>， <code>$@</code> 指代目标文件<code>（dest/%.txt）</code>。</li>
+</ul>
+<br>
+<hr />
+<h4 id="213-内置变量"><a class="markdownIt-Anchor" href="#213-内置变量"></a> 2.1.3 内置变量</h4>
+<p>Make命令提供一系列内置变量, 内置变量分成两种: 一种是 <em><strong>命令相关的</strong></em> , 如&quot;CC&quot; ; 另一种是与 <em><strong>参数有关</strong></em> 的, 如&quot;CFLAGS&quot;</p>
+<br>
+<hr />
+<h5 id="2131-命令相关的变量"><a class="markdownIt-Anchor" href="#2131-命令相关的变量"></a> 2.1.3.1 命令相关的变量</h5>
+<table>
+<thead>
+<tr>
+<th><strong>CC</strong></th>
+<th>C 语言编译程序。默认命令是 <code>cc</code>。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CXX</strong></td>
+<td><code>C++</code>语言编译程序。默认命令是 <code>g++</code>。</td>
+</tr>
+<tr>
+<td><strong>CPP</strong></td>
+<td>C 程序的预处理器（输出是标准输出设备）。默认命令是<code>$(CC) –E</code></td>
+</tr>
+<tr>
+<td><strong>RM</strong></td>
+<td>删除文件命令。默认命令是 <code>rm –f</code></td>
+</tr>
+<tr>
+<td><strong>AR</strong></td>
+<td>函数库打包程序。默认命令是<code>ar</code></td>
+</tr>
+<tr>
+<td><strong>AS</strong></td>
+<td>汇编语言编译程序。默认命令是<code>as</code></td>
+</tr>
+<tr>
+<td><strong>YACC</strong></td>
+<td>Yacc 文法分析器（针对于 C 程序）。默认命令是<code>yacc</code></td>
+</tr>
+</tbody>
+</table>
+<br>
+<hr />
+<h5 id="2132-命令参数相关的变量"><a class="markdownIt-Anchor" href="#2132-命令参数相关的变量"></a> 2.1.3.2 命令参数相关的变量</h5>
+<p>下面的这些变量都是上面的命令的参数。如果没有指明其默认值，那么其 <em><strong>默认值都是空</strong></em></p>
+<table>
+<thead>
+<tr>
+<th><strong>ARFLAGS</strong></th>
+<th>函数库打包程序 AR 命令的参数。默认值是<code>rv</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ASFLAGS</strong></td>
+<td>汇编语言编译器参数。（当明显地调用<code>.s</code>或<code>.S</code>文件时）</td>
+</tr>
+<tr>
+<td><strong>CFLAGS</strong></td>
+<td>C 语言编译器参数</td>
+</tr>
+<tr>
+<td><strong>CXXFLAGS</strong></td>
+<td>C++语言编译器参数</td>
+</tr>
+<tr>
+<td><strong>CPPFLAGS</strong></td>
+<td>C 预处理器参数。（ C 和 Fortran 编译器也会用到）。</td>
+</tr>
+<tr>
+<td><strong>LDFLAGS</strong></td>
+<td>链接器参数。（如：“ld”）</td>
+</tr>
+<tr>
+<td><strong>YFLAGS</strong></td>
+<td>Yacc 文法分析器参数</td>
+</tr>
+</tbody>
+</table>
+<br>
+<hr />
+<h3 id="22-函数"><a class="markdownIt-Anchor" href="#22-函数"></a> 2.2 函数</h3>
+<p>在 Makefile 中可以使用函数来处理变量, <em><strong>格式如下</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">$(函数名 参数集合)</span><br><span class="line"><span class="comment">#$(function arguments)</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">$&#123;function arguments&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="221-内置函数"><a class="markdownIt-Anchor" href="#221-内置函数"></a> 2.2.1 内置函数</h4>
+<blockquote>
+<ul>
+<li>Makefile 提供了<strong>内置函数</strong>供我们使用 , 类似于库函数</li>
+<li>make 所支持的函数也不算很多，不过已经足够我们的操作了。</li>
+<li>函数调用后，函数的返回值可以当做变量来使用</li>
+</ul>
+</blockquote>
+<p>以下是常用的内置函数</p>
+<br>
+<hr />
+<h5 id="2211-shell函数"><a class="markdownIt-Anchor" href="#2211-shell函数"></a> 2.2.1.1 shell函数</h5>
+<blockquote>
+<ul>
+<li>shell 函数用来执行 shell 命令 ,</li>
+<li>它的参数应该就是操作系统 Shell 的命令。</li>
+<li>shell 函数把执行操作系统命令后的输出作为函数返回。</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>例如:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">files := <span class="variable">$(<span class="built_in">shell</span> echo *.c)</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2212-wildcard-函数"><a class="markdownIt-Anchor" href="#2212-wildcard-函数"></a> 2.2.1.2 wildcard 函数</h5>
+<blockquote>
+<p>通配符“%”只能用在 <em><strong>规则</strong></em> 中，只有在规则中它才会展开.</p>
+<p>如果在 <em><strong>变量定义</strong></em> 和 <em><strong>函数使用</strong></em> 时，通配符不会自动展开，这个时候就要用到函数 <code>wildcard</code>，</p>
+</blockquote>
+<br>
+<p><em><strong>例子:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#用来获取当前目录下所有的.c 文件，类似“%”</span></span><br><span class="line"><span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2213-subst-函数"><a class="markdownIt-Anchor" href="#2213-subst-函数"></a> 2.2.1.3 subst 函数</h5>
+<blockquote>
+<p>函数 subst 用来完成字符串替换，把字串 &lt;text&gt;中的&lt;from&gt;字符串替换成&lt;to&gt;。</p>
+<p>调用形式如下：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">subst</span> &lt;from&gt;,&lt;to&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">subst</span> ee,EE,feet on the street)</span></span><br><span class="line"><span class="comment">#把把“feet on the street”中的“ee”替换成“EE”</span></span><br><span class="line"><span class="comment">#返回结果是“fEEt on the strEEt”</span></span><br></pre></td></tr></table></figure>
+<br>
+<p><em><strong>例2:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">comma:= ,</span><br><span class="line">empty:=</span><br><span class="line"><span class="comment"># space变量用两个空变量作为标识符，当中是一个空格</span></span><br><span class="line">space:= <span class="variable">$(empty)</span> <span class="variable">$(empty)</span></span><br><span class="line">foo:= a b c</span><br><span class="line">bar:= <span class="variable">$(<span class="built_in">subst</span> <span class="variable">$(space)</span>,<span class="variable">$(comma)</span>,<span class="variable">$(foo)</span>)</span></span><br><span class="line"><span class="comment"># 把空格替换成&quot;,&quot; 返回结果为&#x27;a,b,c&#x27;</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2214-patsubst函数"><a class="markdownIt-Anchor" href="#2214-patsubst函数"></a> 2.2.1.4 patsubst函数</h5>
+<p><span id="two" name="two"></span></p>
+<blockquote>
+<p>函数 patsubst 用来完成 <em><strong>模式字符</strong></em> 串替换，使用方法如下：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">patsubst</span> &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找字符串<code>&lt;text&gt;</code>中的单词是否符合模式<code>&lt;pattern&gt;</code> ,  如果匹配就用<code>&lt;replacement&gt;</code>来替换掉</li>
+<li><code>&lt;pattern&gt;</code>可以使用通配符<code>%</code>，表示任意长度的字符串</li>
+<li>函数返回值就是替换后的字符串。</li>
+<li>如果<code>&lt;replacement&gt;</code>中也包涵 <code>%</code>，那么<code>&lt;replacement&gt;</code>中的<code>%</code>将是<code>&lt;pattern&gt;</code>中的那个<code>%</code>所代表的字符串，</li>
+</ul>
+</blockquote>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">patsubst</span> %.c,%.o,a.c b.c c.c)</span></span><br><span class="line"><span class="comment"># 将字符串“a.c b.c c.c”中的所有符合“%.c”的字符串，替换为“%.o”</span></span><br><span class="line"><span class="comment"># 替换完成以后的字符串为“a.o b.o c.o”</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>注意:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">patsubst</span> %.o,%.c,<span class="variable">$(objects)</span>)</span></span><br><span class="line"><span class="comment">#等价于</span></span><br><span class="line"><span class="section">$(objects:.o=.c)</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2215-dir函数"><a class="markdownIt-Anchor" href="#2215-dir函数"></a> 2.2.1.5 dir函数</h5>
+<blockquote>
+<p>函数 dir 用来获取目录，使用方法如下：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">dir</span> &lt;names…&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>此函数用来从文件名序列<code>&lt;names&gt;</code>中提取出目录部分，返回值是文件名序列<code>&lt;names&gt;</code>的目录</p>
+</blockquote>
+<p><em><strong>例如:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">dir</span> &lt;/src/a.c&gt;)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提取文件<code>/src/a.c</code>的目录部分，也就是<code>/src</code></p>
+</blockquote>
+<br>
+<hr />
+<h5 id="2216-notdir-函数"><a class="markdownIt-Anchor" href="#2216-notdir-函数"></a> 2.2.1.6 notdir 函数</h5>
+<blockquote>
+<p>函数<code>notdir</code> 用于取出文件, 即取出文件中的目录部分 . 格式如下:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">notdir</span> &lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>从文件名序列<code>&lt;names&gt;</code>中取出非目录部分。</li>
+<li>非目录部分是指最后一个反斜杠（“ /”）之后的部分。</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">notdir</span> src/foo.c hacks)</span></span><br><span class="line"><span class="comment">#返回值是“foo.c hacks”</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h5 id="2217-foreach-函数"><a class="markdownIt-Anchor" href="#2217-foreach-函数"></a> 2.2.1.7 foreach 函数</h5>
+<blockquote>
+<p><code>foreach</code> 函数用来完成循环 , <strong>格式如下</strong>:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">foreach</span> &lt;var&gt;,&lt;list&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>参数<code>&lt;list&gt;</code>中的单词逐一取出放到参数<code>&lt;var&gt;</code>所指定的变量中，然后再执行<code>&lt;text&gt;</code>所包含的表达式</p>
+</li>
+<li>
+<p>每一次<code>&lt;text&gt;</code>会返回一个字符串，循环过程中，<code>&lt;text&gt;</code>的所返回的每个字符串会以空格分隔，最后当整个循环结束时，<code>&lt;text&gt;</code>所返回的每个字符串</p>
+<p>所组成的整个字符串（以空格分隔）将会是 <code>foreach</code> 函数的返回值。</p>
+</li>
+<li>
+<p>所以，<code>&lt;var&gt;</code>最好是一个变量名，<code>&lt;list&gt;</code>可以是一个表达式</p>
+</li>
+<li>
+<p><var>参数是一个临时的局部变量 , 作用域只在 foreach 函数当中</p>
+</li>
+</ul>
+</blockquote>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">names := a b c d </span><br><span class="line">files := <span class="variable">$(<span class="built_in">foreach</span> n,<span class="variable">$(names)</span>,<span class="variable">$(n)</span>.o)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>$(name)</code>中的单词会被挨个取出，并存到变量<code>n</code>中</li>
+<li><code>$(n).o</code>每次根据 <code>$(n)</code>计算出一个值，这些值以空格分隔，最后作为 <code>foreach</code> 函数的返回</li>
+<li>最终<code>$(files)</code>的值是<code>a.o b.o c.o d.o</code></li>
+</ul>
+<br>
+<hr />
+<h5 id="2218-origin函数"><a class="markdownIt-Anchor" href="#2218-origin函数"></a> 2.2.1.8 origin函数</h5>
+<p><span id="3" name="3"></span></p>
+<blockquote>
+<p><code>origin</code> 函数用于返回变量的来源 , <em><strong>格式如下:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">origin</span> &lt;variable&gt;)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>&lt;variable&gt;</code>是变量的名字，不应该是引用  ,最好不要在<code>&lt;variable&gt;</code>中使用<code>$</code>字符</li>
+</ul>
+</blockquote>
+<br>
+<p><code>origin</code>函数的<strong>返回值</strong>:</p>
+<blockquote>
+<p><strong>“undefined”</strong></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>从来没有定义过，<code>origin</code> 函数返回这个值 <em><strong>“undefined”</strong></em></p>
+</blockquote>
+<br>
+<p><em><strong>“default”</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>是一个默认的定义，比如“CC”这个变量</p>
+</blockquote>
+<br>
+<p><em><strong>&quot;environment&quot;</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>是一个环境变量，并且当 <code>Makefile</code> 被执行时，<code>-e</code>参数没有被打开。</p>
+</blockquote>
+<br>
+<p><em><strong>“file”</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>这个变量被定义在 <code>Makefile</code> 中。</p>
+</blockquote>
+<br>
+<p><em><strong>“command line”</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>这个变量是被命令行定义的</p>
+</blockquote>
+<br>
+<p><em><strong>“override”</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>是被 <code>override</code> 指示符重新定义的。</p>
+</blockquote>
+<br>
+<p><em><strong>“automatic”</strong></em></p>
+<blockquote>
+<p>如果<code>&lt;variable&gt;</code>是一个命令运行中的自动化变量。</p>
+</blockquote>
+</blockquote>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#使用origin函数判断 FOO变量是否被定义过</span></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(<span class="built_in">origin</span> FOO)</span>, undefined) </span><br><span class="line">...</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h5 id="2219-call函数"><a class="markdownIt-Anchor" href="#2219-call函数"></a> 2.2.1.9  call函数</h5>
+<blockquote>
+<p><code>call</code>函数通常用来调用另一个自定义的<code>make</code>函数，并且会展开里面的内容，同时按照展开的位置解释为makefile语句或者shell语句。</p>
+<p><em><strong>格式如下:</strong></em></p>
+ <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">call</span> &lt;expression&gt;,&lt;parm1&gt;,&lt;parm2&gt;,&lt;parm3&gt;...)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>&lt;expression&gt;</code> 是已经定义了的函数名称 , <code>&lt;parm1&gt;,&lt;parm2&gt;,&lt;parm3&gt;</code> 是传递给函数的参数 , 中间以 <em><strong>逗号</strong></em> 隔开</li>
+<li>注意，<code>call</code>函数只能在<code>Makefile</code>中调用已经定义的函数，而不能用于调用<code>Shell</code>命令或者 <em><strong>函数。</strong></em></li>
+</ul>
+</blockquote>
+<p><em><strong>示例:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">PHONY: all</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> func</span><br><span class="line">    @echo <span class="string">&quot;pram1 = $(0)&quot;</span></span><br><span class="line">    @echo <span class="string">&quot;pram2 = $(1)&quot;</span></span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">    <span class="variable">$(<span class="built_in">call</span> func, num1, num2)</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>运行结果:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/6439551b0d2dde57771c0216.png" alt="image-20230413213734057" /></p>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li><code>make</code>执行这个函数的时候 , <code>$(1)</code>，<code>$(2)</code>，<code>$(3)</code> 等 <em><strong>参数变量</strong></em> , 会被参数<code>&lt;parm1&gt;,&lt;parm2&gt;,&lt;parm3&gt;</code>等 <em><strong>依次</strong></em> 取代</li>
+<li><code>$(0)</code> 表示<code>&lt;expression&gt;</code> , 即函数名本身</li>
+</ul>
+<hr />
+<h4 id="222-自定义函数多行变量"><a class="markdownIt-Anchor" href="#222-自定义函数多行变量"></a> 2.2.2 自定义函数(多行变量)</h4>
+<ul>
+<li>在<code>makefile</code> 中可用通过使用<code>define</code> 来定义 <em><strong>多行变量</strong></em> 或 <em><strong>自定义函数</strong></em> , 以<code>endef</code> 关键字结束</li>
+<li>变量的值可以包含 <em><strong>函数</strong></em>、<em><strong>命令</strong></em>、<em><strong>文字</strong></em>，或是其它变量。</li>
+<li>如果用<code>define</code> 定义的命令变量中没有以[TAB] 键开头 , <code>make</code>就不会认为其是命令</li>
+<li>自定义的函数一般用于定义 <em><strong>命令的集合</strong></em>，并且运用于 <em><strong>规则中</strong></em></li>
+<li><em><strong>自定义函数</strong></em> 使用 <em><strong>内置函数</strong></em> <code>call</code> 来调用 , 后面跟自定义函数名及参数</li>
+</ul>
+<p><em><strong>define格式如下</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">define</span> 函数名</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">endef</span></span><br></pre></td></tr></table></figure>
+<br>
+<p><em><strong>示例如下:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">PHONY: all</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> func1</span><br><span class="line">    @echo <span class="string">&quot;func1 name is $(0)&quot;</span></span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> func2</span><br><span class="line">	@echo <span class="string">&quot;pram1 = $(1)&quot;</span></span><br><span class="line">	@echo <span class="string">&quot;pram2 = $(2)&quot;</span></span><br><span class="line"><span class="keyword">endef</span>	</span><br><span class="line">	</span><br><span class="line"><span class="section">all:</span></span><br><span class="line">    <span class="variable">$(<span class="built_in">call</span> func1)</span></span><br><span class="line">    <span class="variable">$(<span class="built_in">call</span> func2, num1,num2)</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>运行结果:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/643955340d2dde57771c2876.png" alt="image-20230413215155311" /></p>
+<p><em><strong>如上所示:</strong></em></p>
+<ul>
+<li>首先定义了一个伪目标<code>all</code> , 接着定义了两个函数<code>func1</code>和<code>func2</code> .</li>
+<li><code>func1</code>中通过通过<code>$(0)</code>输出<code>call</code> 的第一个参数，也就是函数名<code>fun1</code></li>
+<li><code>func2</code>中同时输出了第一个参数和第二个参数</li>
+<li><strong>注意</strong>，自定义函数是一个 <em><strong>过程调用</strong></em>，<em><strong>没有任何返回值</strong></em>，这是与<code>Makefile</code>的 <em><strong>内置函数</strong></em> 的区别之处。</li>
+</ul>
+<br>
+<hr />
+<h2 id="3️⃣"><a class="markdownIt-Anchor" href="#3️⃣"></a> 3️⃣</h2>
+<h3 id="31-伪目标"><a class="markdownIt-Anchor" href="#31-伪目标"></a> 3.1 伪目标</h3>
+<h4 id="311-介绍"><a class="markdownIt-Anchor" href="#311-介绍"></a> 3.1.1 介绍</h4>
+<ul>
+<li>在上面的例子中, 使用了<code>PHONY</code> 来显性的指明了一个伪目标<code>all</code></li>
+<li>伪目标并不是一个文件，只是一个 <em><strong>标签</strong></em> , 所以 <code>make</code> 无法生成它的依赖关系和决定它是否要执行。</li>
+<li>在执行 make 命令的时候通过指定这个伪目标来执行其所在规则的定义的命令. 如:<code>make clean</code></li>
+</ul>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \ </span><br><span class="line">insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span> </span><br><span class="line">	  gcc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#-c标志表示产生目标文件, -o $@表示将输出文件命名为:左边的文件名， $&lt;表示依赖列表中的第一个项(即%.c)。</span></span><br><span class="line">%.o : %.c</span><br><span class="line">	gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"> </span><br><span class="line">.PHONY : clean </span><br><span class="line">clean : </span><br><span class="line">rm edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>如上所示:</strong></em></p>
+<p>有了<code>.PHONY : clean</code> 的声明 , 不管是否存在 <em><strong>&quot;clean&quot;</strong></em> 文件 , 要运行<code>clean</code> 这个目标 , 只能通过 <code>make clean</code> 指令</p>
+<br>
+<hr />
+<h4 id="312-执行多个目标"><a class="markdownIt-Anchor" href="#312-执行多个目标"></a> 3.1.2  执行多个目标</h4>
+<blockquote>
+<p>可以通过使用 <em><strong>伪目标</strong></em> , 来实现一次生成多个目标文件的目的</p>
+</blockquote>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">all : prog1 prog2 prog3 </span><br><span class="line">.PHONY : all </span><br><span class="line"> </span><br><span class="line">prog1 : prog1.o utils.o </span><br><span class="line">cc -o prog1 prog1.o utils.o </span><br><span class="line"> </span><br><span class="line">prog2 : prog2.o </span><br><span class="line">cc -o prog2 prog2.o </span><br><span class="line"> </span><br><span class="line">prog3 : prog3.o sort.o utils.o </span><br><span class="line">cc -o prog3 prog3.o sort.o utils.o</span><br></pre></td></tr></table></figure>
+<p><em><strong>说明:</strong></em></p>
+<ul>
+<li>因为<code>Makefile</code> 中的第一个目标会被作为其默认目标 , 通过声明一个<code>all</code> 的伪目标 , 其依赖于其它三个目标<code>prog1 prog2 prog3</code></li>
+<li>由于伪目标的特性是，总是被执行的，所以其依赖的那三个目标就总是不如<code>all</code>这个目标新。</li>
+<li>就能达到一次生成多个目标的目的</li>
+</ul>
+<br>
+<hr />
+<h3 id="32-模式规则"><a class="markdownIt-Anchor" href="#32-模式规则"></a> 3.2 模式规则</h3>
+<blockquote>
+<ul>
+<li>
+<p>使用模式规则可以定义一个隐含规则 , 例如: (怎么从所有的<code>[.c]</code>文件生成相应的<code>[.o]</code>文件的规则)</p>
+</li>
+<li>
+<p>在模式规则中, 至少在规则的目标定义中要包含<code>%</code>，否则，就是一般的规则。</p>
+</li>
+<li>
+<p>目标中的<code>%</code>表示对文件名的匹配，<code>%</code>表示长度任意的 <em><strong>非空字符串</strong></em></p>
+<p><em><strong>例如:</strong></em></p>
+<ul>
+<li><code>%.c</code>就是所有的以<code>.c</code> 结尾的文件，类似于通配符 <code>*</code></li>
+<li><code>a.%.c</code> 就表示以 <code>a.</code>开头，以<code>.c</code> 结束的所有文件</li>
+</ul>
+</li>
+<li>
+<p>如果<code>%</code>定义在目标中，那么，<em><strong>目标</strong></em> 中的<code>%</code>的值 <em><strong>决定</strong></em> 了 <em><strong>依赖目标</strong></em> 中的<code>%</code>的值</p>
+</li>
+</ul>
+</blockquote>
+<p>在上面关于 <em><strong>伪目标</strong></em> 的例子中使用了这样一行规则:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-c标志表示产生目标文件, -o $@表示将输出文件命名为:左边的文件名， $&lt;表示依赖列表中的第一个项(即%.c)。</span></span><br><span class="line">%.o : %.c</span><br><span class="line">	gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这段代码的含义是指出了怎么从所有的<code>[.c]</code>文件生成相应的<code>[.o]</code>文件的规则</p>
+<p><code>%.o</code> 是指将当前目录下所有以<code>.o</code>为后缀的文件当成 <em><strong>目标</strong></em>。同理, 对应的 <code>.c</code>文件为 <em><strong>依赖目标</strong></em></p>
+</blockquote>
+<br>
+<hr />
+<h4 id="321-模式匹配"><a class="markdownIt-Anchor" href="#321-模式匹配"></a> 3.2.1 模式匹配</h4>
+<ul>
+<li>一般来说，<em><strong>一个目标</strong></em> 的模式有一个有前缀或是后缀的<code>%</code>，或是没有前后缀，直接就是一个&quot;%&quot;。</li>
+<li>把<code>%</code>所匹配的内容叫做 <em><strong>&quot;茎&quot;</strong></em> ，例如<code>%.c</code>所匹配的文件<code>test.c</code>中<code>test</code>就是 <em><strong>&quot;茎&quot;</strong></em> 。</li>
+<li>因为在目标和依赖目标中同时有 <code>%</code> 时，依赖目标会将 <code>%</code>  替换为 <em><strong>茎</strong></em> , 从而得出文件名。</li>
+</ul>
+<br>
+<p><em><strong>例如:</strong></em> 有这样一个模式规则</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">%.o : %.c</span><br><span class="line"><span class="comment"># 当模式%.o 匹配文件名为 &quot;test.o&quot;时</span></span><br><span class="line"><span class="comment"># 此时&quot;茎&quot;是 test </span></span><br><span class="line"><span class="comment"># 此时, 依赖目标中 &quot;%.c&quot;会将 &quot;%&quot; 替换为茎 , 得到文件名&quot;test.c&quot;</span></span><br></pre></td></tr></table></figure>
+<br>
+<blockquote>
+<p>当一个模式匹配 <em><strong>包含有斜杠</strong></em> 的文件时 , 在进行模式匹配时, <em><strong>目录部分</strong></em> 会首先被移开，然后进行匹配，成功后，再把目录加回去。</p>
+</blockquote>
+<p><em><strong>例如:</strong></em></p>
+<ul>
+<li>有一个模式 <code>e%t</code> , 和文件名 <code>src/eat</code> 匹配 ,则 <em><strong>茎</strong></em> 是 <code>src/a</code></li>
+<li>当 <em><strong>依赖目标</strong></em> 转换为文件名的时候 ,  <em><strong>茎</strong></em> 中的路径名将被加在前面 , <code>%</code>被替换为 <em><strong>茎</strong></em> 的其余部分</li>
+<li>如果依赖目标中 有一个<code>c%r</code> 和 <em><strong>茎</strong></em> 匹配会得到 <code>src/car</code></li>
+</ul>
+<br>
+<hr />
+<h3 id="33-通配符"><a class="markdownIt-Anchor" href="#33-通配符"></a> 3.3 通配符</h3>
+<blockquote>
+<ul>
+<li>在<code>Makefile</code>中可以使用的通配符有：<code>*</code> 、<code>?</code> 、 <code>[…]</code>。通配符的使用方法和含义和在<code>shell</code>中 <em><strong>一样</strong></em>。</li>
+<li>通配符代替了 <em><strong>一系列文件</strong></em> , 如<code>*.c</code>表示所以后缀为 c 的文件</li>
+<li><code>~</code> 波浪号表示当前用户的<code>HOME</code>目录 , 如<code>~/test</code> 就表示 <code>/home/test</code>这个目录</li>
+</ul>
+</blockquote>
+<br>
+<p>在<code>Makefile</code>中，通配符主要用在 <em><strong>两个场合</strong></em>：</p>
+<ul>
+<li>
+<p>用在规则的 <em><strong>目标和依赖</strong></em> 中：</p>
+<blockquote>
+<p><code>make</code>在读取<code>Makefile</code>时会自动对其进行匹配处理（通配符展开）。如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">test: *.o</span></span><br><span class="line"> gcc -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"></span><br><span class="line"><span class="section">*.o: *.c</span></span><br><span class="line"> gcc -c <span class="variable">$^</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>用在规则的 <em><strong>命令</strong></em> 中:</p>
+<blockquote>
+<p>这时 , 通配符的通配处理在<code>shell</code>执行命令时完成。如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">clean:</span></span><br><span class="line"> rm -f *.o</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>除了前面两个以外 , 通配符使用在其他地方, 例如使用在 <em><strong>变量</strong></em> 当中</p>
+<blockquote>
+<p>在变量中的通配符 <em><strong>不会进行展开</strong></em> , 因为在<code>makefile</code>中变量，相当于 <code>C/C++</code> 中的宏 , 只是简单的进行替换</p>
+<p>如果要让通配符在变量中展开, 可以使用 <em><strong>内置函数</strong></em><code>wildcard</code></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 变量不会展开 , objects的值就是 *.o</span></span><br><span class="line">objects = *.o </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用wildcard 函数获取当前目录下所有.c文件</span></span><br><span class="line"><span class="comment">#$(wildcard *.c) 是用来获取当前目录下所有的.c 文件</span></span><br><span class="line">CFILES := <span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<br>
+<hr />
+<h4 id="331-与-通配符"><a class="markdownIt-Anchor" href="#331-与-通配符"></a> 3.3.1 “%” 与 通配符 “*”</h4>
+<blockquote>
+<p><code>%</code> 和 <code>*</code>的主要区别在于 , <code>*</code>是应用在系统中的 , <code>%</code>是应用在<code>Makefile</code>文件中的</p>
+</blockquote>
+<p>前面提到一个 <em><strong>示例</strong></em>:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o </span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span> </span><br><span class="line">	  gcc -o edit <span class="variable">$(objects)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个示例中:</p>
+<ul>
+<li><code>make</code>命令在构造<code>edit</code>文件时 ,  发现需要<code>main.o kbd.o command.o display.o</code> 这几个文件</li>
+<li>接下来 , make命令会在Makefile文件中寻找 能匹配 <code>main.o kbd.o command.o display.o</code> 的规则</li>
+<li>在分别找到<code>main.o</code>  <code>kbd.o</code> <code>command.o</code> <code>display.o</code> 的规则后 , 会运行该规则下的 <em><strong>命令</strong></em></li>
+<li>等到目标<code>edit</code>  的依赖条件齐全之后 , 开始构造<code>edit</code></li>
+</ul>
+</blockquote>
+<p>以上是一般<code>make</code>在工作时的 <em><strong>执行流程</strong></em> ,</p>
+<blockquote>
+<p>在工作流程中 , 如果存在 <code>%</code> 符号 ,例如:</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o </span><br><span class="line"></span><br><span class="line">edit : <span class="variable">$(objects)</span> </span><br><span class="line">	  gcc -o edit <span class="variable">$(objects)</span></span><br><span class="line"></span><br><span class="line">%.o : %.c</span><br><span class="line">	gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>	  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>%</code> 符号只会在带着目的 <em>(例如寻找 <code>main.o</code>)</em> , 才会把它要寻找的目标 ( <code>main.o</code> ) 匹配到 <code>%</code> 符号</p>
+</li>
+<li>
+<p>所以 , 如果只写以下的代码 , make会产生报错</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为此时% 符号并没有目标 , 所以第2~3行定义的这个 规则并不会被执行 , 从而产生报错</span></span><br><span class="line">%.o : %.c</span><br><span class="line">	gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>	  	</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<br>
+<blockquote>
+<p>而如果存在通配符 <code>*</code> , make命令会然后 <em><strong>遍历目录的文件</strong></em>，看是否匹配。找出所有匹配的项目。</p>
+</blockquote>
+<br>
+<p><em><strong>总结</strong></em></p>
+<p>虽然 , <code>%</code>和<code>*</code> 两个符号的功能看似类似 , 但他们的工作方式是完全不同的</p>
+<br>
+<hr />
+<h3 id="34-条件判断"><a class="markdownIt-Anchor" href="#34-条件判断"></a> 3.4 条件判断</h3>
+<blockquote>
+<p>在<code>Makefile</code> 中也存在条件判断 , 通过使用条件表达式可以让 <code>make</code> 根据运行时的不同情况选择不同的执行分支</p>
+<p>用于条件判断的 <em><strong>关键字</strong></em> 有四个:  <code>ifeq</code>、<code>ifneq</code>、<code>ifdef</code> 和 <code>ifndef</code></p>
+</blockquote>
+<p><em><strong>语法如下:</strong></em> 语法有两种</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">&lt;条件关键字&gt;</span><br><span class="line">	&lt;条件为真时执行的语句&gt;</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>另一种</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">&lt;条件关键字&gt;</span><br><span class="line">	&lt;条件为真时执行的语句&gt;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	&lt;条件为假时执行的语句&gt;</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="341-ifeq-和-ifneq"><a class="markdownIt-Anchor" href="#341-ifeq-和-ifneq"></a> 3.4.1 “ifeq” 和 “ifneq”</h4>
+<blockquote>
+<p><code>ifeq</code> 用来判断是否 <em><strong>相等</strong></em></p>
+<p><code>ifneq</code> 就是判断是否 <em><strong>不相等</strong></em></p>
+</blockquote>
+<br>
+<p><em><strong>用法如下:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ifeq的用法</span></span><br><span class="line"><span class="keyword">ifeq</span> (&lt;参数 1&gt;, &lt;参数 2&gt;)</span><br><span class="line"><span class="keyword">ifeq</span> ‘&lt;参数 1 &gt;’,‘ &lt;参数 2&gt;’</span><br><span class="line"><span class="keyword">ifeq</span> “&lt;参数 1&gt;”, “&lt;参数 2&gt;”</span><br><span class="line"><span class="keyword">ifeq</span> “&lt;参数 1&gt;”, ‘&lt;参数 2&gt;’</span><br><span class="line"><span class="keyword">ifeq</span> ‘&lt;参数 1&gt;’, “&lt;参数 2&gt;”</span><br><span class="line"></span><br><span class="line"><span class="comment">#上述用法中都是用来比较“参数 1”和“参数 2”是否相同，如果相同则为真</span></span><br><span class="line"><span class="comment">#“参数 1”和“参数 2”可以为函数返回值。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ifneq的用法</span></span><br><span class="line"><span class="keyword">ifneq</span> (&lt;参数 1&gt;, &lt;参数 2&gt;)</span><br><span class="line"><span class="keyword">ifneq</span> ‘&lt;参数 1 &gt;’,‘ &lt;参数 2&gt;’</span><br><span class="line"><span class="keyword">ifneq</span> “&lt;参数 1&gt;”, “&lt;参数 2&gt;”</span><br><span class="line"><span class="keyword">ifneq</span> “&lt;参数 1&gt;”, ‘&lt;参数 2&gt;’</span><br><span class="line"><span class="keyword">ifneq</span> ‘&lt;参数 1&gt;’, “&lt;参数 2&gt;”</span><br><span class="line"><span class="comment"># ifneq的用法与ifeq类型 , 只是ifneq用来了比较“参数 1”和“参数 2”是否不相等，如果不相等的话就为真。</span></span><br></pre></td></tr></table></figure>
+<p><em><strong>说明:</strong></em></p>
+<p>参数是可以使用<code>make</code>函数的 , 例如<a href="#4">前面提到</a>的一个例子</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(<span class="built_in">origin</span> FOO)</span>, undefined) </span><br><span class="line">FOO = bar </span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个例子中就在 <code>ifeq</code>中使用了 <code>origin</code> 函数 ,  用来判断 <code>FOO</code>变量是否被定义过</p>
+</blockquote>
+<br>
+<hr />
+<h4 id="342-ifdef和ifndef"><a class="markdownIt-Anchor" href="#342-ifdef和ifndef"></a> 3.4.2 “ifdef&quot;和&quot;ifndef”</h4>
+<blockquote>
+<p><em><strong>格式如下:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ifdef</span> &lt;variable-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ifndef</span> &lt;variable-name&gt;</span><br></pre></td></tr></table></figure>
+<p>其中<code>ifdef</code> 用来判断变量<code>&lt;variable-name&gt;</code>的值是否为空 ,  <em><strong>非空</strong></em> 这表达式为真 , 否则表达式为假 .</p>
+<p><code>&lt;variable-name&gt;</code> 同样可以是一个函数的 <em><strong>返回值</strong></em> , <code>ifdef</code> 和 <code>ifndef</code> 只是测试一个变量是否有值，其并不会把变量扩展到当前位置。</p>
+<p><code>ifndef</code> 与<code>ifdef</code> 的意思相反</p>
+</blockquote>
+<br>
+<p><em><strong>示例如下:</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">bar = </span><br><span class="line">foo = <span class="variable">$(bar)</span> </span><br><span class="line"><span class="keyword">ifdef</span> foo </span><br><span class="line">frobozz = yes </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">frobozz = no </span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断foo变量是否为空 , 运行结果是frobozz的值为yes</span></span><br></pre></td></tr></table></figure>
+<br>
+<h2 id="4️⃣"><a class="markdownIt-Anchor" href="#4️⃣"></a> 4️⃣</h2>
+<p>最后给出一个<code>makefile</code>程序 ,  用来编译当前目录下的所有文件</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">all:$(subst .c,.o,$(wildcard *.c))</span></span><br><span class="line"> </span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">    gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"> </span><br><span class="line">.PHONY : clean</span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm  *.o</span><br><span class="line">	rm all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h2 id="️参考文章"><a class="markdownIt-Anchor" href="#️参考文章"></a> ❗️参考文章</h2>
+<p><a href="https://www.ruanyifeng.com/blog/2015/02/make.html">Make 命令教程</a></p>
+<p><a href="https://www.cnblogs.com/warren-wong/p/3979270.html">Makefile中的%标记和系统通配符*的区别</a></p>
+<p>《GUN make使用手册》</p>
+<p>《跟我一起写Makefile》</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>Makefile</tag>
       </tags>
   </entry>
   <entry>
