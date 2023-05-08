@@ -350,8 +350,8 @@ I_q\ =\ -I_\alpha\cdot\sin{\theta}\ +\ I_\beta\cdot\cos{\theta}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>c语言</tag>
         <tag>单片机</tag>
+        <tag>c语言</tag>
         <tag>驱动开发</tag>
       </tags>
   </entry>
@@ -1793,8 +1793,8 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
         <category>学习记录</category>
       </categories>
       <tags>
-        <tag>单片机</tag>
         <tag>C语言</tag>
+        <tag>单片机</tag>
         <tag>驱动开发</tag>
       </tags>
   </entry>
@@ -3450,10 +3450,17 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
 <p><em><strong>示例如下:</strong></em></p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">bar = </span><br><span class="line">foo = <span class="variable">$(bar)</span> </span><br><span class="line"><span class="keyword">ifdef</span> foo </span><br><span class="line">frobozz = yes </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">frobozz = no </span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断foo变量是否为空 , 运行结果是frobozz的值为yes</span></span><br></pre></td></tr></table></figure>
 <br>
-<h2 id="4️⃣"><a class="markdownIt-Anchor" href="#4️⃣"></a> 4️⃣</h2>
-<p>最后给出一个<code>makefile</code>程序 ,  用来编译当前目录下的所有文件</p>
+<h2 id="4️⃣-示例"><a class="markdownIt-Anchor" href="#4️⃣-示例"></a> 4️⃣ 示例</h2>
+<p><em><strong>例1</strong></em></p>
+<p>给出一个<code>makefile</code>程序 ,  用来编译当前目录下的所有文件</p>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">all:$(subst .c,.o,$(wildcard *.c))</span></span><br><span class="line"> </span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">    gcc -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"> </span><br><span class="line">.PHONY : clean</span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm  *.o</span><br><span class="line">	rm all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <br>
+<hr />
+<p><em><strong>例2</strong></em>  存在这样一个目录框架</p>
+<p><img src="image/image-20230508223437755.png" alt="image-20230508223437755" /></p>
+<br>
+<p><em><strong>Makefile 程序</strong></em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 目标文件名</span></span><br><span class="line">Name    		:= obj/ledc</span><br><span class="line">Link_File		:= Timx6ul</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义编译命令</span></span><br><span class="line">Cross_Compile   :=  arm-linux-gnueabihf</span><br><span class="line">CC 				:=  <span class="variable">$(Cross_Compile)</span>-gcc</span><br><span class="line">Link    		:= -ld -<span class="variable">$(Link_File)</span>.lds -o</span><br><span class="line">Elf_Bin 		:= -objcopy -O binary -S</span><br><span class="line"></span><br><span class="line"><span class="comment"># 头文件路径</span></span><br><span class="line">Inc_Dirs		:= bsp/led  \</span><br><span class="line">				   drivers  \</span><br><span class="line">				   user     </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 源文件和汇编文件路径</span></span><br><span class="line">Src_Dirs		:= bsp/led  \</span><br><span class="line">				   project  \</span><br><span class="line">				   user						   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将所有头文件前面添加上 参数 &quot;-I&quot; , Makefile语法要求指明头文件目录的时候需要加上&quot;-I&quot;</span></span><br><span class="line">Include  		:= <span class="variable">$(<span class="built_in">patsubst</span> %, -I %, <span class="variable">$(Inc_Dirs)</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#获取源文件和汇编文件</span></span><br><span class="line">S_Files			:= <span class="variable">$(<span class="built_in">foreach</span> <span class="built_in">dir</span>, <span class="variable">$(Src_Dirs)</span>, $(<span class="built_in">wildcard</span> <span class="variable">$(dir)</span>/*.S)</span>)</span><br><span class="line">C_Files			:= <span class="variable">$(<span class="built_in">foreach</span> <span class="built_in">dir</span>, <span class="variable">$(Src_Dirs)</span>, $(<span class="built_in">wildcard</span> <span class="variable">$(dir)</span>/*.c)</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出文件中的的非目录部分</span></span><br><span class="line">S_File_Ndir		:= <span class="variable">$(<span class="built_in">notdir</span> <span class="variable">$(S_Files)</span>)</span> </span><br><span class="line">C_File_Ndir  	:= <span class="variable">$(<span class="built_in">notdir</span> <span class="variable">$(C_Files)</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将所有.c , .s 文件替换成.o</span></span><br><span class="line">S_Obj 			:= <span class="variable">$(<span class="built_in">patsubst</span> %, obj/%, $(S_File_Ndir:.S=.o)</span>)</span><br><span class="line">C_Obj			:= <span class="variable">$(<span class="built_in">patsubst</span> %, obj/%, $(C_File_Ndir:.c=.o)</span>)</span><br><span class="line">Obj				:= <span class="variable">$(S_Obj)</span> <span class="variable">$(C_Obj)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定搜索目录</span></span><br><span class="line">VPATH			:= <span class="variable">$(Src_Dirs)</span> <span class="variable">$(Inc_Dirs)</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(Name)</span>.bin: <span class="variable">$(Obj)</span></span><br><span class="line">	<span class="variable">$(Cross_Compile)</span><span class="variable">$(Link)</span> <span class="variable">$(Name)</span>.elf <span class="variable">$^</span></span><br><span class="line">	<span class="variable">$(Cross_Compile)</span><span class="variable">$(Elf_Bin)</span> <span class="variable">$(Name)</span>.elf <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(C_Obj)</span>: obj/%.o : %.c</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(Include)</span> -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$(S_Obj)</span>: obj/%.o : %.S</span><br><span class="line">	<span class="variable">$(CC)</span> -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm obj/*.o obj/*.bin obj/*.elf  </span><br></pre></td></tr></table></figure>
 <hr />
 <h2 id="️参考文章"><a class="markdownIt-Anchor" href="#️参考文章"></a> ❗️参考文章</h2>
 <p><a href="https://www.ruanyifeng.com/blog/2015/02/make.html">Make 命令教程</a></p>
@@ -8435,8 +8442,8 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
-        <tag>c语言</tag>
         <tag>单片机</tag>
+        <tag>c语言</tag>
         <tag>gun</tag>
       </tags>
   </entry>
@@ -9082,8 +9089,8 @@ Error: L6218E: Undefined symbol SEGGER_SYSVIEW_X_GetTimestamp (referred from seg
       </categories>
       <tags>
         <tag>学习</tag>
-        <tag>c语言</tag>
         <tag>单片机</tag>
+        <tag>c语言</tag>
         <tag>arm</tag>
       </tags>
   </entry>
