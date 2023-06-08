@@ -2575,373 +2575,210 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
       </tags>
   </entry>
   <entry>
-    <title>IMX6ULL学习笔记(一) —— 寄存器组</title>
-    <url>/2023/06/02/IMX6ULL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)%20%E2%80%94%E2%80%94%20%E5%AF%84%E5%AD%98%E5%99%A8%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="imx6ull-学习笔记"><a class="markdownIt-Anchor" href="#imx6ull-学习笔记"></a> IMX6ULL 学习笔记</h1>
+    <title>Linux 学习笔记 (二) —— Cortex -A 架构 、寄存器组与运行模式</title>
+    <url>/2023/05/12/Linux%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20(%E4%BA%8C)%20%E2%80%94%E2%80%94%20Cortex%20-A%20%E6%9E%B6%E6%9E%84%20%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E7%BB%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="linux学习笔记"><a class="markdownIt-Anchor" href="#linux学习笔记"></a> Linux学习笔记</h1>
 <br>
 <blockquote>
-<p><strong>version :</strong>    <em>v1.0</em>      <em>「2023.4.27」</em></p>
-<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
-<p><strong>简介：</strong>   随记, 关于I.MX6ULL 系统SOC 的部分寄存器</p>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充<br />
+<br><br />
+<strong>author：</strong>  <em>Y.Z.T.</em><br />
+<br><br />
+<br></p>
+<p><strong>简介：</strong> Linux学习笔记 , 写的比较乱 , 属于随记</p>
 </blockquote>
-<p><br> <span id="more"></span></p>
-<hr />
-<br>
-<h2 id="1️⃣-裸机"><a class="markdownIt-Anchor" href="#1️⃣-裸机"></a> 1️⃣ 裸机</h2>
-<blockquote>
-<p>简单了解原理</p>
-</blockquote>
-<h3 id="11-gun汇编"><a class="markdownIt-Anchor" href="#11-gun汇编"></a> 1.1 GUN汇编</h3>
-<h4 id="111-与arm汇编的伪操作差异"><a class="markdownIt-Anchor" href="#111-与arm汇编的伪操作差异"></a> 1.1.1 与<code>ARM</code>汇编的伪操作差异</h4>
-<p><img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9af.png" alt="image-20230430150223464" /></p>
+<span id="more"></span>
 <br>
 <hr />
-<h4 id="112-常见gun-arm-伪操作指令"><a class="markdownIt-Anchor" href="#112-常见gun-arm-伪操作指令"></a> 1.1.2 常见<code>GUN ARM</code> 伪操作指令</h4>
-<img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9c0.png" alt="image-20230430150409583" style="zoom:150%;" />
+<h2 id="3️⃣-cortex-a-架构"><a class="markdownIt-Anchor" href="#3️⃣-cortex-a-架构"></a> 3️⃣   Cortex -A 架构</h2>
+<h3 id="31"><a class="markdownIt-Anchor" href="#31"></a> 3.1</h3>
 <blockquote>
-<p>补充数据传输指令</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9d8.png" alt="image-20230428122910132" /></p>
-<br>
-<hr />
-<h4 id="113"><a class="markdownIt-Anchor" href="#113"></a> 1.1.3</h4>
-<blockquote>
-<p>在<code>GUN ARM</code> 汇编语言中 ,  标号<code>_start</code> 是汇编程序的入口 , 如果希望这个标号被其他文件引用 , 只需要在定义的地方使用 <code>.globa</code> 伪操作声明即可 ( <code>.globa</code>  表示定义一个全局标号 )</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.globa -start</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-</blockquote>
-<br>
-<p><em><strong><code>.section</code> 伪操作</strong></em></p>
-<blockquote>
-<p>可以通过 <code>.section</code> 伪操作自定义一个段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.section &lt;section name&gt; &#123;,&quot;&lt;flags&gt;&quot;&#125;</span><br><span class="line"></span><br><span class="line">.section .mysection &quot;awx&quot;   @注释 : 定义一个可写、可执行的段</span><br><span class="line">.align 2</span><br></pre></td></tr></table></figure>
+<p>ARM指令集分两种,  <em><strong>Thumb指令集</strong></em>，<em><strong>ARM指令集</strong></em></p>
 <ul>
-<li>注意在使用伪操作<code>.section</code>定义一个段时，每个段 <em><strong>以段名开始</strong></em> ，以 <em><strong>下一个段名或文件结尾</strong></em> 作为结束标记。</li>
-<li>在定义段名时，注意不要和系统预留的段名冲突，(如<code>.text</code>、<code>.data</code>、<code>.bss</code>、<code>.rodata</code> )</li>
-</ul>
-<br>
-<p><em><strong>系统预留的段名</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394b9ef.png" alt="image-20230430151811342" /></p>
-</blockquote>
-<br> 
-<hr />
-<h4 id="114-基本数据格式"><a class="markdownIt-Anchor" href="#114-基本数据格式"></a> 1.1.4 基本数据格式</h4>
-<blockquote>
-<p>在定义数据的过程中需要注意 :</p>
-<ul>
-<li><em><strong>二进制</strong></em> 数据通常以<code>0B</code>或<code>0b</code>开头</li>
-<li><em><strong>八进制</strong></em> 数据以<code>0</code>开头</li>
-<li><em><strong>十六进制</strong></em> 数据以<code>0x</code>开头</li>
-<li><em><strong>十进制</strong></em> 数据则以<code>非0</code>数字开头</li>
-<li><em><strong>负数</strong></em> 前面加  <code>-</code></li>
-<li><em><strong>取补</strong></em> 用 <code>~</code></li>
-<li><em><strong>不相等</strong></em> 用  <code>〈〉</code></li>
-<li>其他运算符号如<code>+、-、*、%、&lt;、&lt;&lt;、\&gt;、&gt;&gt;、|、&amp;、^、！、==、&gt;=、&amp;&amp;</code>与C语言语法相似</li>
-<li><em><strong>字符串常量</strong></em> 要用双引号 <code>&quot;&quot;</code> 括起来</li>
-<li>使用<code>.ascii</code>定义字符串时要自行在结尾加  <code>\0</code></li>
-<li><code>.string</code> 伪操作可以定义多个字符串</li>
-<li><code>.asciz</code> 伪操作可以定义一个以<code>NULL</code>字符结尾的字符串</li>
-<li>用<code>.rep</code>t  伪操作可以重复定义数据</li>
-<li>在<code>GNU ARM</code>汇编程序中经常使用小圆点  <code>.</code>  表示 <em><strong>当前指令的地址</strong></em></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.ascii &quot;hello\0&quot;</span><br><span class="line">.string &quot;hello&quot;, &quot;world!&quot;</span><br><span class="line">.asciz &quot;hello&quot;</span><br><span class="line">.rept 3 .byte 0x10 .endr</span><br></pre></td></tr></table></figure>
-</blockquote>
-<br>
-<hr />
-<h4 id="115-equ-伪操作"><a class="markdownIt-Anchor" href="#115-equ-伪操作"></a> 1.1.5  .equ 伪操作</h4>
-<blockquote>
-<p>使用 <em><strong>伪操作</strong></em> 定义浮点数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@标签: 命令</span><br><span class="line">f:</span><br><span class="line">.float 3.14</span><br><span class="line">.equ f,3.1415</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上面通过使用<code>.float</code>伪操作定义一个浮点数<code>f</code>，并初始化为<code>3.14</code></li>
-<li>并通过<code>.equ</code>伪操作 将浮点数重新赋值成 <code>3.1415</code></li>
-</ul>
-</blockquote>
-<br>
-<blockquote>
-<p><code>.equ</code>伪操作除了给数据赋值，还可以把常量定义在代码段中，然后在代码中直接引用。类似C语言中的<code>＃define</code>宏定义</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.section .data</span><br><span class="line">.equ DELAY,100</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.section .text</span><br><span class="line">...</span><br><span class="line">MOV R0,$DELAY</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-</blockquote>
-<br>
-<hr />
-<h4 id="116-补充"><a class="markdownIt-Anchor" href="#116-补充"></a> 1.1.6 补充</h4>
-<p><code>stmdb</code>和<code>ldmia</code></p>
-<blockquote>
-<ul>
-<li><strong>stmdb和ldmia指令一般配对使用</strong></li>
-<li><strong>stmdb用于将寄存器压栈</strong></li>
-<li><strong>ldmia用于将寄存器弹出栈</strong></li>
-<li><strong>它们的作用是保存使用到的寄存器</strong></li>
-</ul>
-</blockquote>
-<br>
-<blockquote>
-<p>ARM指令的多数据传输（STM、LDM）中，提到：多寄存器的Load和Store指令分为2组：</p>
-<ul>
-<li>一组用于数据的存储与读取，对应于IA、IB、DA、DB，</li>
-<li>一组用于堆栈操作，对应于FD、ED、FA、EA，</li>
-</ul>
-</blockquote>
-<ul>
-<li><code>STMIB</code>（地址先增而后完成操作）、<code>STMFA</code>（满递增堆栈）；<code>LDMIB</code>、<code>LDMED</code>；</li>
-<li><code>STMIA</code>（完成操作而后地址递增）、<code>STMEA</code>（空递增堆栈）；<code>LDMIA</code>、<code>LDMFD</code>；</li>
-<li><code>STMDB</code>（地址先减而后完成操作）、<code>STMFD</code>（满递减堆栈）；<code>LDMDB</code>、<code>LDMEA</code>；</li>
-<li><code>STMDA</code>（完成操作而后地址递减）、<code>STMED</code>（空递减堆栈）;<code>LDMDA</code>、<code>LDMFA</code>。</li>
-</ul>
-<br>
-<ul>
-<li><code>IA</code>模式表示：每次传送后地址<code>+4；(After Increase)</code></li>
-<li><code>DB</code>模式表示：每次传送前地址<code>-4；(Before Decrease)</code></li>
-</ul>
-<hr />
-<h3 id="12-io复用表"><a class="markdownIt-Anchor" href="#12-io复用表"></a> 1.2 IO复用表</h3>
-<blockquote>
-<p>在《imx6ull 中文参考手册》 199页</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394ba1c.png" alt="image-20230428162002702" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394ba4f.png" alt="image-20230428162114657" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394baa1.png" alt="image-20230428162132536" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bae9.png" alt="image-20230428162148167" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb03.png" alt="image-20230428162217127" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb38.png" alt="image-20230428162232673" /></p>
-<br>
-<blockquote>
-<p><em><strong>可以看见 :</strong></em></p>
-<ul>
-<li>GPIO1 有 32 个 IO</li>
-<li>GPIO2 有 22 个 IO</li>
-<li>GPIO3 有 29 个 IO</li>
-<li>GPIO4 有 29 个 IO</li>
-<li>GPIO5 有 12 个 IO</li>
+<li><code>ARM</code>指令长度为32位，<code>Thumb</code>指令长度为16位。</li>
+<li>这种特点使得ARM既能执行16位指令，又能执行32位指令，从而增强了ARM内核的功能</li>
 </ul>
 </blockquote>
 <hr />
-<h3 id="13-复用为gpio时的寄存器"><a class="markdownIt-Anchor" href="#13-复用为gpio时的寄存器"></a> 1.3 复用为GPIO时的寄存器</h3>
-<h4 id="131-io复用功能和io电气属性"><a class="markdownIt-Anchor" href="#131-io复用功能和io电气属性"></a> 1.3.1  IO复用功能和IO电气属性</h4>
-<ul>
-<li>
-<p><code>SW_MUX_CTL_PAD_*</code>   : 配置IO口的复用功能</p>
+<h4 id="310-arm三级流水线技术"><a class="markdownIt-Anchor" href="#310-arm三级流水线技术"></a> 3.1.0  ARM三级流水线技术</h4>
 <blockquote>
-<p>以<code>GPIO1_IO1</code>举例:</p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb5b.png" alt="image-20230428164534841" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb6d.png" alt="image-20230428164550307" /></p>
-<ul>
-<li>可以看到<code>GPIO1_IO01</code>可以复用为8种不同功能的IO</li>
-</ul>
+<p><strong>ARM7</strong>处理器核使用了典型<strong>三级流水线的冯诺伊曼结构</strong></p>
 </blockquote>
-</li>
-</ul>
+<p><em><strong>三级流水线技术</strong></em></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfc940d2dde577751f021.png" alt="image-20230427210653599" /></p>
 <br>
-<ul>
-<li>
-<p><code>SW_PAD_CTL_PAD_*</code> : 配置IO口的电气属性</p>
 <blockquote>
-<p>还是以<code>GPIO1_IO00</code> 举例:</p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bba2.png" alt="image-20230428165738791" /></p>
+<p>流水线使用三个阶段，因此指令分为三个阶段执行：</p>
 <ul>
-<li>用于配置<code>IO</code>的 上下拉电阻、IO速度、IO驱动能力、压摆率等电气属性</li>
-<li>一般主要设置 <em><strong>压摆率</strong></em> （SRE）、<em><strong>驱动能力</strong></em> （DSE）、<em><strong>速度</strong></em>  (SPEED )、<em><strong>上下拉</strong></em> （ PUS）、 <em><strong>开漏</strong></em> （ODE）</li>
+<li>取指（从存储器装载一条指令）</li>
+<li>译码（识别将要被执行的指令）</li>
+<li>执行（处理指令并将结果写回寄存器）</li>
 </ul>
 </blockquote>
-</li>
+<br>
+<p><em><strong>为什么发送中断时 , 保存的<code>pc</code>地址是 ( PC - 4 )</strong></em></p>
+<ul>
+<li><code>R15(PC)</code> 寄存器 总是指向 <em><strong>“正在取指”</strong></em>  的指令，而不是指向 <em><strong>“正在执行”</strong></em> 的指令或正在“译码”的指令。</li>
+<li>一般来说，人们习惯性约定将 “ <em><strong>正在执行</strong></em>  的指令作为参考点” ，称之为当前第一条指令，因此 <em><strong>PC总是指向第三条指令</strong></em> 。</li>
+<li>当<mark>ARM状态</mark>时，每条指令为 <strong>4字节</strong> 长，所以<code>PC</code>始终指向该指令地址 <em><strong>加8字节</strong></em> 的地址，即： <em><strong>PC值=当前程序执行位置 + 8</strong></em></li>
+<li><em><strong>PC指向的是正在取指的地址（下一条指令）</strong></em> ，那么cpu正在 <em><strong>译指的指令地址是<code>PC-4</code></strong></em>  ,  即<code>PC</code>所 <em><strong>指向的地址</strong></em> 和现在所 <em><strong>执行的指令地址</strong></em> 相差8</li>
+<li>所以 当突然发生中断的时候，保存的是PC的地址 <code>PC-8+4 = PC-4</code> (下一条指令的地址）</li>
 </ul>
 <br>
 <hr />
-<h4 id="132-复用为gpio时其他寄存器"><a class="markdownIt-Anchor" href="#132-复用为gpio时其他寄存器"></a> 1.3.2 复用为GPIO时其他寄存器</h4>
-<ul>
-<li><em><strong>DR寄存器:</strong></em>   数据寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO</li>
-<li>当 GPIO 被配置为 <em><strong>输出功能</strong></em>  以后 , 向指定的位写入数据那么相应的 IO 就会输出相应的高低电平 ( <em><strong>如 :</strong></em>  <code>GPIO1_IO00</code> 输出高电平,那么就应该设置 <code>GPIO1.DR=1</code>)</li>
-<li>当 GPIO 被配置为 <em><strong>输出功能</strong></em>  以后 ,  此寄存器就保存着对应 IO 的电平值 (<em><strong>如 :</strong></em>  当 <code>GPIO1_IO00</code> 这个引脚接地的话，那么 <code>GPIO1.DR</code> 的 <code>bit0</code> 就是 0)</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><em><strong>GDIR 寄存器</strong></em> : 方向寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO , 用来设置某个IO的工作方向</li>
-<li>如果要设置一个GPIO为输入 , 则对应的位设置为 <em><strong>0</strong></em> (<em><strong>如 :</strong></em> 要设置 <code>GPIO1_IO00</code> 为输入，那么 <code>GPIO1.GDIR=0</code>)</li>
-<li>如果要设置一个GPIO为输出 , 则对应的位设置为 <em><strong>1</strong></em></li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><em><strong>PSR 寄存器 :</strong></em>   状态寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO , 获取对应<code>GPIO</code>的状态</li>
-<li>读取相应的位即可获取对应的 GPIO 的状态，也就是 GPIO 的高低电平值 ( 功能和 <em><strong>输入状态</strong></em> 下的 <code>DR</code> 寄存器一样。 )</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li>
-<p><em><strong>ICR1 和 ICR2寄存器</strong></em> :  中断控制寄存器</p>
-<ul>
-<li>
-<p>寄存器中的每两位对应一个IO ,  <code>ICR1</code>用于配置 <em><strong>低16个GPIO</strong></em>  <em>(IO0 ~ IO15)</em>  , ICR2 用于配置 <em><strong>高 16 个 GPIO</strong></em>  <em>( IO16~ IO31 )</em></p>
-</li>
-<li>
-<p>这两个位用来配置中断的触发方式</p>
-<blockquote>
-<p><em><strong>举例:</strong></em>   设置<code>GPIO1_IO15</code>为上升沿触发中断  ( <code>GPIO1.ICR1=2&lt;&lt;30</code> )</p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bbc7.png" alt="image-20230428173120968" /></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><em><strong>IMR  寄存器</strong></em> : 中断使能寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO , 用来控制 GPIO 的中断禁止和使能</li>
-<li>如果 <em><strong>使能</strong></em> 某个 GPIO 的中断，那么设置相应的位为 <em><strong>1</strong></em> ; ( <em><strong>如</strong></em>:  使能 <code>GPIO1_IO00</code> 的中断，那么就可以设置 <code>GPIO1.MIR=1</code>  )</li>
-<li><em><strong>禁止中断</strong></em> , 则设置相应的位 <em><strong>0</strong></em></li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><em><strong>ISR 寄存器</strong></em> : 中断状态寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO , 用于判断<code>GPIO</code> 中断是否发生</li>
-<li>只要某个 GPIO 的中断发生 , 那么ISR中相应的位就会被 <em><strong>置1</strong></em></li>
-<li>在处理完中断之后 , 必须清除中断标志位</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><em><strong>EDGE_SEL 寄存器</strong></em> : 边沿选择寄存器
-<ul>
-<li>寄存器中的每一位对应一个IO , 用来设置边沿中断</li>
-<li>这个寄存器会覆盖 <code>ICR1</code> 和 <code>ICR2</code> 的设置</li>
-<li>如果相应的位被 <em><strong>置 1</strong></em>，那么就相当与设置了对应的 GPIO 是 <em><strong>上升沿和下降沿(双边沿)</strong></em> 触发</li>
-<li>( <em><strong>例如 :</strong></em>  设置 <code>GPIO1.EDGE_SEL=1</code>，那么就表示 <code>GPIO1_IO01</code> 是双边沿触中断 )</li>
-</ul>
-</li>
-</ul>
-<br>
-<hr />
-<h3 id="14-ccm时钟控制寄存器-ccm_ccgrx"><a class="markdownIt-Anchor" href="#14-ccm时钟控制寄存器-ccm_ccgrx"></a> 1.4 CCM时钟控制寄存器 (CCM_CCGRx)</h3>
-<blockquote>
-<p><code>CCM_CCGRx</code> 寄存器 用于使能各个外设模块的时钟 ,  为<strong>每2位</strong>对应一个外设时钟</p>
-<p><em><strong>CGR值如下所示:</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bbe4.png" alt="image-20230429161134535" /></p>
-</blockquote>
-<br>
-<hr />
-<h4 id="141-ccm_ccgr0"><a class="markdownIt-Anchor" href="#141-ccm_ccgr0"></a> 1.4.1  CCM_CCGR0</h4>
-<blockquote>
-<p>地址  : 0x 20C_4068H</p>
-<p><em><strong>使能方式 :</strong></em></p>
-<blockquote>
-<p><em><strong>以GPIO2的时钟为例</strong></em> ( CCM_CCGR0 = 3&lt;&lt;30 )</p>
-</blockquote>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc16.png" alt="image-20230429160800166" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc2a.png" alt="image-20230429160813754" /></p>
-<br>
-<hr />
-<h4 id="142-ccm_ccgr1"><a class="markdownIt-Anchor" href="#142-ccm_ccgr1"></a> 1.4.2  CCM_CCGR1</h4>
-<blockquote>
-<p>地址 :  <code>0x20C_406C</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc54.png" alt="image-20230429161435561" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bca3.png" alt="image-20230429161400848" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bcc6.png" alt="image-20230429161502069" /></p>
-<br>
-<hr />
-<h4 id="143-ccm_ccgr2"><a class="markdownIt-Anchor" href="#143-ccm_ccgr2"></a> 1.4.3 CCM_CCGR2</h4>
-<blockquote>
-<p>地址 :  <code>0x 20C_4070</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd00.png" alt="image-20230429161625904" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd0e.png" alt="image-20230429161655183" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd55.png" alt="image-20230429161704139" /></p>
-<br>
-<hr />
-<h4 id="144-ccm_ccgr3"><a class="markdownIt-Anchor" href="#144-ccm_ccgr3"></a> 1.4.4  CCM_CCGR3</h4>
-<blockquote>
-<p>地址 <code>0x20C_4074</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd6c.png" alt="image-20230429161831307" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bda8.png" alt="image-20230429161858939" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be0e.png" alt="image-20230429161908392" /></p>
-<br>
-<hr />
-<h4 id="145-ccm_ccgr4"><a class="markdownIt-Anchor" href="#145-ccm_ccgr4"></a> 1.4.5  CCM_CCGR4</h4>
-<blockquote>
-<p>地址 :  <code>0x20C_4078</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be2e.png" alt="image-20230429162005946" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be6e.png" alt="image-20230429162020687" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be92.png" alt="image-20230429162029214" /></p>
-<br>
-<hr />
-<h4 id="146-ccm_ccgr5"><a class="markdownIt-Anchor" href="#146-ccm_ccgr5"></a> 1.4.6  CCM_CCGR5</h4>
-<blockquote>
-<p>地址 : <code>0x20C_407C</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394beb9.png" alt="image-20230429162152246" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394befe.png" alt="image-20230429162212873" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf17.png" alt="image-20230429162223164" /></p>
-<br>
-<hr />
-<h4 id="147-ccm_ccgr6"><a class="markdownIt-Anchor" href="#147-ccm_ccgr6"></a> 1.4.7  CCM_CCGR6</h4>
-<blockquote>
-<p>地址 : <code>0x20C_4080</code> H</p>
-</blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf77.png" alt="image-20230429162317538" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf85.png" alt="image-20230429162341515" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bfb6.png" alt="image-20230429162350677" /></p>
-<br>
-<hr />
-<h3 id="15-io复用为gpio"><a class="markdownIt-Anchor" href="#15-io复用为gpio"></a> 1.5 IO复用为GPIO</h3>
-<p><em><strong>一般步骤:</strong></em></p>
-<ul>
-<li>使能 <code>GPIO</code> 对应的时钟 (<code>CCM_CCGRx</code> 寄存器)</li>
-<li>设置寄存器 <code>IOMUXC_SW_MUX_CTL_PAD_XX_XX</code>，设置 IO 的复用功能</li>
-<li>设置寄存器 <code>IOMUXC_SW_PAD_CTL_PAD_XX_XX</code>，设置 IO 的上下拉、速度等电气属性</li>
-<li>配置GPIO专属寄存器 , 配置GPIO的 <em><strong>输入输出</strong></em> 、<em><strong>是否使用中断</strong></em> 等 （<code>DR</code> 、<code>GDIR</code>、<code>ICR</code>等寄存器）</li>
-</ul>
-<br>
-<hr />
-<h3 id="16-可执行文件"><a class="markdownIt-Anchor" href="#16-可执行文件"></a> 1.6  可执行文件</h3>
-<blockquote>
-<p>将裸机的汇编点灯程序编译成可执行文件 <code>.bin</code> , 需要在<code>.bin</code> 文件前面添加 <em><strong>头部信息</strong></em></p>
-<p>包括 <em><strong>镜像向量表</strong></em> ( <code>IVT</code>) 、<em><strong>Boot启动数据</strong></em> （<code>Boot data</code> ）、 <em><strong>配置信息</strong></em> （<code>DCD</code>）等 ， 后面才是 <em><strong>用户可执行代码</strong></em>   （ <code>Application</code>）</p>
-</blockquote>
-<br>
-<p><em><strong>如下所示:</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bfd6.png" alt="image-20230430215216894" /></p>
+<h4 id="311-九种运行模式"><a class="markdownIt-Anchor" href="#311-九种运行模式"></a> 3.1.1 九种运行模式</h4>
+<p><img src="https://pic2.imgdb.cn/item/645cfc9d0d2dde577751fa34.png" alt="image-20230427200728000" /></p>
 <blockquote>
 <ul>
 <li>
-<p>不同引导设备的 <em><strong>偏移量</strong></em> 与 加载区域大小 ( 即 <em><strong>头部信息</strong></em>)</p>
+<p>除了 User(USR)用户模式以外，其它 8 种运行模式都是 <em><strong>特权模式</strong></em> 。</p>
 <blockquote>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bff9.png" alt="image-20230430220127202" /></p>
-<br>
+<p>特权模式具有以下权利:</p>
 <ul>
-<li>则 <code>IVT + Boot Data + DCD</code> 的大小为  <em><strong>加载区域大小</strong></em> 减去 <em><strong>偏移量</strong></em>  ( <code>4K Byte - 1K Byte = 3K Byte</code> )</li>
+<li>MRS（把状态寄存器的内容放到通用寄存器）；</li>
+<li>MSR（把通用寄存器的内容放到状态寄存器中）。</li>
 </ul>
+<br>
+<p>由于状态寄存器中的内容不能够改变，因此，要先把内容复制到通用寄存器中，然后修改通用寄存</p>
+<p>器中的内容，再把通用寄存器中的内容复制给状态寄存器中，即可完成“修改状态寄存器”的任务。</p>
 </blockquote>
 <br>
 </li>
 <li>
-<p>在 <code>IVT</code> 和 <code>Boot Data</code> 中存放着各个 部分的 <em><strong>链接地址</strong></em></p>
+<p>这几个运行模式可以通过软件进行任意切换，也可以通过中断或者异常来进行切换。(这几个模式除去 <em><strong>系统模式(SYS)</strong></em> 外 , 统称异常模式)</p>
+</li>
+<li>
+<p>大多数的程序都运行在 <em><strong>用户模式</strong></em> ，用户模式下是不能访问系统所有资源的，用户模式下需要借助 <em><strong>异常</strong></em> 来完成模式切换</p>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h5 id="3111用户模式user"><a class="markdownIt-Anchor" href="#3111用户模式user"></a> 3.1.1.1用户模式(USER)</h5>
 <blockquote>
-<p><em><strong>如 :</strong></em></p>
+<ul>
+<li>用户模式是用户程序的工作模式，它运行在操作系统的用户态，它没有权限去操作其它硬件资源，</li>
+<li>用户模式只能执行处理自己的数据，也<strong>不能切换到其它模式下</strong>，要想访问硬件资源或切换到其它模式只能通过软中断或产生异常。</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h5 id="3112-系统模式sys"><a class="markdownIt-Anchor" href="#3112-系统模式sys"></a> 3.1.1.2 系统模式(SYS)</h5>
+<ul>
+<li>系统模式是特权模式，不受用户模式的限制。</li>
+<li>用户模式和系统模式共用一套寄存器，操作系统在该模式下可以方便的访问用户模式的寄存器，</li>
+<li>而且操作系统的一些特权任务可以使用这个模式访问一些受控的资源。</li>
+</ul>
+<blockquote>
+<p><em><strong>说明</strong></em>：用户模式与系统模式两者使用相同的寄存器，都没有<code>SPSR</code>（<em>Saved Program</em></p>
+<p><em>Statement Register，已保存程序状态寄存器）</em>，但系统模式比用户模式有更高的权限，可</p>
+<p>以访问所有系统资源。</p>
+</blockquote>
+<br>
+<hr />
+<h5 id="3113-一般中断模式irq"><a class="markdownIt-Anchor" href="#3113-一般中断模式irq"></a> 3.1.1.3   <strong>一般中断模式</strong>(IRQ)</h5>
+<blockquote>
+<p>一般中断模式也叫 <em><strong>普通中断模式</strong></em>，用于处理一般的中断请求，通常在硬件产生中断信号之后自动进入该模式，该模式为特权模式，可以自由访问系统硬件资源。</p>
+</blockquote>
+<br>
+<hr />
+<h5 id="3114-快速中断模式fiq"><a class="markdownIt-Anchor" href="#3114-快速中断模式fiq"></a> 3.1.1.4  快速中断模式(FIQ)</h5>
+<blockquote>
+<ul>
+<li>快速中断模式是相对一般中断模式而言的，它是用来处理对时间要求比较紧急的中断请求，主要用于高速数据传输及通道处中。</li>
+<li>快中断有许多 <em><strong>（R8~R14）自己的专用寄存器</strong></em> ，发生中断时，使用自己的寄存器就避免了保存和恢复某些寄存器。</li>
+<li>如果异常中断处理程序中使用它自己的物理寄存器之外的其他寄存器，异常中断处理程序必须 <em><strong>保存和恢复</strong></em> 这些寄存器</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h5 id="3115-管理模式svs"><a class="markdownIt-Anchor" href="#3115-管理模式svs"></a> 3.1.1.5 管理模式(SVS)</h5>
+<p>管理模式是 <strong>CPU上电后默认模式</strong> ，因此，在该模式下主要用来做 <strong>系统的初始化</strong> ，</p>
+<p>软中断处理也在该模式下。当用户模式下的用户程序请求使用硬件资源时，<em><strong>通过软件中断进入该模式。</strong></em></p>
+<blockquote>
+<p><em><strong>说明：</strong></em>  系统复位或开机、软中断时进入到SVC模式下。</p>
+</blockquote>
+<br>
+<hr />
+<h5 id="3116-终止模式abt"><a class="markdownIt-Anchor" href="#3116-终止模式abt"></a> 3.1.1.6 终止模式(ABT)</h5>
+<p>终止模式用于支持虚拟内存或存储器保护，当用户程序访问<strong>非法地址</strong>，<strong>没有权限读取的内存地址时</strong>，会进入该模式，linux下编程时经常出现的<code>segment fault</code>通常都是在该模式下抛出返回的。</p>
+<br>
+<hr />
+<h5 id="3117-未定义模式und"><a class="markdownIt-Anchor" href="#3117-未定义模式und"></a> 3.1.1.7 未定义模式(UND)</h5>
+<blockquote>
+<p>未定义模式用于支持硬件协处理器的软件仿真，CPU在指令的译码阶段不能识别该指令操作时，会进入未定义模式。</p>
+</blockquote>
+<br>
+<hr />
+<h4 id="312-arm寄存器组"><a class="markdownIt-Anchor" href="#312-arm寄存器组"></a> 3.1.2 ARM寄存器组</h4>
+<blockquote>
+<p>ARM处理器共有<strong>37</strong>个寄存器。它包含<strong>31</strong>个通用寄存器和<strong>6</strong>个状态寄存器。</p>
+<blockquote>
+<ul>
+<li><em><strong>34</strong></em> 个通用寄存器，包括 <code>R15</code> 程序计数器(PC)，这些寄存器都是  <em><strong>32 位</strong></em> 的。</li>
+<li><em><strong>8 个</strong></em> 状态寄存器，包括 <code>CPSR</code> 和 <code>SPSR</code>。</li>
+<li><code>Hyp</code> 模式下独有一个 <code>ELR_Hyp</code> 寄存器。</li>
+</ul>
+</blockquote>
+</blockquote>
+<p><em><strong>Contex -A 寄存器组</strong></em></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfca90d2dde5777521d94.png" alt="image-20230427203917624" /></p>
+<blockquote>
 <ul>
 <li>
-<p><code>entry</code>  存放的是镜像第一行指令所在的位置 , 即 <em><strong>用户执行代码</strong></em> 的入口 , 可以看到箭头指向了 <code>Application</code></p>
+<p><em><strong>低等寄存器 (R0-R7)</strong></em></p>
+<ul>
+<li>
+<p>在所有运行模式下，未分组寄存器都指向<strong>同一个物理寄存器</strong>，他们未被系统用作特殊的用途。</p>
 </li>
 <li>
-<p><code>self</code> 存放的是<code>IVT</code> 复制到 <code>DDR</code> 中以后的 <em><strong>首地址</strong></em>  , 可以看到箭头目的地址指向 <code>IVT</code>的开头</p>
+<p>因此在中断或异常处理进行<strong>异常模式转换</strong>时，由于不同的处理器运行模式均使用相同的物理寄存器，所</p>
+<p>以可能造成<strong>寄存器中数据的破坏</strong>。</p>
 </li>
+</ul>
+<br>
+</li>
+<li>
+<p><em><strong>高等寄存器 (R8 -R14)</strong></em></p>
+<ul>
+<li>
+<p>高等寄存器 , 每次所访问的物理寄存器都<strong>与当前的处理器运行模式相关</strong>。</p>
+</li>
+<li>
+<p><code>R13</code>常用作存放 <em><strong>堆栈指针</strong></em> ，用户也可以使用其他寄存器存放堆栈指针，但在<code>Thumb</code>指令集下，某些指令强制要求使用<code>R13</code>存放堆栈指针。</p>
+</li>
+<li>
+<p><code>R14</code>称为链接寄存器<code>（LR，Link Register）</code>，当执行子程序时，<code>R14</code>可得到<code>R15（PC）</code>的备份，执</p>
+<p>行完子程序后，又将<code>R14</code>的值复制回<code>PC</code>，即使用<code>R14</code><em><strong>保存返回地址</strong></em>。</p>
+<blockquote>
+<p><em><strong>例 :</strong></em>  将 <code>R14(LR)</code>中的值赋给 <code>R15(PC)</code>即可完成子函数返回</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV PC, LR ;寄存器 LR 中的值赋值给 PC，实现跳转</span><br></pre></td></tr></table></figure>
+<p>或者以在子函数的入口出将 <em><strong>LR 入栈</strong></em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PUSH &#123;LR&#125; ;将 LR 寄存器压栈</span><br><span class="line"></span><br><span class="line">;在子函数最后出栈即可</span><br><span class="line">POP &#123;PC&#125;  ;@将上面压栈的 LR 寄存器数据出栈给 PC 寄存器，严格意义上来讲应该是将@LR-4 赋给 PC(因为是3级流水线)</span><br></pre></td></tr></table></figure>
+<br>
+</blockquote>
+</li>
+<li>
+<p>寄存器<code>R15</code>用作程序计数器（PC），在<code>ARM</code>状态下，<em><strong>位[1:0]为0</strong></em>，<em><strong>位[31:2]用于保存PC</strong></em>；在<code>Thumb</code>状态下,<em><strong>位[0]为0</strong></em>，<em><strong>位[31:1]用于保存PC</strong></em>。</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>各个模式的寄存器</strong></em></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfcb00d2dde57775234c9.png" alt="image-20230427204254828" /></p>
+<blockquote>
+<ul>
+<li>
+<p>浅色字体的是与 User 模式所 <em><strong>共有</strong></em> 的寄存器，蓝绿色背景的是各个模式所 <em><strong>独有</strong></em> 的寄存器。</p>
+</li>
+<li>
+<p>在所有的模式中，低寄存器组 <em><strong>(R0~R7)</strong></em> 是共享同一组物理寄存器的 , 一些高寄存器组在不同的模式有自己独有的寄存器，比如 <code>FIQ</code> 模式下 <code>R8~R14</code> 是独立的物理寄存器。</p>
+<blockquote>
+<ul>
+<li>假如某个程序在 <code>FIQ</code> 模式下访问 <code>R13</code> 寄存器，那它实际访问的是寄存器 <code>R13_fiq</code>，</li>
+<li>如果程序处于 <code>SVC</code> 模式下访问 <code>R13</code> 寄存器，那它实际访问的是寄存器 <code>R13_svc</code>。</li>
 </ul>
 </blockquote>
 </li>
@@ -2949,220 +2786,111 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
 </blockquote>
 <br>
 <hr />
-<h4 id="161-各部分起始地址"><a class="markdownIt-Anchor" href="#161-各部分起始地址"></a> 1.6.1 各部分起始地址</h4>
-<p>在裸机点灯的程序中, 链接的地址是 <code>0x87800000</code></p>
+<p><em><strong>程序状态寄存器 ( CPSR)</strong></em></p>
 <blockquote>
 <ul>
-<li>
-<p>即 用户执行代码 (<code>Application</code>) 的 起始地址  <code>entry = 0x87800000</code></p>
-</li>
-<li>
-<p>镜像向量表 ( <code>IVT</code>) 的起始地址 <code>self = 0x877FF400</code>  [ <code>0x87800000 - 3k byte = 0x877FF400</code> ]</p>
-</li>
-<li>
-<p><code>Boot</code> 启动数据 (<code>Boot Data</code>) 的起始地址 <code>boot data = 0x877FF420</code></p>
-<ul>
-<li>[ 此处是<code>IVT</code>的地址 加上 <code>IVT</code>的长度   <code>0x877FF400 + 32 Byte = 0x877FF420</code>]<br />
-<br></li>
-</ul>
-</li>
-<li>
-<p>配置信息 ( <code>DCD</code> ) 的起始地址 <code>dcd = 0x877FF42C</code></p>
-<ul>
-<li>[ 此处是  <code>Boot Data</code>  的地址 加上 <code>Boot data</code> 的长度  <code>0x877FF420 + 12 Byte = 0x877FF42C</code> ]</li>
-</ul>
-<br>
-</li>
-<li>
-<p>整个头部信息的 起始地址 <code>start = 0X877FF000</code></p>
-<ul>
-<li>[ 此处是  IVT 的起始地址 减去 1K Byte 的偏移量  <code>0x877FF400 - 1K Byte = 0X877FF000</code> ]</li>
-</ul>
-<br>
-</li>
+<li>除了<code>User</code> 和 <code>Sys</code> 这两个模式 , 其他7个模式都配备 一个备份程序状态寄存器 ( <code>SPSR</code>)</li>
+<li>当特定异常中断发生时，<code>SPSR</code> 寄存器用来保存当前程序状态寄存器(<code>CPSR</code>)的值，当异常退出以后可以用 SPSR 中保存的值来恢复 <code>CPSR</code></li>
 </ul>
 </blockquote>
 <br>
-<hr />
-<h4 id="162-镜像向量表"><a class="markdownIt-Anchor" href="#162-镜像向量表"></a> 1.6.2  镜像向量表</h4>
-<p>镜像向量表 ( <code>IVT</code> ) 存放了 <em><strong>8条</strong></em> 信息 ,  每条信息大小都是 <em><strong>32位</strong></em></p>
-<br>
-<p><em><strong>IVT 存放的内容:</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394c033.png" alt="image-20230501144049011" /></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c053.png" alt="image-20230501144104357" /></p>
-<br>
-<p><em><strong>header 存放格式:</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c081.png" alt="image-20230501144355924" /></p>
-<ul>
-<li><code>Tag</code> 为一个字节长度，值固定为 <code>0XD1</code></li>
-<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <code>IVT</code>的 <em><strong>长度信息</strong></em>  , IVT 长度固定为32字节 (  <code>0x0020</code> ) , 则<code>Length = 0x2000</code></li>
-<li><code>Version</code>  为单字节字段 , 值为 <code>0x40</code> 或 <code>0x41</code></li>
-</ul>
-<br>
-<hr />
-<h4 id="163-boot-data"><a class="markdownIt-Anchor" href="#163-boot-data"></a> 1.6.3  Boot Data</h4>
-<p><code>Boot Data</code> 存放了 <em><strong>3条</strong></em> 信息 ,  每条信息大小都是 <em><strong>32位</strong></em></p>
-<br>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0bc.png" alt="image-20230501145200799" /></p>
-<ul>
-<li><code>start</code>  存放的是整个头部信息的存放地址 , 包含偏移量</li>
-<li><code>length</code> 存放的是整个镜像 文件的大小</li>
-<li><code>plugin</code> 插件</li>
-</ul>
-<br>
-<hr />
-<h4 id="164-dcd数据"><a class="markdownIt-Anchor" href="#164-dcd数据"></a> 1.6.4  DCD数据</h4>
+<p><strong>CPSR 寄存器结构如图所示:</strong></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfcb90d2dde577752442a.png" alt="image-20230501160129286" /></p>
 <blockquote>
 <ul>
 <li>
-<p>DCD 存放 程序镜像中包含的各种配置信息 ( 即 <code>IMX6ULL</code> <em><strong>寄存器地址</strong></em> 和对应 <em><strong>配置信息</strong></em> 的集合 )</p>
+<p><strong>N(bit31)</strong>：当两个补码表示的 有符号整数运算的时候，<code>N=1</code> 表示运算对的结果为 <em><strong>负数</strong></em> ，<code>N=0</code>表示结果为  <em><strong>正数</strong></em></p>
 </li>
 <li>
-<p>因为复位芯片后 , <code>I.MX6U</code> 片内的所有寄存器都会复位为默认值，但是这些默认值往往不是我们想要的值 , 通过在<code>DCD</code>中添加这部分寄存器的配置信息 ( 如系统时钟 ) ,  <code>Boot ROM</code> 会使用这些寄存器地址和配置集合来初始化相应的寄存器</p>
+<p><strong>Z(bit30)</strong> :   <code>Z=1</code> 表示运算结果为 <em><strong>零</strong></em> ，<code>Z=0</code> 表示运算结果 <em><strong>不为零</strong></em> ，对于 <code>CMP</code> 指令，<code>Z=1</code> 表示进行比较的两个数 <em><strong>大小相等</strong></em></p>
 </li>
 <li>
-<p>DCD 区域不能超过 1768Byte</p>
+<p><strong>C(bit29)</strong>：</p>
+<blockquote>
+<ul>
+<li>在加法指令中，当结果产生了 <em><strong>进位</strong></em> ，则 <code>C=1</code>，表示无符号数运算发生上溢，其它情况下 <code>C=0</code>。</li>
+<li>在减法指令中，当运算中发生 <em><strong>借位</strong></em> ，则 <code>C=0</code>，表示无符号数运算发生下溢，其它情况下 C=1。</li>
+<li>对于包含  <em><strong>移位操作</strong></em> 的非加/减法运算指令，C 中包含最后一次溢出的位的数值，对于其它非加/减运算指令，C 位的值通常不受影响。</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><strong>V(bit28)</strong>  :  对于加/减法运算指令，当操作数和运算结果表示为二进制的补码表示的带符号数时，<code>V=1</code> 表示 <em><strong>符号位溢出</strong></em> ，通常其他位不影响 V 位。</p>
+</li>
+<li>
+<p><strong>Q(bit27)</strong> :  仅 <code>ARM v5TE_J</code> 架构支持，表示饱和状态，<code>Q=1</code> 表示累积饱和，<code>Q=0</code> 表示累积不饱和</p>
+</li>
+<li>
+<p><strong>IT[1:0] (bit26:25)</strong> : 和 <code>IT[7:2](bit15:bit10)</code>一起组成 <code>IT[7:0]</code>，作为 <code>IF-THEN</code> 指令执行状态。</p>
+</li>
+<li>
+<p><strong>J(bit24)</strong> :  仅 <code>ARM_v5TE-J</code> 架构支持，<code>J=1</code> 表示处于 <code>Jazelle</code> 状态，此位通常和 <code>T(bit5)</code>位一起表示当前所使用的指令集</p>
+<blockquote>
+<p><em><strong>如下所示 :</strong></em></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfcc50d2dde5777524e64.png" alt="image-20230501160804819" /></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfccd0d2dde577752569d.png" alt="image-20230501160815446" /></p>
+</blockquote>
+</li>
+<li>
+<p><strong>GE[3:0] (bit19:16)</strong>：<code>SIMD</code> 指令有效，大于或等于。</p>
+</li>
+<li>
+<p><strong>IT[7:2] (bit15:10)</strong> ： 参考 <code>IT[1:0]</code></p>
+</li>
+<li>
+<p><strong>E(bit9)</strong> ： 大小端控制位，<code>E=1</code> 表示 <em><strong>大端模式</strong></em> ，<code>E=0</code> 表示 <em><strong>小端模式</strong></em></p>
+</li>
+<li>
+<p><strong>A(bit8)</strong> ： 禁止异步中断位，<code>A=1</code> 表示禁止异步中断。</p>
+</li>
+<li>
+<p><strong>I(bit7)</strong>  ：  <code>I=1</code> 禁止 IRQ，<code>I=0</code> 使能 IRQ</p>
+</li>
+<li>
+<p><strong>F(bit6)</strong> :  <code>F=1</code> 禁止 FIQ，<code>F=0</code> 使能 FIQ</p>
+</li>
+<li>
+<p><strong>T(bit5)</strong> :  控制指令执行状态，表明本指令是 <code>ARM</code> 指令还是 <code>Thumb</code> 指令，通常和 <code>J(bit24)</code>一起表明指令类型，参考 <code>J(bit24)</code>位。</p>
+</li>
+<li>
+<p><strong>M[4:0]</strong>  :  处理器模式控制位</p>
+<blockquote>
+<p><strong>具体模式如下所示</strong> :</p>
+<p><img src="https://pic2.imgdb.cn/item/645cfcd60d2dde57775261b6.png" alt="image-20230501161303446" /></p>
+</blockquote>
 </li>
 </ul>
 </blockquote>
+<hr />
+<h4 id="313-中断系统"><a class="markdownIt-Anchor" href="#313-中断系统"></a> 3.1.3 中断系统</h4>
+<p><em><strong>中断向量表</strong></em></p>
+<p><img src="https://pic2.imgdb.cn/item/645cfcea0d2dde57775277a0.png" alt="image-20230506205800419" /></p>
 <br>
-<p><em><strong>DCD格式 :</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0da.png" alt="image-20230501151356227" /></p>
-<br>
-<p><em><strong>Header格式</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0f4.png" alt="image-20230501151456739" /></p>
-<ul>
-<li><code>Tag</code> 是单字节，固定为 <code>0XD2</code></li>
-<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <code>DCD</code>的 <em><strong>长度信息</strong></em></li>
-<li><code>Version</code> 为单字节 ,  固定为<code>0x41</code></li>
-</ul>
-<br>
-<p><em><strong>CMD 格式:</strong></em></p>
 <blockquote>
-<p>CMD 包含 <em><strong>写数据命令</strong></em> 、<em><strong>检查数据命令</strong></em>、<em><strong>NOP命令</strong></em>、<em><strong>解锁命令</strong></em></p>
-<br>
-<p>其中 <em><strong>写数据命令</strong></em> 格式如下：</p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c128.png" alt="image-20230501152014456" /></p>
-<p><img src="https://pic.imgdb.cn/item/6479faadf024cca173f2471b.png" alt="image-20230501152025070" /></p>
-<ul>
-<li>Tag 是单字节，固定为 <code>0xCC</code></li>
-<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <em><strong>写入数据</strong></em> 的 <em><strong>长度信息</strong></em></li>
-<li><code>CMD</code> 是命令 , 包含<code>header</code></li>
-<li><code>Address</code> 是地址 ,  存放着写入数据的 <em><strong>目标地址</strong></em>  ( 即寄存器地址 )</li>
-<li><code>Value / Mask</code> 值或掩码 , 存放着前一个 地址 ( <code>Address</code>) 的数据值 ( 即寄存器值)</li>
-</ul>
-<br>
-<p><code>Parameter</code> 参数 的格式如下:</p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c14b.png" alt="image-20230501152610550" /></p>
-<ul>
-<li><code>Parameter</code> 为单字节数据</li>
-<li><code>bytes</code> 表示是目标位置宽度，单位为 <code>byte</code>，可以选择 1、2、和 4 字节</li>
-<li><code>flags</code> 是命令控制标志位</li>
-</ul>
+<p><code>Cortex-A</code> 内核 <code>CPU</code> 的所有外部中断 属于 <code>IRQ</code> 中断 , 当任意一个外部中断发生的时候都会触发 IRQ 中断</p>
 </blockquote>
+<p><em><strong>中断类型介绍:</strong></em></p>
+<ul>
+<li><em><strong>复位中断</strong></em> <code>(Rest)</code>，<code>CPU</code> 复位以后就会进入复位中断，我们可以在复位中断服务函数里面做一些初始化工作，比如初始化 <code>SP</code> 指针<code>DDR</code> 等等。</li>
+<li><em><strong>未定义指令中断</strong></em> <code>(Undefined Instruction)</code>，如果指令不能识别的话就会产生此中断</li>
+<li><em><strong>软中断</strong></em> <code>(Software Interrupt,SWI)</code>，由 <code>SWI</code> 指令引起的中断，<code>Linux</code> 的系统调用会用 <code>SWI</code>指令来引起软中断，通过软中断来陷入到内核空间。</li>
+<li><em><strong>指令预取中止中断</strong></em> <code>(Prefetch Abort)</code>，预取指令的出错的时候会产生此中断</li>
+<li><em><strong>数据访问中止中断</strong></em> <code>(Data Abort)</code>，访问数据出错的时候会产生此中断。</li>
+<li><em><strong>IRQ 中断</strong></em> <code>(IRQ Interrupt)</code>，外部中断，芯片内部的 <em><strong>外设中断</strong></em> 都会引起此中断的发生</li>
+<li><em><strong>FIQ 中断</strong></em> <code>(FIQ Interrupt)</code>，快速中断，如果需要快速处理中断的话就可以使用此中断。主要用于高速数据传输及通道处理中 , FIQ有 自己的专用寄存器<code>( R8 ~R14 )</code></li>
+</ul>
 <br>
-<p><em><strong>例:</strong></em></p>
-<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1a5.png" alt="image-20230501152843932" /></p>
-<hr />
-<h3 id="17-点灯gpio复用测试"><a class="markdownIt-Anchor" href="#17-点灯gpio复用测试"></a> 1.7 点灯(GPIO复用测试)</h3>
-<h4 id="171-启动文件starts"><a class="markdownIt-Anchor" href="#171-启动文件starts"></a> 1.7.1 启动文件(start.S)</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 定义全局入口符号</span><br><span class="line">.global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line"></span><br><span class="line">mrs r0, cpsr      // 将CPSr寄存器的值读到 r0 中</span><br><span class="line">bic r0, r0, #0x1f  // 0001 1111 将低5位清零</span><br><span class="line">orr r0, r0, #0x13  // 0001 0011 将 [M0 ~ M4]设置为SVC模式</span><br><span class="line">msr cpsr, r0      // 将r0 的值重新写回cpsr寄存器中</span><br><span class="line"></span><br><span class="line">ldr sp, =0x80200000  // Cortex -A 是FD满递减栈 , DDR的起始地址是0x80000000 , 栈空间 2MB</span><br><span class="line"></span><br><span class="line">b main             // 跳转main函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<br>
-<hr />
-<h4 id="172-源文件与头文件"><a class="markdownIt-Anchor" href="#172-源文件与头文件"></a> 1.7.2 源文件与头文件</h4>
-<p><em><strong>main.c &amp;&amp; led.c</strong></em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/******************************** main.c ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;led.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* @description : 短时间延时函数</span></span><br><span class="line"><span class="comment">* @param - n : 要延时循环次数(空操作循环次数，模式延时)</span></span><br><span class="line"><span class="comment">* @return : 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay_short</span><span class="params">(<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @description : 延时函数,在 396Mhz 的主频下延时时间大约为 1ms</span></span><br><span class="line"><span class="comment"> * @param - n : 要延时的 ms 数</span></span><br><span class="line"><span class="comment"> * @return : 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay</span><span class="params">(<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        delay_short(<span class="number">0x7ff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    led_init();</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        set_led_off();</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">        set_led_on();</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************** led.c ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;led.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_init</span> <span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* 使能时钟 */</span></span><br><span class="line">    CCM-&gt;CCGR1 = (<span class="number">3</span> &lt;&lt; <span class="number">26</span>) | (<span class="number">3</span> &lt;&lt; <span class="number">18</span>) ; <span class="comment">//使能GPIO1的时钟 和 SIM时钟 , 因为是烧录到SD卡的</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* IO复用为GPIO */</span></span><br><span class="line">    SW_MUX_GPIO1_IO03 = <span class="number">0x05</span>; </span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 电气属性设置 */</span></span><br><span class="line">    SW_PAD_GPIO1_IO03 = <span class="number">0x00001058</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* GPIO 设置为输出 */</span></span><br><span class="line">    GPIO1-&gt;GDIR  = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* GPIO初始化为低电平 */</span></span><br><span class="line">    GPIO1-&gt;DR = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_on</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO1-&gt;DR &amp;= ~(<span class="number">1</span> &lt;&lt; <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_off</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO1-&gt;DR |= (<span class="number">1</span> &lt;&lt; <span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-<p><em><strong>main.h $$ led.h</strong></em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/******************************** led.h ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __LED_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __LED_H</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_init</span> <span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_on</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_off</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************** main.h ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __MAIN_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __MAIN_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 外设寄存器组的基地址 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CCM_BASE					(0X020C4000)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GPIO1_BASE                  (0x0209C000)</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">/* </span></span><br><span class="line"><span class="comment">  * IOMUX 相关寄存器地址</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SW_MUX_GPIO1_IO03   *((volatile unsigned int *)0X020E0068)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SW_PAD_GPIO1_IO03   *((volatile unsigned int *)0X020E02F4)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * CCM寄存器结构体定义</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CACRR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CBCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CBCMR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCMR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCMR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CS1CDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CS2CDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CDCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CHSCCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR3;	</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_1[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CDHIPR;  </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_2[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CLPCR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CISR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CIMR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCOSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CGPR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR0;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR3;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR4;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR5;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR6;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_3[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CMEOR;	</span><br><span class="line">&#125; CCM_Type; </span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * GPIO寄存器结构体</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> DR;							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> GDIR; 							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> PSR;								</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ICR1; 							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ICR2; 							 </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> IMR;								 </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ISR;			</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> EDGE_SEL;  </span><br><span class="line">&#125;GPIO_Type;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 外设指针 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CCM					((CCM_Type *)CCM_BASE)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GPIO1				((GPIO_Type *)GPIO1_BASE)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<br>
-<hr />
-<h4 id="173-makefile"><a class="markdownIt-Anchor" href="#173-makefile"></a> 1.7.3 Makefile</h4>
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">CC =arm-linux-gnueabihf</span><br><span class="line">link :=-ld -Timx6ul.lds -o											 <span class="comment"># 使用链接脚本</span></span><br><span class="line">elf_bin :=-objcopy -O binary -S</span><br><span class="line">obj :=<span class="variable">$(<span class="built_in">subst</span> .S,.o,$(<span class="built_in">wildcard</span> *.S)</span>) <span class="variable">$(<span class="built_in">subst</span> .c,.o,$(<span class="built_in">wildcard</span> *.c)</span>)  <span class="comment">#将c文件和s文件替换成 o 文件</span></span><br><span class="line"></span><br><span class="line"><span class="section">ledc.bin: <span class="variable">$(obj)</span></span></span><br><span class="line">	<span class="variable">$(CC)</span><span class="variable">$(link)</span> ledc.elf <span class="variable">$^</span>              <span class="comment"># 链接</span></span><br><span class="line">	<span class="variable">$(CC)</span><span class="variable">$(elf_bin)</span> ledc.elf <span class="variable">$@</span>			  <span class="comment"># 格式转换</span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span>-gcc -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>  <span class="comment"># -Wall表示显示编译的时候的所有警告 </span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o:%.S</span></span><br><span class="line">	<span class="variable">$(CC)</span>-gcc -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>  <span class="comment"># -nostdilib表示不链接系统标准启动文件和库文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm *.o *.bin *.elf</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-<br>
-<hr />
-<h4 id="174-链接脚本"><a class="markdownIt-Anchor" href="#174-链接脚本"></a> 1.7.4 链接脚本</h4>
-<figure class="highlight roboconf"><table><tr><td class="code"><pre><span class="line">SECTIONS&#123;</span><br><span class="line">    . = 0<span class="attribute">X87800000;</span></span><br><span class="line"><span class="attribute">    .text</span> :</span><br><span class="line">    &#123;</span><br><span class="line">        start<span class="variable">.o</span></span><br><span class="line">        *(<span class="variable">.text</span>) </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">.rodata</span> ALIGN(4) : &#123;*(<span class="variable">.rodata</span>*)&#125;</span><br><span class="line">    <span class="variable">.data</span> ALIGN(4)   : &#123; *(<span class="variable">.data</span>) &#125;</span><br><span class="line">     __bss_start = .;</span><br><span class="line">     .<span class="attribute">bss ALIGN(4)</span>  : &#123; *(<span class="variable">.bss</span>)  *(COMMON) &#125;</span><br><span class="line">     __bss_end = .;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><em><strong>GIC中断控制器 :</strong></em></p>
 <blockquote>
 <ul>
-<li>使用关键字 <code>SECTIONS</code> , 描述输出文件的内存布局</li>
-<li><code>.</code>  是 <em><strong>定位计数器</strong></em> , 其值表示以其为地址开始 , 这里是以 <code>0x87800000</code> 为起始地址</li>
-<li><code>.text</code> <code>.rodata</code> <code>.data</code> <code>. bss</code> 分别是 <em><strong>代码段</strong></em> 、<em><strong>只读数据段</strong></em>、<em><strong>数据段</strong></em>、<em><strong>bss段</strong></em></li>
-<li>这几个段名冒号后面的 <code>ALIGN（4）</code> 表示以 <em><strong>四字节对齐</strong></em>  , 大括号里面表示输入文件 ( 即将什么文件 放入哪一段)</li>
-<li><code>__bss_start</code> 和  <code>__bss_end</code> 相当于两个变量  , 其值均为定位符 <code>.</code> , 分别报存了 <code>bss</code>段 的起始地址 和 结束地址 , 方便对<code>bss</code>段进行清零</li>
-</ul>
-</blockquote>
-<br>
-<hr />
-<h3 id="18-时钟树"><a class="markdownIt-Anchor" href="#18-时钟树"></a> 1.8 时钟树</h3>
-<br>
-<blockquote>
+<li>GIC中断控制器 用于接收到外部中断信号后 , 进行处理最终 通过 <code>VFIQ</code> 、<code>VIRQ</code>、<code>FIQ</code>、<code>IRQ</code> 四个信号报给<code>ARM</code>内核</li>
+<li>GIC 将众多的 <em><strong>中断源</strong></em> 分为分为三类：
 <ul>
-<li>
-<p>时钟树由三部分组成：<strong>时钟切换控制器，根时钟产生器，系统时钟</strong></p>
-<ul>
-<li>
-<p><em><strong>时钟切换控制器:</strong></em>  用来将外部晶振进行倍频，以实现稳定且高频的时钟信号。</p>
-</li>
-<li>
-<p><em><strong>根时钟产生器:</strong></em>  在时钟切换控制器配置完成之后的输出时钟就成了根时钟产生器的时钟源，在根时钟产生器中，经过寄存器配置之后，就成为了外设时钟的时钟源</p>
-</li>
+<li><code>SPI(Shared Peripheral Interrupt)</code><em><strong>共享中断</strong></em> ， 这是所有核共享的中断 ， 这些中断所有的<code>Core</code>都可以处理 ， 不限定特定<code>core</code></li>
+<li><code>PPI(Private Peripheral Interrupt)</code>，<em><strong>私有中断</strong></em>，每个核有自己独有的中断。这些独有的中断需要指定的核心进行处理</li>
+<li><code>SGI(Software-generated Interrupt)</code>，<em><strong>软件中断</strong></em>，由软件触发引起的中断，通过向寄存器<code>GICD_SGIR</code> 写入数据来触发，系统会使用 <code>SGI</code> 中断来完成  <em><strong>多核</strong></em>  之间的通信。</li>
 </ul>
 </li>
-<li>
-<p><strong>一个外设的时钟信号的产生途径</strong>：晶振向芯片输入时钟信号，信号进入时钟切换控制器，经过用户配置，产生<code>PLL</code>时钟信号，该信号进入根时钟产生步骤，经过分频或倍频，最终成为系统某个外设的时钟信号。</p>
-</li>
-</ul>
-<br>
-</blockquote>
-<p><em><strong>主时钟生成</strong></em></p>
-<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1b3.png" alt="image-20230505192304352" style="zoom:150%;" />
-<br>
-<blockquote>
-<ul>
-<li>
-<p><code>ARM_PLL（PLL1）</code>，此路 <code>PLL</code> 是供 <code>ARM</code> 内核使用的，<code>ARM</code> 内核时钟就是由此 <code>PLL</code>生成的，此 <code>PLL</code> 通过编程的方式最高可倍频到 <code>1.3GHz</code></p>
-</li>
-<li>
-<p><code>528_PLL(PLL2)</code>，此路 <code>PLL</code> 也叫做 <code>System_PLL</code>，此路 <code>PLL</code> 是固定的 22 倍频 , 即<code>528MHZ</code></p>
-<ul>
-<li>此PLL 有四路PFD : <code>PLL2_PFD0</code>、<code>PLL2_PFD1</code>、<code>PLL2_PFD2</code>、<code>PLL2_PFD3</code> ， 这些<code>PFD</code>以<code>PLL</code>为基础，经过不同的分频系数产生不同频率的时钟</li>
-<li>官方推荐配置参数<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1eb.png" alt="image-20230505211259613" /></li>
-</ul>
-</li>
-<li>
-<p><code>USB1_PLL(PLL3)</code>，此路 <code>PLL</code> 主要用于 <code>USB1PHY</code>， 此路 <code>PLL</code> 是固定的20倍频 ， 即<code>480MHZ</code></p>
-<ul>
-<li>此PLL 也有四路PFD ： <code>PLL3__PFD0</code>、<code>PLL3__PFD1</code>、 <code>PLL3__PFD2</code> 、<code>PLL3__PFD3</code></li>
-<li>官方推荐配置参数<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c246.png" alt="image-20230505212211255" /></li>
-</ul>
-</li>
-<li>
-<p><code>USB2_PLL(PLL7)</code> 主要用于 <code>USB2PHY</code> ，此路<code>PLL</code>固定为20倍频，因此也是<code>480MHz</code></p>
-</li>
-<li>
-<p><code>ENET_PLL(PLL6)</code> , 此路<code>PLL</code> 固定为  <code>20+5/6</code> 倍频 ,  即<code>480MHz</code></p>
-</li>
-<li>
-<p><code>VIDEO_PLL(PLL5)</code>  用于显示相关的外设 , <code>PLL</code> 的输出范围在 <code>650MHz~1300MHz</code> , 可选 <code>1/2/4/8/16</code> 分频</p>
-</li>
-<li>
-<p><code>AUDIO_PLL(PLL4)</code>  用于音频相关的外设 ,  <code>PLL</code> 的输出范围在 <code>650MHz~1300MHz</code> , 可选 <code>1/2/4</code> 分频</p>
-</li>
-</ul>
-<br>
-</blockquote>
-<br>
-<hr />
-<p><em><strong>时钟树</strong></em></p>
-<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c254.png" alt="image-20230505203255809" style="zoom: 150%;" />
-<br>
-<blockquote>
-<ul>
-<li>橙色梯形的是 <em><strong>选择器</strong></em> ，可以选择不同的<code>PLL</code>时钟作为 <em><strong>时钟源</strong></em></li>
-<li>矩形就是 <em><strong>分频器</strong></em>（2位，3位，6位）</li>
-<li>黄色高亮的就是用来配置 <em><strong>选择器</strong></em> 的各种 <em><strong>寄存器</strong></em></li>
-<li>红色字是用来配置 <em><strong>分频系数</strong></em> 的 , 就是配置 寄存器的某个几位&lt;&gt;</li>
 </ul>
 </blockquote>
 <br>
@@ -3170,12 +2898,12 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
 ]]></content>
       <categories>
         <category>学习记录</category>
+        <category>随记</category>
       </categories>
       <tags>
-        <tag>c语言</tag>
         <tag>学习</tag>
-        <tag>单片机</tag>
-        <tag>arm</tag>
+        <tag>驱动开发</tag>
+        <tag>随记</tag>
       </tags>
   </entry>
   <entry>
@@ -9293,6 +9021,610 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
       </tags>
   </entry>
   <entry>
+    <title>IMX6ULL学习笔记(一) —— 寄存器组</title>
+    <url>/2023/06/02/IMX6ULL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)%20%E2%80%94%E2%80%94%20%E5%AF%84%E5%AD%98%E5%99%A8%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="imx6ull-学习笔记"><a class="markdownIt-Anchor" href="#imx6ull-学习笔记"></a> IMX6ULL 学习笔记</h1>
+<br>
+<blockquote>
+<p><strong>version :</strong>    <em>v1.0</em>      <em>「2023.4.27」</em></p>
+<p><strong>author：</strong>  <em>Y.Z.T.</em></p>
+<p><strong>简介：</strong>   随记, 关于I.MX6ULL 系统SOC 的部分寄存器</p>
+</blockquote>
+<p><br> <span id="more"></span></p>
+<hr />
+<br>
+<h2 id="1️⃣-裸机"><a class="markdownIt-Anchor" href="#1️⃣-裸机"></a> 1️⃣ 裸机</h2>
+<blockquote>
+<p>简单了解原理</p>
+</blockquote>
+<h3 id="11-gun汇编"><a class="markdownIt-Anchor" href="#11-gun汇编"></a> 1.1 GUN汇编</h3>
+<h4 id="111-与arm汇编的伪操作差异"><a class="markdownIt-Anchor" href="#111-与arm汇编的伪操作差异"></a> 1.1.1 与<code>ARM</code>汇编的伪操作差异</h4>
+<p><img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9af.png" alt="image-20230430150223464" /></p>
+<br>
+<hr />
+<h4 id="112-常见gun-arm-伪操作指令"><a class="markdownIt-Anchor" href="#112-常见gun-arm-伪操作指令"></a> 1.1.2 常见<code>GUN ARM</code> 伪操作指令</h4>
+<img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9c0.png" alt="image-20230430150409583" style="zoom:150%;" />
+<blockquote>
+<p>补充数据传输指令</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca3f024cca17394b9d8.png" alt="image-20230428122910132" /></p>
+<br>
+<hr />
+<h4 id="113"><a class="markdownIt-Anchor" href="#113"></a> 1.1.3</h4>
+<blockquote>
+<p>在<code>GUN ARM</code> 汇编语言中 ,  标号<code>_start</code> 是汇编程序的入口 , 如果希望这个标号被其他文件引用 , 只需要在定义的地方使用 <code>.globa</code> 伪操作声明即可 ( <code>.globa</code>  表示定义一个全局标号 )</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.globa -start</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</blockquote>
+<br>
+<p><em><strong><code>.section</code> 伪操作</strong></em></p>
+<blockquote>
+<p>可以通过 <code>.section</code> 伪操作自定义一个段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.section &lt;section name&gt; &#123;,&quot;&lt;flags&gt;&quot;&#125;</span><br><span class="line"></span><br><span class="line">.section .mysection &quot;awx&quot;   @注释 : 定义一个可写、可执行的段</span><br><span class="line">.align 2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意在使用伪操作<code>.section</code>定义一个段时，每个段 <em><strong>以段名开始</strong></em> ，以 <em><strong>下一个段名或文件结尾</strong></em> 作为结束标记。</li>
+<li>在定义段名时，注意不要和系统预留的段名冲突，(如<code>.text</code>、<code>.data</code>、<code>.bss</code>、<code>.rodata</code> )</li>
+</ul>
+<br>
+<p><em><strong>系统预留的段名</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394b9ef.png" alt="image-20230430151811342" /></p>
+</blockquote>
+<br> 
+<hr />
+<h4 id="114-基本数据格式"><a class="markdownIt-Anchor" href="#114-基本数据格式"></a> 1.1.4 基本数据格式</h4>
+<blockquote>
+<p>在定义数据的过程中需要注意 :</p>
+<ul>
+<li><em><strong>二进制</strong></em> 数据通常以<code>0B</code>或<code>0b</code>开头</li>
+<li><em><strong>八进制</strong></em> 数据以<code>0</code>开头</li>
+<li><em><strong>十六进制</strong></em> 数据以<code>0x</code>开头</li>
+<li><em><strong>十进制</strong></em> 数据则以<code>非0</code>数字开头</li>
+<li><em><strong>负数</strong></em> 前面加  <code>-</code></li>
+<li><em><strong>取补</strong></em> 用 <code>~</code></li>
+<li><em><strong>不相等</strong></em> 用  <code>〈〉</code></li>
+<li>其他运算符号如<code>+、-、*、%、&lt;、&lt;&lt;、\&gt;、&gt;&gt;、|、&amp;、^、！、==、&gt;=、&amp;&amp;</code>与C语言语法相似</li>
+<li><em><strong>字符串常量</strong></em> 要用双引号 <code>&quot;&quot;</code> 括起来</li>
+<li>使用<code>.ascii</code>定义字符串时要自行在结尾加  <code>\0</code></li>
+<li><code>.string</code> 伪操作可以定义多个字符串</li>
+<li><code>.asciz</code> 伪操作可以定义一个以<code>NULL</code>字符结尾的字符串</li>
+<li>用<code>.rep</code>t  伪操作可以重复定义数据</li>
+<li>在<code>GNU ARM</code>汇编程序中经常使用小圆点  <code>.</code>  表示 <em><strong>当前指令的地址</strong></em></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.ascii &quot;hello\0&quot;</span><br><span class="line">.string &quot;hello&quot;, &quot;world!&quot;</span><br><span class="line">.asciz &quot;hello&quot;</span><br><span class="line">.rept 3 .byte 0x10 .endr</span><br></pre></td></tr></table></figure>
+</blockquote>
+<br>
+<hr />
+<h4 id="115-equ-伪操作"><a class="markdownIt-Anchor" href="#115-equ-伪操作"></a> 1.1.5  .equ 伪操作</h4>
+<blockquote>
+<p>使用 <em><strong>伪操作</strong></em> 定义浮点数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@标签: 命令</span><br><span class="line">f:</span><br><span class="line">.float 3.14</span><br><span class="line">.equ f,3.1415</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面通过使用<code>.float</code>伪操作定义一个浮点数<code>f</code>，并初始化为<code>3.14</code></li>
+<li>并通过<code>.equ</code>伪操作 将浮点数重新赋值成 <code>3.1415</code></li>
+</ul>
+</blockquote>
+<br>
+<blockquote>
+<p><code>.equ</code>伪操作除了给数据赋值，还可以把常量定义在代码段中，然后在代码中直接引用。类似C语言中的<code>＃define</code>宏定义</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.section .data</span><br><span class="line">.equ DELAY,100</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">.section .text</span><br><span class="line">...</span><br><span class="line">MOV R0,$DELAY</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</blockquote>
+<br>
+<hr />
+<h4 id="116-补充"><a class="markdownIt-Anchor" href="#116-补充"></a> 1.1.6 补充</h4>
+<p><code>stmdb</code>和<code>ldmia</code></p>
+<blockquote>
+<ul>
+<li><strong>stmdb和ldmia指令一般配对使用</strong></li>
+<li><strong>stmdb用于将寄存器压栈</strong></li>
+<li><strong>ldmia用于将寄存器弹出栈</strong></li>
+<li><strong>它们的作用是保存使用到的寄存器</strong></li>
+</ul>
+</blockquote>
+<br>
+<blockquote>
+<p>ARM指令的多数据传输（STM、LDM）中，提到：多寄存器的Load和Store指令分为2组：</p>
+<ul>
+<li>一组用于数据的存储与读取，对应于IA、IB、DA、DB，</li>
+<li>一组用于堆栈操作，对应于FD、ED、FA、EA，</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>STMIB</code>（地址先增而后完成操作）、<code>STMFA</code>（满递增堆栈）；<code>LDMIB</code>、<code>LDMED</code>；</li>
+<li><code>STMIA</code>（完成操作而后地址递增）、<code>STMEA</code>（空递增堆栈）；<code>LDMIA</code>、<code>LDMFD</code>；</li>
+<li><code>STMDB</code>（地址先减而后完成操作）、<code>STMFD</code>（满递减堆栈）；<code>LDMDB</code>、<code>LDMEA</code>；</li>
+<li><code>STMDA</code>（完成操作而后地址递减）、<code>STMED</code>（空递减堆栈）;<code>LDMDA</code>、<code>LDMFA</code>。</li>
+</ul>
+<br>
+<ul>
+<li><code>IA</code>模式表示：每次传送后地址<code>+4；(After Increase)</code></li>
+<li><code>DB</code>模式表示：每次传送前地址<code>-4；(Before Decrease)</code></li>
+</ul>
+<hr />
+<h3 id="12-io复用表"><a class="markdownIt-Anchor" href="#12-io复用表"></a> 1.2 IO复用表</h3>
+<blockquote>
+<p>在《imx6ull 中文参考手册》 199页</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394ba1c.png" alt="image-20230428162002702" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394ba4f.png" alt="image-20230428162114657" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394baa1.png" alt="image-20230428162132536" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bae9.png" alt="image-20230428162148167" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb03.png" alt="image-20230428162217127" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb38.png" alt="image-20230428162232673" /></p>
+<br>
+<blockquote>
+<p><em><strong>可以看见 :</strong></em></p>
+<ul>
+<li>GPIO1 有 32 个 IO</li>
+<li>GPIO2 有 22 个 IO</li>
+<li>GPIO3 有 29 个 IO</li>
+<li>GPIO4 有 29 个 IO</li>
+<li>GPIO5 有 12 个 IO</li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="13-复用为gpio时的寄存器"><a class="markdownIt-Anchor" href="#13-复用为gpio时的寄存器"></a> 1.3 复用为GPIO时的寄存器</h3>
+<h4 id="131-io复用功能和io电气属性"><a class="markdownIt-Anchor" href="#131-io复用功能和io电气属性"></a> 1.3.1  IO复用功能和IO电气属性</h4>
+<ul>
+<li>
+<p><code>SW_MUX_CTL_PAD_*</code>   : 配置IO口的复用功能</p>
+<blockquote>
+<p>以<code>GPIO1_IO1</code>举例:</p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb5b.png" alt="image-20230428164534841" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bb6d.png" alt="image-20230428164550307" /></p>
+<ul>
+<li>可以看到<code>GPIO1_IO01</code>可以复用为8种不同功能的IO</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><code>SW_PAD_CTL_PAD_*</code> : 配置IO口的电气属性</p>
+<blockquote>
+<p>还是以<code>GPIO1_IO00</code> 举例:</p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bba2.png" alt="image-20230428165738791" /></p>
+<ul>
+<li>用于配置<code>IO</code>的 上下拉电阻、IO速度、IO驱动能力、压摆率等电气属性</li>
+<li>一般主要设置 <em><strong>压摆率</strong></em> （SRE）、<em><strong>驱动能力</strong></em> （DSE）、<em><strong>速度</strong></em>  (SPEED )、<em><strong>上下拉</strong></em> （ PUS）、 <em><strong>开漏</strong></em> （ODE）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<br>
+<hr />
+<h4 id="132-复用为gpio时其他寄存器"><a class="markdownIt-Anchor" href="#132-复用为gpio时其他寄存器"></a> 1.3.2 复用为GPIO时其他寄存器</h4>
+<ul>
+<li><em><strong>DR寄存器:</strong></em>   数据寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO</li>
+<li>当 GPIO 被配置为 <em><strong>输出功能</strong></em>  以后 , 向指定的位写入数据那么相应的 IO 就会输出相应的高低电平 ( <em><strong>如 :</strong></em>  <code>GPIO1_IO00</code> 输出高电平,那么就应该设置 <code>GPIO1.DR=1</code>)</li>
+<li>当 GPIO 被配置为 <em><strong>输出功能</strong></em>  以后 ,  此寄存器就保存着对应 IO 的电平值 (<em><strong>如 :</strong></em>  当 <code>GPIO1_IO00</code> 这个引脚接地的话，那么 <code>GPIO1.DR</code> 的 <code>bit0</code> 就是 0)</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><em><strong>GDIR 寄存器</strong></em> : 方向寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO , 用来设置某个IO的工作方向</li>
+<li>如果要设置一个GPIO为输入 , 则对应的位设置为 <em><strong>0</strong></em> (<em><strong>如 :</strong></em> 要设置 <code>GPIO1_IO00</code> 为输入，那么 <code>GPIO1.GDIR=0</code>)</li>
+<li>如果要设置一个GPIO为输出 , 则对应的位设置为 <em><strong>1</strong></em></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><em><strong>PSR 寄存器 :</strong></em>   状态寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO , 获取对应<code>GPIO</code>的状态</li>
+<li>读取相应的位即可获取对应的 GPIO 的状态，也就是 GPIO 的高低电平值 ( 功能和 <em><strong>输入状态</strong></em> 下的 <code>DR</code> 寄存器一样。 )</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><em><strong>ICR1 和 ICR2寄存器</strong></em> :  中断控制寄存器</p>
+<ul>
+<li>
+<p>寄存器中的每两位对应一个IO ,  <code>ICR1</code>用于配置 <em><strong>低16个GPIO</strong></em>  <em>(IO0 ~ IO15)</em>  , ICR2 用于配置 <em><strong>高 16 个 GPIO</strong></em>  <em>( IO16~ IO31 )</em></p>
+</li>
+<li>
+<p>这两个位用来配置中断的触发方式</p>
+<blockquote>
+<p><em><strong>举例:</strong></em>   设置<code>GPIO1_IO15</code>为上升沿触发中断  ( <code>GPIO1.ICR1=2&lt;&lt;30</code> )</p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bbc7.png" alt="image-20230428173120968" /></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><em><strong>IMR  寄存器</strong></em> : 中断使能寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO , 用来控制 GPIO 的中断禁止和使能</li>
+<li>如果 <em><strong>使能</strong></em> 某个 GPIO 的中断，那么设置相应的位为 <em><strong>1</strong></em> ; ( <em><strong>如</strong></em>:  使能 <code>GPIO1_IO00</code> 的中断，那么就可以设置 <code>GPIO1.MIR=1</code>  )</li>
+<li><em><strong>禁止中断</strong></em> , 则设置相应的位 <em><strong>0</strong></em></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><em><strong>ISR 寄存器</strong></em> : 中断状态寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO , 用于判断<code>GPIO</code> 中断是否发生</li>
+<li>只要某个 GPIO 的中断发生 , 那么ISR中相应的位就会被 <em><strong>置1</strong></em></li>
+<li>在处理完中断之后 , 必须清除中断标志位</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><em><strong>EDGE_SEL 寄存器</strong></em> : 边沿选择寄存器
+<ul>
+<li>寄存器中的每一位对应一个IO , 用来设置边沿中断</li>
+<li>这个寄存器会覆盖 <code>ICR1</code> 和 <code>ICR2</code> 的设置</li>
+<li>如果相应的位被 <em><strong>置 1</strong></em>，那么就相当与设置了对应的 GPIO 是 <em><strong>上升沿和下降沿(双边沿)</strong></em> 触发</li>
+<li>( <em><strong>例如 :</strong></em>  设置 <code>GPIO1.EDGE_SEL=1</code>，那么就表示 <code>GPIO1_IO01</code> 是双边沿触中断 )</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr />
+<h3 id="14-ccm时钟控制寄存器-ccm_ccgrx"><a class="markdownIt-Anchor" href="#14-ccm时钟控制寄存器-ccm_ccgrx"></a> 1.4 CCM时钟控制寄存器 (CCM_CCGRx)</h3>
+<blockquote>
+<p><code>CCM_CCGRx</code> 寄存器 用于使能各个外设模块的时钟 ,  为<strong>每2位</strong>对应一个外设时钟</p>
+<p><em><strong>CGR值如下所示:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bbe4.png" alt="image-20230429161134535" /></p>
+</blockquote>
+<br>
+<hr />
+<h4 id="141-ccm_ccgr0"><a class="markdownIt-Anchor" href="#141-ccm_ccgr0"></a> 1.4.1  CCM_CCGR0</h4>
+<blockquote>
+<p>地址  : 0x 20C_4068H</p>
+<p><em><strong>使能方式 :</strong></em></p>
+<blockquote>
+<p><em><strong>以GPIO2的时钟为例</strong></em> ( CCM_CCGR0 = 3&lt;&lt;30 )</p>
+</blockquote>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc16.png" alt="image-20230429160800166" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc2a.png" alt="image-20230429160813754" /></p>
+<br>
+<hr />
+<h4 id="142-ccm_ccgr1"><a class="markdownIt-Anchor" href="#142-ccm_ccgr1"></a> 1.4.2  CCM_CCGR1</h4>
+<blockquote>
+<p>地址 :  <code>0x20C_406C</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bc54.png" alt="image-20230429161435561" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca4f024cca17394bca3.png" alt="image-20230429161400848" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bcc6.png" alt="image-20230429161502069" /></p>
+<br>
+<hr />
+<h4 id="143-ccm_ccgr2"><a class="markdownIt-Anchor" href="#143-ccm_ccgr2"></a> 1.4.3 CCM_CCGR2</h4>
+<blockquote>
+<p>地址 :  <code>0x 20C_4070</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd00.png" alt="image-20230429161625904" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd0e.png" alt="image-20230429161655183" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd55.png" alt="image-20230429161704139" /></p>
+<br>
+<hr />
+<h4 id="144-ccm_ccgr3"><a class="markdownIt-Anchor" href="#144-ccm_ccgr3"></a> 1.4.4  CCM_CCGR3</h4>
+<blockquote>
+<p>地址 <code>0x20C_4074</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bd6c.png" alt="image-20230429161831307" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bda8.png" alt="image-20230429161858939" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be0e.png" alt="image-20230429161908392" /></p>
+<br>
+<hr />
+<h4 id="145-ccm_ccgr4"><a class="markdownIt-Anchor" href="#145-ccm_ccgr4"></a> 1.4.5  CCM_CCGR4</h4>
+<blockquote>
+<p>地址 :  <code>0x20C_4078</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be2e.png" alt="image-20230429162005946" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be6e.png" alt="image-20230429162020687" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394be92.png" alt="image-20230429162029214" /></p>
+<br>
+<hr />
+<h4 id="146-ccm_ccgr5"><a class="markdownIt-Anchor" href="#146-ccm_ccgr5"></a> 1.4.6  CCM_CCGR5</h4>
+<blockquote>
+<p>地址 : <code>0x20C_407C</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394beb9.png" alt="image-20230429162152246" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394befe.png" alt="image-20230429162212873" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf17.png" alt="image-20230429162223164" /></p>
+<br>
+<hr />
+<h4 id="147-ccm_ccgr6"><a class="markdownIt-Anchor" href="#147-ccm_ccgr6"></a> 1.4.7  CCM_CCGR6</h4>
+<blockquote>
+<p>地址 : <code>0x20C_4080</code> H</p>
+</blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf77.png" alt="image-20230429162317538" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bf85.png" alt="image-20230429162341515" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bfb6.png" alt="image-20230429162350677" /></p>
+<br>
+<hr />
+<h3 id="15-io复用为gpio"><a class="markdownIt-Anchor" href="#15-io复用为gpio"></a> 1.5 IO复用为GPIO</h3>
+<p><em><strong>一般步骤:</strong></em></p>
+<ul>
+<li>使能 <code>GPIO</code> 对应的时钟 (<code>CCM_CCGRx</code> 寄存器)</li>
+<li>设置寄存器 <code>IOMUXC_SW_MUX_CTL_PAD_XX_XX</code>，设置 IO 的复用功能</li>
+<li>设置寄存器 <code>IOMUXC_SW_PAD_CTL_PAD_XX_XX</code>，设置 IO 的上下拉、速度等电气属性</li>
+<li>配置GPIO专属寄存器 , 配置GPIO的 <em><strong>输入输出</strong></em> 、<em><strong>是否使用中断</strong></em> 等 （<code>DR</code> 、<code>GDIR</code>、<code>ICR</code>等寄存器）</li>
+</ul>
+<br>
+<hr />
+<h3 id="16-可执行文件"><a class="markdownIt-Anchor" href="#16-可执行文件"></a> 1.6  可执行文件</h3>
+<blockquote>
+<p>将裸机的汇编点灯程序编译成可执行文件 <code>.bin</code> , 需要在<code>.bin</code> 文件前面添加 <em><strong>头部信息</strong></em></p>
+<p>包括 <em><strong>镜像向量表</strong></em> ( <code>IVT</code>) 、<em><strong>Boot启动数据</strong></em> （<code>Boot data</code> ）、 <em><strong>配置信息</strong></em> （<code>DCD</code>）等 ， 后面才是 <em><strong>用户可执行代码</strong></em>   （ <code>Application</code>）</p>
+</blockquote>
+<br>
+<p><em><strong>如下所示:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bfd6.png" alt="image-20230430215216894" /></p>
+<blockquote>
+<ul>
+<li>
+<p>不同引导设备的 <em><strong>偏移量</strong></em> 与 加载区域大小 ( 即 <em><strong>头部信息</strong></em>)</p>
+<blockquote>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394bff9.png" alt="image-20230430220127202" /></p>
+<br>
+<ul>
+<li>则 <code>IVT + Boot Data + DCD</code> 的大小为  <em><strong>加载区域大小</strong></em> 减去 <em><strong>偏移量</strong></em>  ( <code>4K Byte - 1K Byte = 3K Byte</code> )</li>
+</ul>
+</blockquote>
+<br>
+</li>
+<li>
+<p>在 <code>IVT</code> 和 <code>Boot Data</code> 中存放着各个 部分的 <em><strong>链接地址</strong></em></p>
+<blockquote>
+<p><em><strong>如 :</strong></em></p>
+<ul>
+<li>
+<p><code>entry</code>  存放的是镜像第一行指令所在的位置 , 即 <em><strong>用户执行代码</strong></em> 的入口 , 可以看到箭头指向了 <code>Application</code></p>
+</li>
+<li>
+<p><code>self</code> 存放的是<code>IVT</code> 复制到 <code>DDR</code> 中以后的 <em><strong>首地址</strong></em>  , 可以看到箭头目的地址指向 <code>IVT</code>的开头</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h4 id="161-各部分起始地址"><a class="markdownIt-Anchor" href="#161-各部分起始地址"></a> 1.6.1 各部分起始地址</h4>
+<p>在裸机点灯的程序中, 链接的地址是 <code>0x87800000</code></p>
+<blockquote>
+<ul>
+<li>
+<p>即 用户执行代码 (<code>Application</code>) 的 起始地址  <code>entry = 0x87800000</code></p>
+</li>
+<li>
+<p>镜像向量表 ( <code>IVT</code>) 的起始地址 <code>self = 0x877FF400</code>  [ <code>0x87800000 - 3k byte = 0x877FF400</code> ]</p>
+</li>
+<li>
+<p><code>Boot</code> 启动数据 (<code>Boot Data</code>) 的起始地址 <code>boot data = 0x877FF420</code></p>
+<ul>
+<li>[ 此处是<code>IVT</code>的地址 加上 <code>IVT</code>的长度   <code>0x877FF400 + 32 Byte = 0x877FF420</code>]<br />
+<br></li>
+</ul>
+</li>
+<li>
+<p>配置信息 ( <code>DCD</code> ) 的起始地址 <code>dcd = 0x877FF42C</code></p>
+<ul>
+<li>[ 此处是  <code>Boot Data</code>  的地址 加上 <code>Boot data</code> 的长度  <code>0x877FF420 + 12 Byte = 0x877FF42C</code> ]</li>
+</ul>
+<br>
+</li>
+<li>
+<p>整个头部信息的 起始地址 <code>start = 0X877FF000</code></p>
+<ul>
+<li>[ 此处是  IVT 的起始地址 减去 1K Byte 的偏移量  <code>0x877FF400 - 1K Byte = 0X877FF000</code> ]</li>
+</ul>
+<br>
+</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h4 id="162-镜像向量表"><a class="markdownIt-Anchor" href="#162-镜像向量表"></a> 1.6.2  镜像向量表</h4>
+<p>镜像向量表 ( <code>IVT</code> ) 存放了 <em><strong>8条</strong></em> 信息 ,  每条信息大小都是 <em><strong>32位</strong></em></p>
+<br>
+<p><em><strong>IVT 存放的内容:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca5f024cca17394c033.png" alt="image-20230501144049011" /></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c053.png" alt="image-20230501144104357" /></p>
+<br>
+<p><em><strong>header 存放格式:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c081.png" alt="image-20230501144355924" /></p>
+<ul>
+<li><code>Tag</code> 为一个字节长度，值固定为 <code>0XD1</code></li>
+<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <code>IVT</code>的 <em><strong>长度信息</strong></em>  , IVT 长度固定为32字节 (  <code>0x0020</code> ) , 则<code>Length = 0x2000</code></li>
+<li><code>Version</code>  为单字节字段 , 值为 <code>0x40</code> 或 <code>0x41</code></li>
+</ul>
+<br>
+<hr />
+<h4 id="163-boot-data"><a class="markdownIt-Anchor" href="#163-boot-data"></a> 1.6.3  Boot Data</h4>
+<p><code>Boot Data</code> 存放了 <em><strong>3条</strong></em> 信息 ,  每条信息大小都是 <em><strong>32位</strong></em></p>
+<br>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0bc.png" alt="image-20230501145200799" /></p>
+<ul>
+<li><code>start</code>  存放的是整个头部信息的存放地址 , 包含偏移量</li>
+<li><code>length</code> 存放的是整个镜像 文件的大小</li>
+<li><code>plugin</code> 插件</li>
+</ul>
+<br>
+<hr />
+<h4 id="164-dcd数据"><a class="markdownIt-Anchor" href="#164-dcd数据"></a> 1.6.4  DCD数据</h4>
+<blockquote>
+<ul>
+<li>
+<p>DCD 存放 程序镜像中包含的各种配置信息 ( 即 <code>IMX6ULL</code> <em><strong>寄存器地址</strong></em> 和对应 <em><strong>配置信息</strong></em> 的集合 )</p>
+</li>
+<li>
+<p>因为复位芯片后 , <code>I.MX6U</code> 片内的所有寄存器都会复位为默认值，但是这些默认值往往不是我们想要的值 , 通过在<code>DCD</code>中添加这部分寄存器的配置信息 ( 如系统时钟 ) ,  <code>Boot ROM</code> 会使用这些寄存器地址和配置集合来初始化相应的寄存器</p>
+</li>
+<li>
+<p>DCD 区域不能超过 1768Byte</p>
+</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>DCD格式 :</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0da.png" alt="image-20230501151356227" /></p>
+<br>
+<p><em><strong>Header格式</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c0f4.png" alt="image-20230501151456739" /></p>
+<ul>
+<li><code>Tag</code> 是单字节，固定为 <code>0XD2</code></li>
+<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <code>DCD</code>的 <em><strong>长度信息</strong></em></li>
+<li><code>Version</code> 为单字节 ,  固定为<code>0x41</code></li>
+</ul>
+<br>
+<p><em><strong>CMD 格式:</strong></em></p>
+<blockquote>
+<p>CMD 包含 <em><strong>写数据命令</strong></em> 、<em><strong>检查数据命令</strong></em>、<em><strong>NOP命令</strong></em>、<em><strong>解锁命令</strong></em></p>
+<br>
+<p>其中 <em><strong>写数据命令</strong></em> 格式如下：</p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c128.png" alt="image-20230501152014456" /></p>
+<p><img src="https://pic.imgdb.cn/item/6479faadf024cca173f2471b.png" alt="image-20230501152025070" /></p>
+<ul>
+<li>Tag 是单字节，固定为 <code>0xCC</code></li>
+<li><code>Length</code> 为 <em><strong>大端模式</strong></em> 的两字节字段 , 存放着 <em><strong>写入数据</strong></em> 的 <em><strong>长度信息</strong></em></li>
+<li><code>CMD</code> 是命令 , 包含<code>header</code></li>
+<li><code>Address</code> 是地址 ,  存放着写入数据的 <em><strong>目标地址</strong></em>  ( 即寄存器地址 )</li>
+<li><code>Value / Mask</code> 值或掩码 , 存放着前一个 地址 ( <code>Address</code>) 的数据值 ( 即寄存器值)</li>
+</ul>
+<br>
+<p><code>Parameter</code> 参数 的格式如下:</p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c14b.png" alt="image-20230501152610550" /></p>
+<ul>
+<li><code>Parameter</code> 为单字节数据</li>
+<li><code>bytes</code> 表示是目标位置宽度，单位为 <code>byte</code>，可以选择 1、2、和 4 字节</li>
+<li><code>flags</code> 是命令控制标志位</li>
+</ul>
+</blockquote>
+<br>
+<p><em><strong>例:</strong></em></p>
+<p><img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1a5.png" alt="image-20230501152843932" /></p>
+<hr />
+<h3 id="17-点灯gpio复用测试"><a class="markdownIt-Anchor" href="#17-点灯gpio复用测试"></a> 1.7 点灯(GPIO复用测试)</h3>
+<h4 id="171-启动文件starts"><a class="markdownIt-Anchor" href="#171-启动文件starts"></a> 1.7.1 启动文件(start.S)</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 定义全局入口符号</span><br><span class="line">.global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line"></span><br><span class="line">mrs r0, cpsr      // 将CPSr寄存器的值读到 r0 中</span><br><span class="line">bic r0, r0, #0x1f  // 0001 1111 将低5位清零</span><br><span class="line">orr r0, r0, #0x13  // 0001 0011 将 [M0 ~ M4]设置为SVC模式</span><br><span class="line">msr cpsr, r0      // 将r0 的值重新写回cpsr寄存器中</span><br><span class="line"></span><br><span class="line">ldr sp, =0x80200000  // Cortex -A 是FD满递减栈 , DDR的起始地址是0x80000000 , 栈空间 2MB</span><br><span class="line"></span><br><span class="line">b main             // 跳转main函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="172-源文件与头文件"><a class="markdownIt-Anchor" href="#172-源文件与头文件"></a> 1.7.2 源文件与头文件</h4>
+<p><em><strong>main.c &amp;&amp; led.c</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/******************************** main.c ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;led.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* @description : 短时间延时函数</span></span><br><span class="line"><span class="comment">* @param - n : 要延时循环次数(空操作循环次数，模式延时)</span></span><br><span class="line"><span class="comment">* @return : 无</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay_short</span><span class="params">(<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @description : 延时函数,在 396Mhz 的主频下延时时间大约为 1ms</span></span><br><span class="line"><span class="comment"> * @param - n : 要延时的 ms 数</span></span><br><span class="line"><span class="comment"> * @return : 无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">delay</span><span class="params">(<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        delay_short(<span class="number">0x7ff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    led_init();</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        set_led_off();</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line">        set_led_on();</span><br><span class="line">        delay(<span class="number">500</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************** led.c ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;led.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_init</span> <span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* 使能时钟 */</span></span><br><span class="line">    CCM-&gt;CCGR1 = (<span class="number">3</span> &lt;&lt; <span class="number">26</span>) | (<span class="number">3</span> &lt;&lt; <span class="number">18</span>) ; <span class="comment">//使能GPIO1的时钟 和 SIM时钟 , 因为是烧录到SD卡的</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* IO复用为GPIO */</span></span><br><span class="line">    SW_MUX_GPIO1_IO03 = <span class="number">0x05</span>; </span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 电气属性设置 */</span></span><br><span class="line">    SW_PAD_GPIO1_IO03 = <span class="number">0x00001058</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* GPIO 设置为输出 */</span></span><br><span class="line">    GPIO1-&gt;GDIR  = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* GPIO初始化为低电平 */</span></span><br><span class="line">    GPIO1-&gt;DR = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_on</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO1-&gt;DR &amp;= ~(<span class="number">1</span> &lt;&lt; <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_off</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO1-&gt;DR |= (<span class="number">1</span> &lt;&lt; <span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br>
+<p><em><strong>main.h $$ led.h</strong></em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/******************************** led.h ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __LED_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __LED_H</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">led_init</span> <span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_on</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">set_led_off</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************** main.h ******************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __MAIN_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __MAIN_H</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 外设寄存器组的基地址 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CCM_BASE					(0X020C4000)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GPIO1_BASE                  (0x0209C000)</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">/* </span></span><br><span class="line"><span class="comment">  * IOMUX 相关寄存器地址</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SW_MUX_GPIO1_IO03   *((volatile unsigned int *)0X020E0068)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SW_PAD_GPIO1_IO03   *((volatile unsigned int *)0X020E02F4)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * CCM寄存器结构体定义</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CACRR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CBCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CBCMR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCMR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCMR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CS1CDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CS2CDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CDCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CHSCCDR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CSCDR3;	</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_1[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CDHIPR;  </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_2[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CLPCR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CISR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CIMR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCOSR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CGPR;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR0;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR1;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR2;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR3;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR4;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR5;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CCGR6;</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> RESERVED_3[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> CMEOR;	</span><br><span class="line">&#125; CCM_Type; </span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * GPIO寄存器结构体</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> DR;							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> GDIR; 							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> PSR;								</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ICR1; 							</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ICR2; 							 </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> IMR;								 </span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> ISR;			</span><br><span class="line">	<span class="keyword">volatile</span> <span class="type">unsigned</span> <span class="type">int</span> EDGE_SEL;  </span><br><span class="line">&#125;GPIO_Type;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 外设指针 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CCM					((CCM_Type *)CCM_BASE)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GPIO1				((GPIO_Type *)GPIO1_BASE)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="173-makefile"><a class="markdownIt-Anchor" href="#173-makefile"></a> 1.7.3 Makefile</h4>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">CC =arm-linux-gnueabihf</span><br><span class="line">link :=-ld -Timx6ul.lds -o											 <span class="comment"># 使用链接脚本</span></span><br><span class="line">elf_bin :=-objcopy -O binary -S</span><br><span class="line">obj :=<span class="variable">$(<span class="built_in">subst</span> .S,.o,$(<span class="built_in">wildcard</span> *.S)</span>) <span class="variable">$(<span class="built_in">subst</span> .c,.o,$(<span class="built_in">wildcard</span> *.c)</span>)  <span class="comment">#将c文件和s文件替换成 o 文件</span></span><br><span class="line"></span><br><span class="line"><span class="section">ledc.bin: <span class="variable">$(obj)</span></span></span><br><span class="line">	<span class="variable">$(CC)</span><span class="variable">$(link)</span> ledc.elf <span class="variable">$^</span>              <span class="comment"># 链接</span></span><br><span class="line">	<span class="variable">$(CC)</span><span class="variable">$(elf_bin)</span> ledc.elf <span class="variable">$@</span>			  <span class="comment"># 格式转换</span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span>-gcc -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>  <span class="comment"># -Wall表示显示编译的时候的所有警告 </span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o:%.S</span></span><br><span class="line">	<span class="variable">$(CC)</span>-gcc -Wall -nostdlib -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span>  <span class="comment"># -nostdilib表示不链接系统标准启动文件和库文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm *.o *.bin *.elf</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+<br>
+<hr />
+<h4 id="174-链接脚本"><a class="markdownIt-Anchor" href="#174-链接脚本"></a> 1.7.4 链接脚本</h4>
+<figure class="highlight roboconf"><table><tr><td class="code"><pre><span class="line">SECTIONS&#123;</span><br><span class="line">    . = 0<span class="attribute">X87800000;</span></span><br><span class="line"><span class="attribute">    .text</span> :</span><br><span class="line">    &#123;</span><br><span class="line">        start<span class="variable">.o</span></span><br><span class="line">        *(<span class="variable">.text</span>) </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">.rodata</span> ALIGN(4) : &#123;*(<span class="variable">.rodata</span>*)&#125;</span><br><span class="line">    <span class="variable">.data</span> ALIGN(4)   : &#123; *(<span class="variable">.data</span>) &#125;</span><br><span class="line">     __bss_start = .;</span><br><span class="line">     .<span class="attribute">bss ALIGN(4)</span>  : &#123; *(<span class="variable">.bss</span>)  *(COMMON) &#125;</span><br><span class="line">     __bss_end = .;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>使用关键字 <code>SECTIONS</code> , 描述输出文件的内存布局</li>
+<li><code>.</code>  是 <em><strong>定位计数器</strong></em> , 其值表示以其为地址开始 , 这里是以 <code>0x87800000</code> 为起始地址</li>
+<li><code>.text</code> <code>.rodata</code> <code>.data</code> <code>. bss</code> 分别是 <em><strong>代码段</strong></em> 、<em><strong>只读数据段</strong></em>、<em><strong>数据段</strong></em>、<em><strong>bss段</strong></em></li>
+<li>这几个段名冒号后面的 <code>ALIGN（4）</code> 表示以 <em><strong>四字节对齐</strong></em>  , 大括号里面表示输入文件 ( 即将什么文件 放入哪一段)</li>
+<li><code>__bss_start</code> 和  <code>__bss_end</code> 相当于两个变量  , 其值均为定位符 <code>.</code> , 分别报存了 <code>bss</code>段 的起始地址 和 结束地址 , 方便对<code>bss</code>段进行清零</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+<h3 id="18-时钟树"><a class="markdownIt-Anchor" href="#18-时钟树"></a> 1.8 时钟树</h3>
+<br>
+<blockquote>
+<ul>
+<li>
+<p>时钟树由三部分组成：<strong>时钟切换控制器，根时钟产生器，系统时钟</strong></p>
+<ul>
+<li>
+<p><em><strong>时钟切换控制器:</strong></em>  用来将外部晶振进行倍频，以实现稳定且高频的时钟信号。</p>
+</li>
+<li>
+<p><em><strong>根时钟产生器:</strong></em>  在时钟切换控制器配置完成之后的输出时钟就成了根时钟产生器的时钟源，在根时钟产生器中，经过寄存器配置之后，就成为了外设时钟的时钟源</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>一个外设的时钟信号的产生途径</strong>：晶振向芯片输入时钟信号，信号进入时钟切换控制器，经过用户配置，产生<code>PLL</code>时钟信号，该信号进入根时钟产生步骤，经过分频或倍频，最终成为系统某个外设的时钟信号。</p>
+</li>
+</ul>
+<br>
+</blockquote>
+<p><em><strong>主时钟生成</strong></em></p>
+<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1b3.png" alt="image-20230505192304352" style="zoom:150%;" />
+<br>
+<blockquote>
+<ul>
+<li>
+<p><code>ARM_PLL（PLL1）</code>，此路 <code>PLL</code> 是供 <code>ARM</code> 内核使用的，<code>ARM</code> 内核时钟就是由此 <code>PLL</code>生成的，此 <code>PLL</code> 通过编程的方式最高可倍频到 <code>1.3GHz</code></p>
+</li>
+<li>
+<p><code>528_PLL(PLL2)</code>，此路 <code>PLL</code> 也叫做 <code>System_PLL</code>，此路 <code>PLL</code> 是固定的 22 倍频 , 即<code>528MHZ</code></p>
+<ul>
+<li>此PLL 有四路PFD : <code>PLL2_PFD0</code>、<code>PLL2_PFD1</code>、<code>PLL2_PFD2</code>、<code>PLL2_PFD3</code> ， 这些<code>PFD</code>以<code>PLL</code>为基础，经过不同的分频系数产生不同频率的时钟</li>
+<li>官方推荐配置参数<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c1eb.png" alt="image-20230505211259613" /></li>
+</ul>
+</li>
+<li>
+<p><code>USB1_PLL(PLL3)</code>，此路 <code>PLL</code> 主要用于 <code>USB1PHY</code>， 此路 <code>PLL</code> 是固定的20倍频 ， 即<code>480MHZ</code></p>
+<ul>
+<li>此PLL 也有四路PFD ： <code>PLL3__PFD0</code>、<code>PLL3__PFD1</code>、 <code>PLL3__PFD2</code> 、<code>PLL3__PFD3</code></li>
+<li>官方推荐配置参数<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c246.png" alt="image-20230505212211255" /></li>
+</ul>
+</li>
+<li>
+<p><code>USB2_PLL(PLL7)</code> 主要用于 <code>USB2PHY</code> ，此路<code>PLL</code>固定为20倍频，因此也是<code>480MHz</code></p>
+</li>
+<li>
+<p><code>ENET_PLL(PLL6)</code> , 此路<code>PLL</code> 固定为  <code>20+5/6</code> 倍频 ,  即<code>480MHz</code></p>
+</li>
+<li>
+<p><code>VIDEO_PLL(PLL5)</code>  用于显示相关的外设 , <code>PLL</code> 的输出范围在 <code>650MHz~1300MHz</code> , 可选 <code>1/2/4/8/16</code> 分频</p>
+</li>
+<li>
+<p><code>AUDIO_PLL(PLL4)</code>  用于音频相关的外设 ,  <code>PLL</code> 的输出范围在 <code>650MHz~1300MHz</code> , 可选 <code>1/2/4</code> 分频</p>
+</li>
+</ul>
+<br>
+</blockquote>
+<br>
+<hr />
+<p><em><strong>时钟树</strong></em></p>
+<img src="https://pic.imgdb.cn/item/64789ca6f024cca17394c254.png" alt="image-20230505203255809" style="zoom: 150%;" />
+<br>
+<blockquote>
+<ul>
+<li>橙色梯形的是 <em><strong>选择器</strong></em> ，可以选择不同的<code>PLL</code>时钟作为 <em><strong>时钟源</strong></em></li>
+<li>矩形就是 <em><strong>分频器</strong></em>（2位，3位，6位）</li>
+<li>黄色高亮的就是用来配置 <em><strong>选择器</strong></em> 的各种 <em><strong>寄存器</strong></em></li>
+<li>红色字是用来配置 <em><strong>分频系数</strong></em> 的 , 就是配置 寄存器的某个几位&lt;&gt;</li>
+</ul>
+</blockquote>
+<br>
+<hr />
+]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
+      <tags>
+        <tag>c语言</tag>
+        <tag>学习</tag>
+        <tag>单片机</tag>
+        <tag>arm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 学习笔记(一) —— 杂项</title>
     <url>/2023/05/12/Linux%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80)%20%E2%80%94%E2%80%94%20%E6%9D%82%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="linux学习笔记"><a class="markdownIt-Anchor" href="#linux学习笔记"></a> Linux学习笔记</h1>
@@ -9845,338 +10177,6 @@ S_c切换时间=\frac{T_s+T_4-T_5}{4}
 <p><em><strong>输出</strong></em></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">输入 1 到 4 之间的数字:</span><br><span class="line">你输入的数字为:</span><br><span class="line">3</span><br><span class="line">你选择了 3</span><br></pre></td></tr></table></figure>
 <br>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>学习</tag>
-        <tag>驱动开发</tag>
-        <tag>随记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 学习笔记 (二) —— Cortex -A 架构 、寄存器组与运行模式</title>
-    <url>/2023/05/12/Linux%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20(%E4%BA%8C)%20%E2%80%94%E2%80%94%20Cortex%20-A%20%E6%9E%B6%E6%9E%84%20%E3%80%81%E5%AF%84%E5%AD%98%E5%99%A8%E7%BB%84%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="linux学习笔记"><a class="markdownIt-Anchor" href="#linux学习笔记"></a> Linux学习笔记</h1>
-<br>
-<blockquote>
-<p><strong>version :</strong>    <em>v1.0</em>      <em>「2022.7.28」</em>   最后补充<br />
-<br><br />
-<strong>author：</strong>  <em>Y.Z.T.</em><br />
-<br><br />
-<br></p>
-<p><strong>简介：</strong> Linux学习笔记 , 写的比较乱 , 属于随记</p>
-</blockquote>
-<span id="more"></span>
-<br>
-<hr />
-<h2 id="3️⃣-cortex-a-架构"><a class="markdownIt-Anchor" href="#3️⃣-cortex-a-架构"></a> 3️⃣   Cortex -A 架构</h2>
-<h3 id="31"><a class="markdownIt-Anchor" href="#31"></a> 3.1</h3>
-<blockquote>
-<p>ARM指令集分两种,  <em><strong>Thumb指令集</strong></em>，<em><strong>ARM指令集</strong></em></p>
-<ul>
-<li><code>ARM</code>指令长度为32位，<code>Thumb</code>指令长度为16位。</li>
-<li>这种特点使得ARM既能执行16位指令，又能执行32位指令，从而增强了ARM内核的功能</li>
-</ul>
-</blockquote>
-<hr />
-<h4 id="310-arm三级流水线技术"><a class="markdownIt-Anchor" href="#310-arm三级流水线技术"></a> 3.1.0  ARM三级流水线技术</h4>
-<blockquote>
-<p><strong>ARM7</strong>处理器核使用了典型<strong>三级流水线的冯诺伊曼结构</strong></p>
-</blockquote>
-<p><em><strong>三级流水线技术</strong></em></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfc940d2dde577751f021.png" alt="image-20230427210653599" /></p>
-<br>
-<blockquote>
-<p>流水线使用三个阶段，因此指令分为三个阶段执行：</p>
-<ul>
-<li>取指（从存储器装载一条指令）</li>
-<li>译码（识别将要被执行的指令）</li>
-<li>执行（处理指令并将结果写回寄存器）</li>
-</ul>
-</blockquote>
-<br>
-<p><em><strong>为什么发送中断时 , 保存的<code>pc</code>地址是 ( PC - 4 )</strong></em></p>
-<ul>
-<li><code>R15(PC)</code> 寄存器 总是指向 <em><strong>“正在取指”</strong></em>  的指令，而不是指向 <em><strong>“正在执行”</strong></em> 的指令或正在“译码”的指令。</li>
-<li>一般来说，人们习惯性约定将 “ <em><strong>正在执行</strong></em>  的指令作为参考点” ，称之为当前第一条指令，因此 <em><strong>PC总是指向第三条指令</strong></em> 。</li>
-<li>当<mark>ARM状态</mark>时，每条指令为 <strong>4字节</strong> 长，所以<code>PC</code>始终指向该指令地址 <em><strong>加8字节</strong></em> 的地址，即： <em><strong>PC值=当前程序执行位置 + 8</strong></em></li>
-<li><em><strong>PC指向的是正在取指的地址（下一条指令）</strong></em> ，那么cpu正在 <em><strong>译指的指令地址是<code>PC-4</code></strong></em>  ,  即<code>PC</code>所 <em><strong>指向的地址</strong></em> 和现在所 <em><strong>执行的指令地址</strong></em> 相差8</li>
-<li>所以 当突然发生中断的时候，保存的是PC的地址 <code>PC-8+4 = PC-4</code> (下一条指令的地址）</li>
-</ul>
-<br>
-<hr />
-<h4 id="311-九种运行模式"><a class="markdownIt-Anchor" href="#311-九种运行模式"></a> 3.1.1 九种运行模式</h4>
-<p><img src="https://pic2.imgdb.cn/item/645cfc9d0d2dde577751fa34.png" alt="image-20230427200728000" /></p>
-<blockquote>
-<ul>
-<li>
-<p>除了 User(USR)用户模式以外，其它 8 种运行模式都是 <em><strong>特权模式</strong></em> 。</p>
-<blockquote>
-<p>特权模式具有以下权利:</p>
-<ul>
-<li>MRS（把状态寄存器的内容放到通用寄存器）；</li>
-<li>MSR（把通用寄存器的内容放到状态寄存器中）。</li>
-</ul>
-<br>
-<p>由于状态寄存器中的内容不能够改变，因此，要先把内容复制到通用寄存器中，然后修改通用寄存</p>
-<p>器中的内容，再把通用寄存器中的内容复制给状态寄存器中，即可完成“修改状态寄存器”的任务。</p>
-</blockquote>
-<br>
-</li>
-<li>
-<p>这几个运行模式可以通过软件进行任意切换，也可以通过中断或者异常来进行切换。(这几个模式除去 <em><strong>系统模式(SYS)</strong></em> 外 , 统称异常模式)</p>
-</li>
-<li>
-<p>大多数的程序都运行在 <em><strong>用户模式</strong></em> ，用户模式下是不能访问系统所有资源的，用户模式下需要借助 <em><strong>异常</strong></em> 来完成模式切换</p>
-</li>
-</ul>
-</blockquote>
-<br>
-<hr />
-<h5 id="3111用户模式user"><a class="markdownIt-Anchor" href="#3111用户模式user"></a> 3.1.1.1用户模式(USER)</h5>
-<blockquote>
-<ul>
-<li>用户模式是用户程序的工作模式，它运行在操作系统的用户态，它没有权限去操作其它硬件资源，</li>
-<li>用户模式只能执行处理自己的数据，也<strong>不能切换到其它模式下</strong>，要想访问硬件资源或切换到其它模式只能通过软中断或产生异常。</li>
-</ul>
-</blockquote>
-<br>
-<hr />
-<h5 id="3112-系统模式sys"><a class="markdownIt-Anchor" href="#3112-系统模式sys"></a> 3.1.1.2 系统模式(SYS)</h5>
-<ul>
-<li>系统模式是特权模式，不受用户模式的限制。</li>
-<li>用户模式和系统模式共用一套寄存器，操作系统在该模式下可以方便的访问用户模式的寄存器，</li>
-<li>而且操作系统的一些特权任务可以使用这个模式访问一些受控的资源。</li>
-</ul>
-<blockquote>
-<p><em><strong>说明</strong></em>：用户模式与系统模式两者使用相同的寄存器，都没有<code>SPSR</code>（<em>Saved Program</em></p>
-<p><em>Statement Register，已保存程序状态寄存器）</em>，但系统模式比用户模式有更高的权限，可</p>
-<p>以访问所有系统资源。</p>
-</blockquote>
-<br>
-<hr />
-<h5 id="3113-一般中断模式irq"><a class="markdownIt-Anchor" href="#3113-一般中断模式irq"></a> 3.1.1.3   <strong>一般中断模式</strong>(IRQ)</h5>
-<blockquote>
-<p>一般中断模式也叫 <em><strong>普通中断模式</strong></em>，用于处理一般的中断请求，通常在硬件产生中断信号之后自动进入该模式，该模式为特权模式，可以自由访问系统硬件资源。</p>
-</blockquote>
-<br>
-<hr />
-<h5 id="3114-快速中断模式fiq"><a class="markdownIt-Anchor" href="#3114-快速中断模式fiq"></a> 3.1.1.4  快速中断模式(FIQ)</h5>
-<blockquote>
-<ul>
-<li>快速中断模式是相对一般中断模式而言的，它是用来处理对时间要求比较紧急的中断请求，主要用于高速数据传输及通道处中。</li>
-<li>快中断有许多 <em><strong>（R8~R14）自己的专用寄存器</strong></em> ，发生中断时，使用自己的寄存器就避免了保存和恢复某些寄存器。</li>
-<li>如果异常中断处理程序中使用它自己的物理寄存器之外的其他寄存器，异常中断处理程序必须 <em><strong>保存和恢复</strong></em> 这些寄存器</li>
-</ul>
-</blockquote>
-<br>
-<hr />
-<h5 id="3115-管理模式svs"><a class="markdownIt-Anchor" href="#3115-管理模式svs"></a> 3.1.1.5 管理模式(SVS)</h5>
-<p>管理模式是 <strong>CPU上电后默认模式</strong> ，因此，在该模式下主要用来做 <strong>系统的初始化</strong> ，</p>
-<p>软中断处理也在该模式下。当用户模式下的用户程序请求使用硬件资源时，<em><strong>通过软件中断进入该模式。</strong></em></p>
-<blockquote>
-<p><em><strong>说明：</strong></em>  系统复位或开机、软中断时进入到SVC模式下。</p>
-</blockquote>
-<br>
-<hr />
-<h5 id="3116-终止模式abt"><a class="markdownIt-Anchor" href="#3116-终止模式abt"></a> 3.1.1.6 终止模式(ABT)</h5>
-<p>终止模式用于支持虚拟内存或存储器保护，当用户程序访问<strong>非法地址</strong>，<strong>没有权限读取的内存地址时</strong>，会进入该模式，linux下编程时经常出现的<code>segment fault</code>通常都是在该模式下抛出返回的。</p>
-<br>
-<hr />
-<h5 id="3117-未定义模式und"><a class="markdownIt-Anchor" href="#3117-未定义模式und"></a> 3.1.1.7 未定义模式(UND)</h5>
-<blockquote>
-<p>未定义模式用于支持硬件协处理器的软件仿真，CPU在指令的译码阶段不能识别该指令操作时，会进入未定义模式。</p>
-</blockquote>
-<br>
-<hr />
-<h4 id="312-arm寄存器组"><a class="markdownIt-Anchor" href="#312-arm寄存器组"></a> 3.1.2 ARM寄存器组</h4>
-<blockquote>
-<p>ARM处理器共有<strong>37</strong>个寄存器。它包含<strong>31</strong>个通用寄存器和<strong>6</strong>个状态寄存器。</p>
-<blockquote>
-<ul>
-<li><em><strong>34</strong></em> 个通用寄存器，包括 <code>R15</code> 程序计数器(PC)，这些寄存器都是  <em><strong>32 位</strong></em> 的。</li>
-<li><em><strong>8 个</strong></em> 状态寄存器，包括 <code>CPSR</code> 和 <code>SPSR</code>。</li>
-<li><code>Hyp</code> 模式下独有一个 <code>ELR_Hyp</code> 寄存器。</li>
-</ul>
-</blockquote>
-</blockquote>
-<p><em><strong>Contex -A 寄存器组</strong></em></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfca90d2dde5777521d94.png" alt="image-20230427203917624" /></p>
-<blockquote>
-<ul>
-<li>
-<p><em><strong>低等寄存器 (R0-R7)</strong></em></p>
-<ul>
-<li>
-<p>在所有运行模式下，未分组寄存器都指向<strong>同一个物理寄存器</strong>，他们未被系统用作特殊的用途。</p>
-</li>
-<li>
-<p>因此在中断或异常处理进行<strong>异常模式转换</strong>时，由于不同的处理器运行模式均使用相同的物理寄存器，所</p>
-<p>以可能造成<strong>寄存器中数据的破坏</strong>。</p>
-</li>
-</ul>
-<br>
-</li>
-<li>
-<p><em><strong>高等寄存器 (R8 -R14)</strong></em></p>
-<ul>
-<li>
-<p>高等寄存器 , 每次所访问的物理寄存器都<strong>与当前的处理器运行模式相关</strong>。</p>
-</li>
-<li>
-<p><code>R13</code>常用作存放 <em><strong>堆栈指针</strong></em> ，用户也可以使用其他寄存器存放堆栈指针，但在<code>Thumb</code>指令集下，某些指令强制要求使用<code>R13</code>存放堆栈指针。</p>
-</li>
-<li>
-<p><code>R14</code>称为链接寄存器<code>（LR，Link Register）</code>，当执行子程序时，<code>R14</code>可得到<code>R15（PC）</code>的备份，执</p>
-<p>行完子程序后，又将<code>R14</code>的值复制回<code>PC</code>，即使用<code>R14</code><em><strong>保存返回地址</strong></em>。</p>
-<blockquote>
-<p><em><strong>例 :</strong></em>  将 <code>R14(LR)</code>中的值赋给 <code>R15(PC)</code>即可完成子函数返回</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV PC, LR ;寄存器 LR 中的值赋值给 PC，实现跳转</span><br></pre></td></tr></table></figure>
-<p>或者以在子函数的入口出将 <em><strong>LR 入栈</strong></em></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PUSH &#123;LR&#125; ;将 LR 寄存器压栈</span><br><span class="line"></span><br><span class="line">;在子函数最后出栈即可</span><br><span class="line">POP &#123;PC&#125;  ;@将上面压栈的 LR 寄存器数据出栈给 PC 寄存器，严格意义上来讲应该是将@LR-4 赋给 PC(因为是3级流水线)</span><br></pre></td></tr></table></figure>
-<br>
-</blockquote>
-</li>
-<li>
-<p>寄存器<code>R15</code>用作程序计数器（PC），在<code>ARM</code>状态下，<em><strong>位[1:0]为0</strong></em>，<em><strong>位[31:2]用于保存PC</strong></em>；在<code>Thumb</code>状态下,<em><strong>位[0]为0</strong></em>，<em><strong>位[31:1]用于保存PC</strong></em>。</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<br>
-<p><em><strong>各个模式的寄存器</strong></em></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfcb00d2dde57775234c9.png" alt="image-20230427204254828" /></p>
-<blockquote>
-<ul>
-<li>
-<p>浅色字体的是与 User 模式所 <em><strong>共有</strong></em> 的寄存器，蓝绿色背景的是各个模式所 <em><strong>独有</strong></em> 的寄存器。</p>
-</li>
-<li>
-<p>在所有的模式中，低寄存器组 <em><strong>(R0~R7)</strong></em> 是共享同一组物理寄存器的 , 一些高寄存器组在不同的模式有自己独有的寄存器，比如 <code>FIQ</code> 模式下 <code>R8~R14</code> 是独立的物理寄存器。</p>
-<blockquote>
-<ul>
-<li>假如某个程序在 <code>FIQ</code> 模式下访问 <code>R13</code> 寄存器，那它实际访问的是寄存器 <code>R13_fiq</code>，</li>
-<li>如果程序处于 <code>SVC</code> 模式下访问 <code>R13</code> 寄存器，那它实际访问的是寄存器 <code>R13_svc</code>。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<br>
-<hr />
-<p><em><strong>程序状态寄存器 ( CPSR)</strong></em></p>
-<blockquote>
-<ul>
-<li>除了<code>User</code> 和 <code>Sys</code> 这两个模式 , 其他7个模式都配备 一个备份程序状态寄存器 ( <code>SPSR</code>)</li>
-<li>当特定异常中断发生时，<code>SPSR</code> 寄存器用来保存当前程序状态寄存器(<code>CPSR</code>)的值，当异常退出以后可以用 SPSR 中保存的值来恢复 <code>CPSR</code></li>
-</ul>
-</blockquote>
-<br>
-<p><strong>CPSR 寄存器结构如图所示:</strong></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfcb90d2dde577752442a.png" alt="image-20230501160129286" /></p>
-<blockquote>
-<ul>
-<li>
-<p><strong>N(bit31)</strong>：当两个补码表示的 有符号整数运算的时候，<code>N=1</code> 表示运算对的结果为 <em><strong>负数</strong></em> ，<code>N=0</code>表示结果为  <em><strong>正数</strong></em></p>
-</li>
-<li>
-<p><strong>Z(bit30)</strong> :   <code>Z=1</code> 表示运算结果为 <em><strong>零</strong></em> ，<code>Z=0</code> 表示运算结果 <em><strong>不为零</strong></em> ，对于 <code>CMP</code> 指令，<code>Z=1</code> 表示进行比较的两个数 <em><strong>大小相等</strong></em></p>
-</li>
-<li>
-<p><strong>C(bit29)</strong>：</p>
-<blockquote>
-<ul>
-<li>在加法指令中，当结果产生了 <em><strong>进位</strong></em> ，则 <code>C=1</code>，表示无符号数运算发生上溢，其它情况下 <code>C=0</code>。</li>
-<li>在减法指令中，当运算中发生 <em><strong>借位</strong></em> ，则 <code>C=0</code>，表示无符号数运算发生下溢，其它情况下 C=1。</li>
-<li>对于包含  <em><strong>移位操作</strong></em> 的非加/减法运算指令，C 中包含最后一次溢出的位的数值，对于其它非加/减运算指令，C 位的值通常不受影响。</li>
-</ul>
-</blockquote>
-</li>
-<li>
-<p><strong>V(bit28)</strong>  :  对于加/减法运算指令，当操作数和运算结果表示为二进制的补码表示的带符号数时，<code>V=1</code> 表示 <em><strong>符号位溢出</strong></em> ，通常其他位不影响 V 位。</p>
-</li>
-<li>
-<p><strong>Q(bit27)</strong> :  仅 <code>ARM v5TE_J</code> 架构支持，表示饱和状态，<code>Q=1</code> 表示累积饱和，<code>Q=0</code> 表示累积不饱和</p>
-</li>
-<li>
-<p><strong>IT[1:0] (bit26:25)</strong> : 和 <code>IT[7:2](bit15:bit10)</code>一起组成 <code>IT[7:0]</code>，作为 <code>IF-THEN</code> 指令执行状态。</p>
-</li>
-<li>
-<p><strong>J(bit24)</strong> :  仅 <code>ARM_v5TE-J</code> 架构支持，<code>J=1</code> 表示处于 <code>Jazelle</code> 状态，此位通常和 <code>T(bit5)</code>位一起表示当前所使用的指令集</p>
-<blockquote>
-<p><em><strong>如下所示 :</strong></em></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfcc50d2dde5777524e64.png" alt="image-20230501160804819" /></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfccd0d2dde577752569d.png" alt="image-20230501160815446" /></p>
-</blockquote>
-</li>
-<li>
-<p><strong>GE[3:0] (bit19:16)</strong>：<code>SIMD</code> 指令有效，大于或等于。</p>
-</li>
-<li>
-<p><strong>IT[7:2] (bit15:10)</strong> ： 参考 <code>IT[1:0]</code></p>
-</li>
-<li>
-<p><strong>E(bit9)</strong> ： 大小端控制位，<code>E=1</code> 表示 <em><strong>大端模式</strong></em> ，<code>E=0</code> 表示 <em><strong>小端模式</strong></em></p>
-</li>
-<li>
-<p><strong>A(bit8)</strong> ： 禁止异步中断位，<code>A=1</code> 表示禁止异步中断。</p>
-</li>
-<li>
-<p><strong>I(bit7)</strong>  ：  <code>I=1</code> 禁止 IRQ，<code>I=0</code> 使能 IRQ</p>
-</li>
-<li>
-<p><strong>F(bit6)</strong> :  <code>F=1</code> 禁止 FIQ，<code>F=0</code> 使能 FIQ</p>
-</li>
-<li>
-<p><strong>T(bit5)</strong> :  控制指令执行状态，表明本指令是 <code>ARM</code> 指令还是 <code>Thumb</code> 指令，通常和 <code>J(bit24)</code>一起表明指令类型，参考 <code>J(bit24)</code>位。</p>
-</li>
-<li>
-<p><strong>M[4:0]</strong>  :  处理器模式控制位</p>
-<blockquote>
-<p><strong>具体模式如下所示</strong> :</p>
-<p><img src="https://pic2.imgdb.cn/item/645cfcd60d2dde57775261b6.png" alt="image-20230501161303446" /></p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<hr />
-<h4 id="313-中断系统"><a class="markdownIt-Anchor" href="#313-中断系统"></a> 3.1.3 中断系统</h4>
-<p><em><strong>中断向量表</strong></em></p>
-<p><img src="https://pic2.imgdb.cn/item/645cfcea0d2dde57775277a0.png" alt="image-20230506205800419" /></p>
-<br>
-<blockquote>
-<p><code>Cortex-A</code> 内核 <code>CPU</code> 的所有外部中断 属于 <code>IRQ</code> 中断 , 当任意一个外部中断发生的时候都会触发 IRQ 中断</p>
-</blockquote>
-<p><em><strong>中断类型介绍:</strong></em></p>
-<ul>
-<li><em><strong>复位中断</strong></em> <code>(Rest)</code>，<code>CPU</code> 复位以后就会进入复位中断，我们可以在复位中断服务函数里面做一些初始化工作，比如初始化 <code>SP</code> 指针<code>DDR</code> 等等。</li>
-<li><em><strong>未定义指令中断</strong></em> <code>(Undefined Instruction)</code>，如果指令不能识别的话就会产生此中断</li>
-<li><em><strong>软中断</strong></em> <code>(Software Interrupt,SWI)</code>，由 <code>SWI</code> 指令引起的中断，<code>Linux</code> 的系统调用会用 <code>SWI</code>指令来引起软中断，通过软中断来陷入到内核空间。</li>
-<li><em><strong>指令预取中止中断</strong></em> <code>(Prefetch Abort)</code>，预取指令的出错的时候会产生此中断</li>
-<li><em><strong>数据访问中止中断</strong></em> <code>(Data Abort)</code>，访问数据出错的时候会产生此中断。</li>
-<li><em><strong>IRQ 中断</strong></em> <code>(IRQ Interrupt)</code>，外部中断，芯片内部的 <em><strong>外设中断</strong></em> 都会引起此中断的发生</li>
-<li><em><strong>FIQ 中断</strong></em> <code>(FIQ Interrupt)</code>，快速中断，如果需要快速处理中断的话就可以使用此中断。主要用于高速数据传输及通道处理中 , FIQ有 自己的专用寄存器<code>( R8 ~R14 )</code></li>
-</ul>
-<br>
-<p><em><strong>GIC中断控制器 :</strong></em></p>
-<blockquote>
-<ul>
-<li>GIC中断控制器 用于接收到外部中断信号后 , 进行处理最终 通过 <code>VFIQ</code> 、<code>VIRQ</code>、<code>FIQ</code>、<code>IRQ</code> 四个信号报给<code>ARM</code>内核</li>
-<li>GIC 将众多的 <em><strong>中断源</strong></em> 分为分为三类：
-<ul>
-<li><code>SPI(Shared Peripheral Interrupt)</code><em><strong>共享中断</strong></em> ， 这是所有核共享的中断 ， 这些中断所有的<code>Core</code>都可以处理 ， 不限定特定<code>core</code></li>
-<li><code>PPI(Private Peripheral Interrupt)</code>，<em><strong>私有中断</strong></em>，每个核有自己独有的中断。这些独有的中断需要指定的核心进行处理</li>
-<li><code>SGI(Software-generated Interrupt)</code>，<em><strong>软件中断</strong></em>，由软件触发引起的中断，通过向寄存器<code>GICD_SGIR</code> 写入数据来触发，系统会使用 <code>SGI</code> 中断来完成  <em><strong>多核</strong></em>  之间的通信。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<br>
-<hr />
 ]]></content>
       <categories>
         <category>学习记录</category>
